@@ -1,0 +1,1512 @@
+
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Navbar Styles */
+.navbar {
+  position: fixed; /* Fixed position at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust height as needed */
+  z-index: 2; /* Ensure it's above the overlay and background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Push items to the edges */
+  padding: 0 20px; /* Add padding for spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
+  background-color: #fff;
+}
+
+/* App Name/Logo in Navbar */
+.navbar .app-name {
+  font-size: 24px; /* Increase font size for visibility */
+  font-weight: bold;
+  color: #000; /* White text color */
+  margin: 0; /* Remove default margin */
+}
+
+/*  Tabs  */
+.tabs {
+  margin-left: auto; /* Push tabs to the far right */
+  display: flex;
+  gap: 10px; /* Add space between buttons */
+  padding-right: 20px; /* Add padding for spacing */
+}
+
+.tab-btn {
+  padding: 8px 16px; /* Adjust padding for buttons */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.tab-btn.active {
+  background-color: #0056b3; /* Darker blue for active tab */
+}
+
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: flex; 
+  align-items: center; 
+  cursor: pointer; 
+  margin-left: auto;
+  padding: 10px; 
+}
+
+.hamburger-icon {
+  font-size: 24px;
+  color: #000; 
+  cursor: pointer; 
+}
+
+#hamburger-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  z-index: 1000;
+}
+
+#hamburger-dropdown-menu a {
+  display: block;
+  margin: 5px 0;
+  text-decoration: none;
+  color: #333;
+}
+
+#hamburger-dropdown-menu a:hover {
+  color: #007bff;
+}
+
+/* Welcome Container */
+.welcome-container {
+  position: relative;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  color: #fff;
+  padding-top: 60px; 
+  box-sizing: border-box; 
+}
+
+/* Background Image */
+.background-image {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-image: url('images/pexels-pixabay-208006.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  z-index: -1; 
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 0; 
+}
+
+/* Welcome Message */
+.welcome-message {
+  font-size: 1.5rem; 
+  color: #fff;
+  padding: 0 20px;
+  z-index: 1;
+  max-width: 600px;
+  text-align: left;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .welcome-message {
+      font-size: 1.5rem; 
+      max-width: 90%; 
+  }
+}
+
+/* Action Buttons */
+.action-buttons {
+  position: absolute;
+  bottom: 10%;
+  left: 50%; 
+  transform: translateX(-50%); 
+  width: 100%;
+  max-width: 400px;
+  padding: 0 20px; 
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; 
+}
+
+.btn {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 12px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem; 
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%; 
+  max-width: 300px; 
+  margin: 0 auto; 
+  box-sizing: border-box; 
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .btn {
+      font-size: 0.9rem; 
+      padding: 10px 15px; 
+  }
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Specific Button Styles */
+.signup-btn {
+  background-color: #FF5864; 
+  border: none;
+}
+
+.signup-btn:hover {
+  background-color: #e54b56; 
+  color: #fff;
+}
+
+.login-btn {
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+
+.login-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Signup Container */
+.signup-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.signup-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #FF5864;
+  outline: none;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Submit Button */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF5864;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e54b56;
+}
+
+/* Link to Login Page */
+.signup-container p {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.signup-container a {
+  color: #FF5864;
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+}
+
+/* Signup Container Animation */
+.signup-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Hover Animation */
+.btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e54b56;
+  transform: scale(1.05);
+}
+
+/* Input Focus Animation */
+.form-group input:focus {
+  border-color: #FF5864;
+  box-shadow: 0 0 5px rgba(255, 88, 100, 0.5);
+}
+
+/* Login Container */
+.login-container {
+  max-width: 400px; 
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+} 
+
+/* Chat Container */
+.chat-container {
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 120px); 
+}
+
+/* Message Styling */
+.message {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 70%;
+}
+
+.message strong {
+  color: #007bff;
+}
+
+  /* profile dropdown */
+  .profile-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto; 
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .profile-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .profile-dropdown-content button {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .profile-dropdown-content button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .profile-dropdown-content input[type="file"] {
+    display: none;
+  }
+
+/* Search Bar */
+.search-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; 
+  padding: 10px; 
+}
+
+#search-input {
+  width: 90%; 
+  padding: 10px 16px 10px 40px; 
+  border: 1px solid #ccc; 
+  border-radius: 20px; 
+  font-size: 14px; 
+  outline: none; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input::placeholder {
+  color: #999;
+}
+
+#search-input:focus {
+  border-color: #007bff; 
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.25);
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  left: 40px; 
+  top: 50%;
+  transform: translateY(-60%);
+  color: #999;
+  font-size: 16px; 
+  pointer-events: none; 
+}
+
+/* Plane Icon */
+.plane-icon {
+  margin-left: 10px; 
+  color: #007bff; 
+  font-size: 20px; 
+  cursor: pointer; 
+  transition: color 0.3s ease;
+  transform: translateY(15px); 
+}
+
+.plane-icon:hover {
+  color: #0056b3; 
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    margin: 10px 0; 
+    padding-top: 10px; 
+  }
+}
+
+/* Message Input Container */
+.message-input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#message-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+#send-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#send-button:hover {
+  background-color: #0056b3;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.username {
+  margin-right: 10px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.online {
+  background-color: green;
+}
+
+.status-dot.offline {
+  background-color: gray;
+}
+
+/* Emoji Picker Button */
+#emoji-picker-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+#emoji-picker-button:hover {
+  opacity: 0.8;
+} 
+
+/* Emoji Picker Container */
+#emoji-picker {
+  position: absolute;
+  bottom: 60px; 
+  right: 20px; 
+  z-index: 1000; 
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Voice Recording Styles */
+#record-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+#record-button:hover {
+  transform: scale(1.1);
+}
+
+.waves-animation {
+  display: inline-flex;
+  align-items: center;
+  color: #ff0000;
+  font-size: 14px;
+  margin-left: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+.wave {
+  display: inline-block;
+  width: 4px;
+  height: 10px;
+  background: #ff0000;
+  margin: 0 2px;
+  border-radius: 2px;
+  animation: wave 1s ease-in-out infinite;
+}
+
+.wave:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.wave:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 100% {
+      transform: scaleY(1);
+  }
+  50% {
+      transform: scaleY(2);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.7;
+  }
+}
+
+
+
+/*
+
+ONE-ON-ONE CHATS
+.chat-container {
+  display: flex;
+  height: 100vh;
+}
+
+.contact-list {
+  width: 300px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.contact {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.contact:hover {
+  background: #f5f5f5;
+}
+
+.contact img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 60%;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 18px;
+}
+
+.message.sent {
+  background: #007bff;
+  color: white;
+  margin-left: auto;
+}
+
+.message.received {
+  background: #f1f1f1;
+  margin-right: auto;
+}
+
+.message-time {
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.message-input {
+  padding: 15px;
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.message-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+*/
+
+
+
+/* History Container Styles */
+.history-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  display: none; /* Hidden by default */
+}
+
+.history-container h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 10px 0;
+}
+
+.history-message {
+  padding: 8px 12px;
+  margin: 5px 0;
+  background-color: white;
+  border-radius: 4px;
+  border-left: 3px solid #007bff;
+}
+
+.history-message .time {
+  font-size: 0.8em;
+  color: #666;
+  display: block;
+}
+
+#clear-history {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#clear-history:hover {
+  background-color: #c82333;
+}
+
+
+
+/* Structure de base pour rendre la page d'accueil deroulante*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto; /* Permet le défilement */
+  padding-bottom: 120px; /* Espace pour le footer */
+}
+
+/* Footer fixe */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: hsl(29, 70%, 82%);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.footer-info {
+  padding: 8px 15px;
+  text-align: center;
+  font-size: 12px;
+  border-top: 1px solid #eee;
+}
+
+.footer-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.footer-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 5px;
+  flex: 1;
+}
+
+.footer-tab i {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+/* Effets interactifs */
+.footer-tab:hover {
+  color: #007bff;
+}
+
+
+
+/* About Page Specific */
+.about-container {
+  padding: 60px 20px 20px; /* Espace pour la navbar */
+}
+
+.about-section ul ul {
+  margin-left: 20px;
+  list-style-type: circle;
+}
+
+
+
+/* Styles for Advertising Page */
+.advert-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.advert-container h2 {
+  text-align: center;
+  color: #e91e63;
+  margin-bottom: 1.5rem;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.advert-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.advert-section h3 {
+  color: #e91e63;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.advert-section ul, .advert-section ol {
+  padding-left: 1.5rem;
+}
+
+.advert-section li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.package-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.package-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.package-card h4 {
+  color: #e91e63;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.package-card ul {
+  padding-left: 1rem;
+}
+
+.package-card li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.specs-table th, .specs-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.specs-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.cta-section h3 {
+  color: #e91e63;
+  margin-bottom: 1rem;
+}
+
+.contact-btn {
+  display: inline-block;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 1rem 0;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #c2185b;
+}
+
+@media (max-width: 768px) {
+  .package-cards {
+    flex-direction: column;
+  }
+  
+  .specs-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+
+
+/* Assure que le body prend toute la hauteur et permet le scrolling */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+
+/* Navbar fixe en haut */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Conteneur principal scrollable */
+.advert-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 60px; /* Espace pour le footer */
+}
+
+
+
+
+
+/* Password Recovery Styles */
+.password-recovery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recovery-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recovery-card h2 {
+  color: #e91e63;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recovery-instructions {
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn.recovery-btn {
+  width: 100%;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn.recovery-btn:hover {
+  background-color: #c2185b;
+}
+
+.alternative-options {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.alternative-options p {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.security-option {
+  display: block;
+  padding: 0.5rem;
+  color: #e91e63;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.security-option:hover {
+  background-color: #fce4ec;
+}
+
+.security-option i {
+  margin-right: 0.5rem;
+}
+
+.back-to-login {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.back-to-login a {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+.back-to-login i {
+  margin-right: 0.5rem;
+}
+
+.recovery-steps {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.recovery-steps h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.steps-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.steps-list li {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.steps-list i {
+  color: #e91e63;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.steps-list span {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .password-recovery-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .recovery-card, .recovery-steps {
+    max-width: 100%;
+  }
+}
+
+
+
+
+
+
+/* Password Recovery Styles - Scrollable Version */
+
+
+/* Main container that will scroll */
+.password-recovery-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-y: auto;
+  padding-bottom: 100px; /* Space for footer */
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e91e63;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2185b;
+}
+
+
+
+
+
+/* Contact Us Styles */
+.contact-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.contact-container h2 {
+  text-align: center;
+  color: #e91e63;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-intro {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-card {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+  text-align: center;
+  font-size: 2rem;
+  color: #e91e63;
+  margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.btn.contact-btn {
+  width: 100%;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn.contact-btn:hover {
+  background-color: #c2185b;
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-info i {
+  color: #e91e63;
+  width: 20px;
+}
+
+.contact-info a {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+.social-media {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.social-media h4 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icons a {
+  color: #e91e63;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+.faq-section {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.faq-section h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.faq-question {
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faq-question::before {
+  content: "+";
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .contact-methods {
+    flex-direction: column;
+  }
+  
+  .contact-card {
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+/* Add these styles to make the page scrollable */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Keep navbar fixed at top */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Main content area that will scroll */
+.contact-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 100px; /* Space for footer */
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Keep footer fixed at bottom */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 14%, 90%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e91e63;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2185b;
+}
+
+/* Adjust for mobile view */
+@media (max-width: 768px) {
+  .contact-container {
+    padding-bottom: 150px; /* More space for mobile footer */
+  }
+  
+  /* Keep all your existing responsive styles */
+  .contact-methods {
+    flex-direction: column;
+  }
+  
+  .contact-card {
+    min-width: 100%;
+  }
+}

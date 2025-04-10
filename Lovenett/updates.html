@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Updates | L💞venett</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .updates-main {
+      padding: 20px;
+      background: #f5f5f5;
+      min-height: 100vh;
+    }
+    
+    .updates-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    
+    .updates-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .updates-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    .updates-container::-webkit-scrollbar-thumb {
+      background: #e91e63;
+      border-radius: 10px;
+    }
+    
+    .updates-container::-webkit-scrollbar-thumb:hover {
+      background: #c2185b;
+    }
+    
+    .update-card {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .update-card:last-child {
+      border-bottom: none;
+    }
+    
+    .update-date {
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    
+    .update-title {
+      font-size: 1.2em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+    
+    .update-description {
+      line-height: 1.6;
+    }
+    
+    .update-badge {
+      background: #e91e63;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      margin-left: 10px;
+    }
+    
+    .updates-header {
+      text-align: center;
+      margin-bottom: 20px;
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 15px 0;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="app-name">L💞venett</h1>
+    <div class="hamburger-menu" id="hamburger-menu">
+      <div class="hamburger-icon">☰</div>
+    </div>
+    <div class="dropdown-menu" id="hamburger-dropdown-menu">
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Login</a>
+      <a href="about.html">About L💞venett</a>
+      <a href="advert.html">Advertise</a>
+      <a href="forgotpassword.html">Forgot Password</a>
+      <a href="contact-us.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- Updates Main Content -->
+  <div class="updates-main">
+    <div class="updates-container">
+      <div class="updates-header">
+        <h2>Latest Updates <span class="update-badge">New</span></h2>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">November 09, 2025</div>
+        <h3 class="update-title">Enhanced Privacy Controls</h3>
+        <p class="update-description">
+          We've added new privacy settings that give you more control over who can see your profile and contact you. You can now customize visibility for different parts of your profile.
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">October 09, 2025</div>
+        <h3 class="update-title">Video Calling Feature</h3>
+        <p class="update-description">
+          Start face-to-face conversations with our new video calling feature! Now you can switch from text chat to video with just one tap (requires app version 2.1 or higher).
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">September 09, 2025</div>
+        <h3 class="update-title">Dark Mode Available</h3>
+        <p class="update-description">
+          Your eyes will thank you! We've added a dark mode option that you can enable in settings. It's easier on the eyes and saves battery life on mobile devices.
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">August 09, 2025</div>
+        <h3 class="update-title">Improved Matching Algorithm</h3>
+        <p class="update-description">
+          Our new matching system uses advanced compatibility scoring to suggest better connections based on your interests, values, and communication style.
+        </p>
+      </div>
+      
+      <!-- Additional sample updates to demonstrate scrolling -->
+      <div class="update-card">
+        <div class="update-date">July 09, 2025</div>
+        <h3 class="update-title">New Notification System</h3>
+        <p class="update-description">
+          We've completely redesigned our notification system to be less intrusive while keeping you informed about important activities.
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">June 09, 2025</div>
+        <h3 class="update-title">Profile Verification</h3>
+        <p class="update-description">
+          New profile verification badge helps users identify authentic profiles. Get verified by submitting your ID through our secure portal.
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">Mai 09, 2025</div>
+        <h3 class="update-title">Group Chats Introduced</h3>
+        <p class="update-description">
+          You can now create group chats with up to 20 people. Perfect for planning events or just staying in touch with multiple friends.
+        </p>
+      </div>
+      
+      <div class="update-card">
+        <div class="update-date">April 09, 2025</div>
+        <h3 class="update-title">Performance Improvements</h3>
+        <p class="update-description">
+          We've optimized the app to load 40% faster and use 30% less memory on your device.
+        </p>
+      </div>
+    </div>
+  </div>
+
+    
+    <div class="footer-info">
+      <p>Powered by <span id="ip-address">PR-Hub</span></p>
+      <a href="#" id="view-activity">View account activity</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

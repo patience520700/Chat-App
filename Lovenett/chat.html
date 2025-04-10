@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - L💞venett</title>
+  <link rel="icon" href="data:,">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="app-name">Chats</h1>
+    
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+      <button class="tab-btn" data-tab="contacts">Unread</button>
+      <button class="tab-btn" data-tab="history">Groups</button>
+      <button class="tab-btn" data-tab="history">Status</button>
+    </div>
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown">
+      <div class="profile-icon" id="profile-icon">👤</div>
+      <div class="profile-dropdown-content" id="profile-dropdown-content">
+        <button id="upload-profile-pic">Upload Picture</button>
+        <button id="delete-profile-pic">Delete Picture</button>
+        <button id="set-default-pic">Set Default</button>
+        <input type="file" id="profile-pic-upload" accept="image/*">
+      </div>
+    </div>
+  </nav>
+
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="search-input" placeholder="Search messages, files, or media...">
+      <i class="fas fa-paper-plane plane-icon"></i>
+    </div>
+        <!-- Ajouter cette div après le search-bar -->
+    <div class="history-container" id="history-container">
+      <h3>Message History</h3>
+      <div class="history-list" id="history-list"></div>
+      <button id="clear-history">Clear History</button>
+    </div>
+    <!-- <button id="record-button">🎤</button> -->
+    <div id="audio-recording-container" style="display: none;">
+      <div id="waveform"></div>
+      <p class="recording-text">Enregistrement en cours...</p>
+    </div>
+
+    <!-- Message Input Container -->
+    <div class="message-input-container">
+ 
+      <!-- Emoji Picker -->
+      <button id="emoji-picker-button">😀</button>
+      <div id="emoji-picker" style="display: none;"></div>
+
+      <!-- Message Input Field -->
+      <input type="text" id="message-input" placeholder="Type a message..." />
+
+      <!-- record icon -->
+      <button id="record-button">🎤</button>
+
+      <!-- Send Button -->
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script type="module" src="firebase-init.js"></script>
+  <script src="main.js" defer></script>
+  <script src="chat.js" defer></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Chat | L💞venett</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Contact List -->
+    <div class="contact-list">
+      <div class="search-bar">
+        <input type="text" placeholder="Search contacts...">
+      </div>
+      <ul id="contacts-list"></ul>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="chat-area">
+      <div class="chat-header">
+        <h3 id="current-chat-name">Select a contact</h3>
+      </div>
+      <div class="messages" id="messages-container"></div>
+      <div class="message-input">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-button">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/chat.js"></script>
+</body>
+</html>
+
+
+ 

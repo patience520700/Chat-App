@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - L💞venett</title>
+  <link rel="stylesheet" href="main.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+  <!-- Signup Container -->
+  <div class="signup-container">
+    <h1>Create Your Account</h1>
+    <form id="signup-form">
+      <!-- Email Input -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <!-- Full Name Input -->
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input
+          type="text"
+          id="fullname"
+          name="fullname"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+
+      <!-- Phone Number Input -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter your phone number"
+          pattern="[0-9]{10}"
+          required
+        />
+        <small>Format: +233000000000 (10 digits)</small>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          minlength="8"
+          required
+        />
+        <small>Minimum 8 characters</small>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <!-- Link to Login Page -->
+    <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+  </div>
+</body>
+</html>
