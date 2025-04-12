@@ -3,121 +3,535 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat - L💞venett</title>
-  <link rel="icon" href="data:,">
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="main.css">
+  <title>Private Chat | L💞venett</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.css">
+ 
+ <style>
+    :root {
+      --primary-color: #ff6b9d;
+      --secondary-color: #f8f9fa;
+      --dark-color: #343a40;
+      --light-color: #ffffff;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: var(--light-color);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+    
+    .app-name {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .profile-icon {
+      background-color: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .profile-dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: var(--light-color);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .profile-dropdown-content button {
+      color: var(--dark-color);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    
+    .profile-dropdown-content button:hover {
+      background-color: #f1f1f1;
+    }
+    
+    /* Main Chat Container */
+    .chat-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    /* Contact List */
+    .contact-list {
+      width: 300px;
+      background-color: var(--light-color);
+      border-right: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .search-bar {
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    
+    #contacts-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .contact-item:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .contact-item.active {
+      background-color: #f0f0f0;
+    }
+    
+    .contact-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+    
+    .contact-info {
+      flex: 1;
+    }
+    
+    .contact-name {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    
+    .contact-last-msg {
+      font-size: 0.8rem;
+      color: #777;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    /* Chat Area */
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--secondary-color);
+    }
+    
+    .chat-header {
+      padding: 15px 20px;
+      background-color: var(--light-color);
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+    }
+    
+    #current-chat-name {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--dark-color);
+    }
+    
+    .messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+    
+    .message {
+      margin-bottom: 15px;
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      position: relative;
+      word-wrap: break-word;
+    }
+    
+    .received {
+      background-color: var(--light-color);
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .sent {
+      background-color: var(--primary-color);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+      margin-left: auto;
+    }
+    
+    .message-time {
+      font-size: 0.7rem;
+      color: #999;
+      margin-top: 5px;
+      text-align: right;
+    }
+    
+    .message-input-container {
+      display: flex;
+      padding: 15px;
+      background-color: var(--light-color);
+      border-top: 1px solid #e0e0e0;
+      align-items: center;
+    }
+    
+    #message-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      outline: none;
+      font-size: 0.9rem;
+      margin: 0 10px;
+    }
+    
+    #send-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    #send-button:hover {
+      background-color: #e0558a;
+    }
+    
+    /* Status indicators */
+    .online {
+      width: 10px;
+      height: 10px;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    
+    .offline {
+      width: 10px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .contact-list {
+        width: 100%;
+        display: none;
+      }
+      
+      .contact-list.active {
+        display: flex;
+      }
+      
+      .chat-area {
+        display: none;
+      }
+      
+      .chat-area.active {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <h1 class="app-name">Chats</h1>
-    
-    <!-- Tabs Navigation -->
-    <div class="tabs">
-      <button class="tab-btn" data-tab="contacts">Unread</button>
-      <button class="tab-btn" data-tab="history">Groups</button>
-      <button class="tab-btn" data-tab="history">Status</button>
-    </div>
-    <!-- Profile Dropdown -->
+    <h1 class="app-name">L💞venett Chat</h1>
     <div class="profile-dropdown">
       <div class="profile-icon" id="profile-icon">👤</div>
-      <div class="profile-dropdown-content" id="profile-dropdown-content">
-        <button id="upload-profile-pic">Upload Picture</button>
-        <button id="delete-profile-pic">Delete Picture</button>
-        <button id="set-default-pic">Set Default</button>
-        <input type="file" id="profile-pic-upload" accept="image/*">
-      </div>
+    <div class="profile-dropdown-content" id="profile-dropdown-content">
+      <button id="upload-profile-pic">Upload Picture</button>
+      <button id="delete-profile-pic">Delete Picture</button>
+      <button id="set-default-pic">Set Default</button>
+      <input type="file" id="profile-pic-upload" accept="image/*">
+    </div>
     </div>
   </nav>
 
-  <!-- Chat Container -->
-  <div class="chat-container">
-    <!-- Search Bar -->
-    <div class="search-bar">
-      <i class="fas fa-search search-icon"></i>
-      <input type="text" id="search-input" placeholder="Search messages, files, or media...">
-      <i class="fas fa-paper-plane plane-icon"></i>
+    
+  </div>
+</nav>
     </div>
-        <!-- Ajouter cette div après le search-bar -->
-    <div class="history-container" id="history-container">
-      <h3>Message History</h3>
-      <div class="history-list" id="history-list"></div>
-      <button id="clear-history">Clear History</button>
-    </div>
-    <!-- <button id="record-button">🎤</button> -->
-    <div id="audio-recording-container" style="display: none;">
-      <div id="waveform"></div>
-      <p class="recording-text">Enregistrement en cours...</p>
-    </div>
-
-    <!-- Message Input Container -->
-    <div class="message-input-container">
- 
-      <!-- Emoji Picker -->
-      <button id="emoji-picker-button">😀</button>
-      <div id="emoji-picker" style="display: none;"></div>
-
-      <!-- Message Input Field -->
-      <input type="text" id="message-input" placeholder="Type a message..." />
-
-      <!-- record icon -->
-      <button id="record-button">🎤</button>
-
-      <!-- Send Button -->
-      <button id="send-button">Send</button>
+  </nav>
+  <!-- Profile Dropdown -->
+  <div class="profile-dropdown">
+    <div class="profile-icon" id="profile-icon">👤</div>
+    <div class="profile-dropdown-content" id="profile-dropdown-content">
+      <button id="upload-profile-pic">Upload Picture</button>
+      <button id="delete-profile-pic">Delete Picture</button>
+      <button id="set-default-pic">Set Default</button>
+      <input type="file" id="profile-pic-upload" accept="image/*">
     </div>
   </div>
+</nav>
 
-  <script type="module" src="firebase-init.js"></script>
-  <script src="main.js" defer></script>
-  <script src="chat.js" defer></script>
-
-
-</body>
-</html>
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private Chat | L💞venett</title>
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+  <!-- Main Chat Container -->
   <div class="chat-container">
     <!-- Contact List -->
     <div class="contact-list">
       <div class="search-bar">
-        <input type="text" placeholder="Search contacts...">
+        <input type="text" id="contact-search" placeholder="Search contacts...">
       </div>
-      <ul id="contacts-list"></ul>
+      <ul id="contacts-list">
+        <!-- Contacts will be loaded here dynamically -->
+      </ul>
     </div>
 
     <!-- Chat Area -->
     <div class="chat-area">
       <div class="chat-header">
-        <h3 id="current-chat-name">Select a contact</h3>
+        <h3 id="current-chat-name">Select a contact to start chatting</h3>
       </div>
-      <div class="messages" id="messages-container"></div>
-      <div class="message-input">
+      <div class="messages" id="messages-container">
+        <!-- Messages will appear here -->
+        <div class="welcome-message">
+          <p>Welcome to L💞venett Chat! Select a contact from the list to start a conversation.</p>
+        </div>
+      </div>
+      <div class="message-input-container">
+        <button id="emoji-btn"><i class="far fa-smile"></i></button>
+        <div class="emoji-picker-container" id="emoji-picker-container">
+          <emoji-picker id="emoji-picker"></emoji-picker>
+        </div>
         <input type="text" id="message-input" placeholder="Type a message...">
-        <button id="send-button">Send</button>
+        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
       </div>
-    </div>
-  </div>
 
-  <script type="module" src="js/chat.js"></script>
+
+
+
+  <script>
+    // Basic functionality for the chat interface
+    document.addEventListener('DOMContentLoaded', function() {
+      // Profile dropdown toggle
+      const profileIcon = document.getElementById('profile-icon');
+      const profileDropdown = document.getElementById('profile-dropdown-content');
+      
+      profileIcon.addEventListener('click', function() {
+        profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+      
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function(event) {
+        if (!event.target.matches('#profile-icon')) {
+          if (profileDropdown.style.display === 'block') {
+            profileDropdown.style.display = 'none';
+          }
+        }
+      });
+      
+      // Sample contacts - in a real app, these would come from your database
+      const contacts = [
+        { id: 1, name: "Efua Mensah", lastMessage: "See you tomorrow!", online: true },
+        { id: 2, name: "Patience Okafor", lastMessage: "Thanks for the help", online: false },
+        { id: 3, name: "Bilinda Diallo", lastMessage: "Did you see the news?", online: true },
+        { id: 4, name: "Eulalia Ndiaye", lastMessage: "Meeting at 3pm", online: false },
+        { id: 5, name: "Abigail Sow", lastMessage: "The documents are ready", online: true }
+      ];
+      
+      // Load contacts into the list
+      const contactsList = document.getElementById('contacts-list');
+      
+      contacts.forEach(contact => {
+        const contactItem = document.createElement('li');
+        contactItem.className = 'contact-item';
+        contactItem.innerHTML = `
+          <div class="contact-avatar">${contact.name.charAt(0)}</div>
+          <div class="contact-info">
+            <div class="contact-name">${contact.name} 
+              <span class="${contact.online ? 'online' : 'offline'}"></span>
+            </div>
+            <div class="contact-last-msg">${contact.lastMessage}</div>
+          </div>
+        `;
+        
+        contactItem.addEventListener('click', function() {
+          // Set the current chat name
+          document.getElementById('current-chat-name').textContent = contact.name;
+          
+          // Clear messages container and show chat with this contact
+          const messagesContainer = document.getElementById('messages-container');
+          messagesContainer.innerHTML = `
+            <div class="message received">
+              <p>Hello there! This is the start of your conversation with ${contact.name}.</p>
+              <div class="message-time">Today at ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+            </div>
+          `;
+          
+          // Highlight selected contact
+          document.querySelectorAll('.contact-item').forEach(item => {
+            item.classList.remove('active');
+          });
+          this.classList.add('active');
+        });
+        
+        contactsList.appendChild(contactItem);
+      });
+      
+      // Send message functionality
+      const messageInput = document.getElementById('message-input');
+      const sendButton = document.getElementById('send-button');
+      const messagesContainer = document.getElementById('messages-container');
+      
+      function sendMessage() {
+        const messageText = messageInput.value.trim();
+        if (messageText && document.getElementById('current-chat-name').textContent !== 'Select a contact to start chatting') {
+          const messageElement = document.createElement('div');
+          messageElement.className = 'message sent';
+          messageElement.innerHTML = `
+            <p>${messageText}</p>
+            <div class="message-time">Now</div>
+          `;
+          
+          messagesContainer.appendChild(messageElement);
+          messageInput.value = '';
+          
+          // Scroll to bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          
+          // Simulate reply after 1-3 seconds
+          setTimeout(() => {
+            if (Math.random() > 0.3) { // 70% chance of reply
+              const replyElement = document.createElement('div');
+              replyElement.className = 'message received';
+              const replies = [
+                "That's interesting!",
+                "I'll get back to you soon",
+                "Thanks for letting me know",
+                "Can we talk about this later?",
+                "I appreciate your message!"
+              ];
+              const randomReply = replies[Math.floor(Math.random() * replies.length)];
+              
+              replyElement.innerHTML = `
+                <p>${randomReply}</p>
+                <div class="message-time">Now</div>
+              `;
+              
+              messagesContainer.appendChild(replyElement);
+              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+          }, 1000 + Math.random() * 2000);
+        }
+      }
+      
+      sendButton.addEventListener('click', sendMessage);
+      
+      messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+    });
+  </script>
+  <script type="module">
+    import 'https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.js';
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      const emojiBtn = document.getElementById('emoji-btn');
+      const emojiPickerContainer = document.getElementById('emoji-picker-container');
+      const messageInput = document.getElementById('message-input');
+      const emojiPicker = document.getElementById('emoji-picker');
+  
+      // Toggle emoji picker
+      emojiBtn.addEventListener('click', () => {
+        emojiPickerContainer.style.display = emojiPickerContainer.style.display === 'block' ? 'none' : 'block';
+      });
+  
+      // Insert emoji when clicked
+      emojiPicker.addEventListener('emoji-click', (event) => {
+        messageInput.value += event.detail.unicode;
+        messageInput.focus();
+      });
+  
+      // Close picker when clicking outside
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('#emoji-btn') && !event.target.closest('#emoji-picker-container')) {
+          emojiPickerContainer.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
 
 
  

@@ -12,22 +12,67 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      overflow: auto;
+      overflow: hidden; /* Changed from auto to hide main scroll */
+    }
+    
+    /* New layout styles */
+    .page-container {
+      display: flex;
+      height: calc(100vh - 180px); /* Account for navbar and footer */
+    }
+    
+    .brand-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .brand-frame {
+      background-color: white;
+      border: 3px solid #ff6b81;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      position: fixed; /* Makes it stay in place */
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .brand-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ff6b81;
+    }
+    
+    .brand-slogan {
+      font-size: 1.3rem;
+      color: #333;
+      font-style: italic;
     }
     
     /* About page specific styles */
     .about-page {
-      min-height: 100vh;
-      padding-top: 60px; /* Space for navbar */
-      padding-bottom: 120px; /* Space for footer */
+      flex: 2;
       background-color: #f8f9fa;
+      padding: 40px;
+      overflow-y: auto; /* Only this section scrolls */
+      height: 100%;
     }
     
     .about-container {
       max-width: 800px;
       margin: 0 auto;
       padding: 30px;
-      background: hsl(0, 6%, 94%);
+      background: white;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
@@ -61,6 +106,121 @@
       font-size: 1.5em;
       margin: 25px 0 15px;
     }
+    
+    @media (max-width: 768px) {
+      .page-container {
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .brand-section {
+        padding: 20px;
+      }
+      
+      .brand-frame {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        max-width: 90%;
+      }
+      
+      .brand-title {
+        font-size: 2.5rem;
+      }
+      
+      .about-page {
+        overflow-y: visible;
+      }
+    }
+
+
+
+
+    /* New layout styles */
+    .page-container {
+      display: flex;
+      height: calc(100vh - 180px);
+    }
+    
+    .brand-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      position: relative;
+      background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+    }
+    
+    .brand-frame {
+      background-color: white;
+      border: 3px solid #ff6b81;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(255, 107, 129, 0.2);
+      text-align: center;
+      max-width: 400px;
+      position: fixed;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+    
+    .brand-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ff6b81;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .heart {
+      display: inline-block;
+      animation: pulse 1.5s ease infinite;
+      transform-origin: center;
+    }
+    
+    .brand-slogan {
+      font-size: 1.3rem;
+      color: #555;
+      font-style: italic;
+      animation: fadeIn 2s ease-out;
+      position: relative;
+    }
+    
+    .brand-slogan::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #ff6b81;
+      margin: 15px auto;
+      animation: expand 1.5s ease-out;
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes expand {
+      from { width: 0; opacity: 0; }
+      to { width: 50px; opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -77,100 +237,110 @@
     </div>
   </nav>
 
-  <!-- Scrollable About Page Content -->
-  <div class="about-page">
-    <div class="about-container">
-      <div class="about-section">
-        <h2>Meet and Chat</h2>
+  <!-- New page layout -->
+  <div class="page-container">
+    <!-- Brand section on the left -->
+    <div class="brand-section">
+      <div class="brand-frame">
+        <div class="brand-title">L<span class="heart">💞</span>venett</div>
+        <div class="brand-slogan">Connect hearts across the world</div>
+      </div>
+    </div>
+    
+    <!-- About content on the right -->
+    <div class="about-page">
+      <div class="about-container">
+        <h1 style="color: #ff6b81; text-align: center; margin-bottom: 30px;">About Our Platform</h1>
         
-        <h3>Personal Profile:</h3>
-        <ul>
-          <li>Customizable profile picture</li>
-          <li>Online/offline status visible to others</li>
-          <li>Personal info (name, contacts)</li>
-        </ul>
-        
-        <h3>Connections:</h3>
-        <ul>
-          <li>Find people near you or in other countries</li>
-          <li>See who's online now</li>
-        </ul>
-        
-        <h3>Conversations:</h3>
-        <ul>
-          <li>Private messaging (text, emojis)</li>
-          <li>Voice message recording</li>
-          <li>Group discussions (coming soon)</li>
-        </ul>
-      </div>
+        <div class="about-section">
+          <h2>Meet and Chat</h2>
+          
+          <h3>Personal Profile:</h3>
+          <ul>
+            <li>Customizable profile picture</li>
+            <li>Online/offline status visible to others</li>
+            <li>Personal info (name, contacts)</li>
+          </ul>
+          
+          <h3>Connections:</h3>
+          <ul>
+            <li>Find people near you or in other countries</li>
+            <li>See who's online now</li>
+          </ul>
+          
+          <h3>Conversations:</h3>
+          <ul>
+            <li>Private messaging (text, emojis)</li>
+            <li>Voice message recording</li>
+            <li>Group discussions (coming soon)</li>
+          </ul>
+        </div>
 
-      <div class="about-section">
-        <h2 class="emoji-title">🌍 Language Practice</h2>
-        <ul>
-          <li>Find language partners to learn:
-            <ul>
-              <li>Spanish, Chinese, French, German, etc.</li>
-            </ul>
-          </li>
-          <li>Dedicated language exchange features</li>
-        </ul>
-      </div>
+        <!-- Rest of your about sections... -->
+        <div class="about-section">
+          <h2 class="emoji-title">🌍 Language Practice</h2>
+          <ul>
+            <li>Find language partners to learn:
+              <ul>
+                <li>Spanish, Chinese, French, German, etc.</li>
+              </ul>
+            </li>
+            <li>Dedicated language exchange features</li>
+          </ul>
+        </div>
 
-      <div class="about-section">
-        <h2 class="emoji-title">💖 Social Features</h2>
-        <ul>
-          <li>See who viewed your profile</li>
-          <li>Post status updates</li>
-          <li>Thematic discussion forums</li>
-        </ul>
-      </div>
+        <div class="about-section">
+          <h2 class="emoji-title">💖 Social Features</h2>
+          <ul>
+            <li>See who viewed your profile</li>
+            <li>Post status updates</li>
+            <li>Thematic discussion forums</li>
+          </ul>
+        </div>
 
-      <div class="about-section">
-        <h2 class="emoji-title">🔒 Security & Simplicity</h2>
-        <ul>
-          <li>Easy registration (email or phone)</li>
-          <li>Private and secure conversations</li>
-          <li>Intuitive modern interface</li>
-        </ul>
-      </div>
+        <div class="about-section">
+          <h2 class="emoji-title">🔒 Security & Simplicity</h2>
+          <ul>
+            <li>Easy registration (email or phone)</li>
+            <li>Private and secure conversations</li>
+            <li>Intuitive modern interface</li>
+          </ul>
+        </div>
 
-      <div class="about-section">
-        <h2 class="emoji-title">📱 Why People Will Love It</h2>
-        <ul>
-          <li>To make friends or find love</li>
-          <li>To travel while practicing languages with natives</li>
-          <li>For more intimate conversations than traditional social networks</li>
-        </ul>
-      </div>
+        <div class="about-section">
+          <h2 class="emoji-title">📱 Why People Will Love It</h2>
+          <ul>
+            <li>To make friends or find love</li>
+            <li>To travel while practicing languages with natives</li>
+            <li>For more intimate conversations than traditional social networks</li>
+          </ul>
+        </div>
 
-      <div class="about-section">
-        <h2 class="emoji-title">✨ What Makes Us Unique</h2>
-        <ul>
-          <li>Warm design with hearts and soft colors</li>
-          <li>Focus on real exchanges (not just "likes")</li>
-          <li>Voice features for more natural conversations</li>
-        </ul>
+        <div class="about-section">
+          <h2 class="emoji-title">✨ What Makes Us Unique</h2>
+          <ul>
+            <li>Warm design with hearts and soft colors</li>
+            <li>Focus on real exchanges (not just "likes")</li>
+            <li>Voice features for more natural conversations</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
   <footer class="app-footer">
     <div class="footer-tabs">
-      <!-- Onglet About -->
       <div class="footer-tab">
         <div class="tab-header">
           <i class="fas fa-info-circle"></i>
           <span>About</span>
         </div>
         <div class="tab-content">
-          <a href="advert.html">Advert in L💞venett</a>
-          <a href="index.html">Home</a>
-
+          <a href="index.html">@Home</a>
         </div>
       </div>
-      
-     
+    </div>
   </footer>
-  
 
   <script src="main.js"></script>
 </body>
