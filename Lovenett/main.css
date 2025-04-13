@@ -148,6 +148,24 @@ body, html {
   z-index: 0; 
 }
 
+
+
+
+.welcome-message {
+  position: absolute;
+  white-space: nowrap;
+  animation: slideIn 30s linear infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
 /* Welcome Message */
 .welcome-message {
   font-size: 1.5rem; 
@@ -1241,9 +1259,6 @@ html {
 }
 
 
-
-
-
 /* Contact Us Styles */
 .contact-container {
   max-width: 1200px;
@@ -1432,9 +1447,6 @@ html {
     min-width: 100%;
   }
 }
-
-
-
 
 
 /* Add these styles to make the page scrollable */

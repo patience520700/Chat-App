@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share L💞venett</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff5f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    .share-container {
+      max-width: 600px;
+      width: 90%;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+      text-align: center;
+    }
+    
+    h1 {
+      color: #ff6b9d;
+      margin-bottom: 30px;
+    }
+    
+    .share-methods {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #f8f9fa;
+      color: #333;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .share-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .whatsapp { background: #25D366; color: white; }
+    .facebook { background: #1877F2; color: white; }
+    .twitter { background: #1DA1F2; color: white; }
+    .telegram { background: #0088CC; color: white; }
+    .link { background: #ff6b9d; color: white; }
+    
+    .share-link {
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .link-container {
+      display: flex;
+      width: 100%;
+      margin-top: 15px;
+    }
+    
+    #share-url {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+      font-size: 14px;
+    }
+    
+    #copy-btn {
+      padding: 0 20px;
+      background: #ff6b9d;
+      color: white;
+      border: none;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    #copy-btn:hover {
+      background: #e0558a;
+    }
+    
+    .confirmation {
+      margin-top: 15px;
+      color: #4CAF50;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="share-container">
+    <h1>Share L💞venett with Friends</h1>
+    <p>Help your friends discover meaningful connections by sharing our app!</p>
+    
+    <div class="share-methods">
+      <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+      </button>
+      <button class="share-btn facebook" onclick="shareOnFacebook()">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button class="share-btn twitter" onclick="shareOnTwitter()">
+        <i class="fab fa-twitter"></i>
+      </button>
+      <button class="share-btn telegram" onclick="shareOnTelegram()">
+        <i class="fab fa-telegram-plane"></i>
+      </button>
+    </div>
+    
+    <div class="share-link">
+      <p>Or copy and share this link:</p>
+      <div class="link-container">
+        <input type="text" id="share-url" value="https://lovenett.app" readonly>
+        <button id="copy-btn" onclick="copyLink()">Copy</button>
+      </div>
+      <p class="confirmation" id="confirmation">Link copied to clipboard!</p>
+    </div>
+  </div>
+
+  <script>
+    // URL de votre application
+    const appUrl = 'https://lovenett.app';
+    const shareText = 'Join me on L💞venett - the best app for meaningful connections!';
+    
+    function shareOnWhatsApp() {
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + appUrl)}`);
+    }
+    
+    function shareOnFacebook() {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(appUrl)}`);
+    }
+    
+    function shareOnTwitter() {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(appUrl)}`);
+    }
+    
+    function shareOnTelegram() {
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(appUrl)}&text=${encodeURIComponent(shareText)}`);
+    }
+    
+    function copyLink() {
+      const urlInput = document.getElementById('share-url');
+      urlInput.select();
+      document.execCommand('copy');
+      
+      const confirmation = document.getElementById('confirmation');
+      confirmation.style.display = 'block';
+      setTimeout(() => {
+        confirmation.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+
+<footer class="app-footer">
+    <div class="footer-tabs">
+     
+        <div class="tab-content">
+          <a href="index.html">@Home</a>
+  
+        </div>
+      </div>
+  </footer>
+</body>
+</html>
