@@ -1606,6 +1606,15 @@ html {
   ::-webkit-scrollbar-thumb:hover {
     background: #e0558a;
   }
+  
+  /* Ajoutez ce style pour gérer l'animation du footer */
+  .app-footer {
+    transition: transform 0.3s ease-in-out;
+  }
+  .app-footer.hidden {
+    transform: translateY(100%);
+  }
+
 /* GUIDELINES */
 
 
