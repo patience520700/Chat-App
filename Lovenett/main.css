@@ -1,5 +1,3 @@
-
-
 /* General Styles */
 body, html {
   margin: 0;
@@ -33,70 +31,6 @@ body, html {
   margin: 0; /* Remove default margin */
 }
 
-/*  Tabs  */
-.tabs {
-  margin-left: auto; /* Push tabs to the far right */
-  display: flex;
-  gap: 10px; /* Add space between buttons */
-  padding-right: 20px; /* Add padding for spacing */
-}
-
-.tab-btn {
-  padding: 8px 16px; /* Adjust padding for buttons */
-  background-color: #007bff; /* Blue background */
-  color: white; /* White text */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.tab-btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-.tab-btn.active {
-  background-color: #0056b3; /* Darker blue for active tab */
-}
-
-
-/* Hamburger Menu */
-.hamburger-menu {
-  display: flex; 
-  align-items: center; 
-  cursor: pointer; 
-  margin-left: auto;
-  padding: 10px; 
-}
-
-.hamburger-icon {
-  font-size: 24px;
-  color: #000; 
-  cursor: pointer; 
-}
-
-#hamburger-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  padding: 10px;
-  z-index: 1000;
-}
-
-#hamburger-dropdown-menu a {
-  display: block;
-  margin: 5px 0;
-  text-decoration: none;
-  color: #333;
-}
-
-#hamburger-dropdown-menu a:hover {
-  color: #007bff;
-}
-
 /* Welcome Container */
 .welcome-container {
   position: relative;
@@ -110,9 +44,7 @@ body, html {
   box-sizing: border-box; 
 }
 
-
-
-/* Animation du background */
+/* Background Animation */
 .background-image {
   position: absolute;
   top: 0;
@@ -135,8 +67,6 @@ body, html {
   }
 }
 
-
-
 /* Overlay */
 .overlay {
   position: absolute;
@@ -148,9 +78,7 @@ body, html {
   z-index: 0; 
 }
 
-
-
-
+/* Welcome Message */
 .welcome-message {
   position: absolute;
   white-space: nowrap;
@@ -158,6 +86,7 @@ body, html {
   transform: translateX(-100%);
 }
 
+/* Adjustments for smaller screens */
 @keyframes slideIn {
   0% {
     transform: translateX(-100%);
@@ -262,6 +191,14 @@ body, html {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
 }
 
 .signup-container h1 {
@@ -398,6 +335,14 @@ body, html {
 
 .message strong {
   color: #007bff;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .welcome-message {
+      font-size: 1.5rem; 
+      max-width: 90%; 
+  }
 }
 
   /* profile dropdown */
@@ -544,7 +489,7 @@ body, html {
   background-color: #0056b3;
 }
 
-.user-status {
+/* .user-status {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -569,7 +514,7 @@ body, html {
 
 .status-dot.offline {
   background-color: gray;
-}
+} */
 
 .emoji-picker-container {
   position: absolute;
@@ -647,154 +592,6 @@ emoji-picker {
       opacity: 0.7;
   }
 }
-
-
-
-/*
-
-ONE-ON-ONE CHATS
-.chat-container {
-  display: flex;
-  height: 100vh;
-}
-
-.contact-list {
-  width: 300px;
-  border-right: 1px solid #ddd;
-  overflow-y: auto;
-}
-
-.contact {
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.contact:hover {
-  background: #f5f5f5;
-}
-
-.contact img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.chat-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.messages {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.message {
-  max-width: 60%;
-  margin-bottom: 15px;
-  padding: 10px 15px;
-  border-radius: 18px;
-}
-
-.message.sent {
-  background: #007bff;
-  color: white;
-  margin-left: auto;
-}
-
-.message.received {
-  background: #f1f1f1;
-  margin-right: auto;
-}
-
-.message-time {
-  font-size: 0.8em;
-  opacity: 0.7;
-  margin-top: 5px;
-  text-align: right;
-}
-
-.message-input {
-  padding: 15px;
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-
-.message-input input {
-  flex: 1;
-  padding: 10px 15px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-}
-
-.message-input button {
-  margin-left: 10px;
-  padding: 10px 20px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-*/
-
-
-
-/* History Container Styles */
-.history-container {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 15px 0;
-  display: none; /* Hidden by default */
-}
-
-.history-container h3 {
-  margin-top: 0;
-  color: #333;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.history-list {
-  max-height: 200px;
-  overflow-y: auto;
-  margin: 10px 0;
-}
-
-.history-message {
-  padding: 8px 12px;
-  margin: 5px 0;
-  background-color: white;
-  border-radius: 4px;
-  border-left: 3px solid #007bff;
-}
-
-.history-message .time {
-  font-size: 0.8em;
-  color: #666;
-  display: block;
-}
-
-#clear-history {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#clear-history:hover {
-  background-color: #c82333;
-}
-
-
 
 /* Structure de base pour rendre la page d'accueil deroulante*/
 html, body {
@@ -1206,14 +1003,6 @@ html, body {
   }
 }
 
-
-
-
-
-
-/* Password Recovery Styles - Scrollable Version */
-
-
 /* Main container that will scroll */
 .password-recovery-container {
   flex: 1;
@@ -1448,7 +1237,6 @@ html {
   }
 }
 
-
 /* Add these styles to make the page scrollable */
 html, body {
   height: 100%;
@@ -1526,8 +1314,6 @@ html {
     min-width: 100%;
   }
 }
-
-
 
 /* QUIDELINES */
   body {
@@ -1614,9 +1400,6 @@ html {
   .app-footer.hidden {
     transform: translateY(100%);
   }
-
-/* GUIDELINES */
-
 
 /* shares */
 /* body {
@@ -1866,9 +1649,8 @@ h1 {
       transform: translateY(-2px);
     }
  
-
     /* Global updates */
-    
+  
     .updates-main {
       padding: 20px;
       background: #f5f5f5;
@@ -1963,10 +1745,6 @@ h1 {
   flex-direction: column;
 }
 
-
-
-
-
 /* Styles pour le footer */
 .app-footer {
   width: 100%;
@@ -1989,3 +1767,53 @@ h1 {
 .tab-content a:hover {
   text-decoration: underline;
 } 
+
+/* Google Sign-In Button Styles */
+.social-login {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider-text {
+  padding: 0 10px;
+  color: #777;
+  font-size: 14px;
+}
+
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  background-color: white;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-signin-btn:hover {
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.google-signin-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
