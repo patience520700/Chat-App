@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - L💞venett</title>
-  <link rel="stylesheet" href="main.css"> <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="main.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -12,30 +13,35 @@
   <div class="signup-container">
     <h1>Create Account</h1>
       <form id="signup-form">
-      <div class="form-group">
+      <!-- username -->
+      <div class="form-group icon-input">
         <label for="register-username">Username</label>
-        <input type="text" id="register-username" required>
+        <div class="input-wrapper">
+          <i class="fas fa-user icon"></i>
+          <input type="text" id="register-username" placeholder="Choose a username" required>
+        </div>
       </div>
+        
       <!-- Email Input -->
-      <div class="form-group">
+      <div class="form-group icon-input">
         <label for="email">Email</label>
-        <input  
-          type="email"
-          id="email"
-          name="email"
-          placeholder=""
-          required
-        />
+        <div class="input-wrapper">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email" id="email" placeholder="name@example.com" required>
+        </div>
       </div>
-      <div class="form-group">
+      
+      <!-- Gender -->
+      <div class="form-group icon-input">
         <label for="gender">Gender</label>
-        <input  
-          type="gender"
-          id="gender"
-          name="email"
-          placeholder=""
-          required
-        />
+        <div class="input-wrapper">
+          <i class="fas fa-venus-mars icon"></i>
+          <select id="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
       </div>
 
       <div class="form-group">
@@ -45,6 +51,8 @@
 
       <div class="form-group">
         <label for="register-country">Country</label>
+        <!-- <div class="input-wrapper">
+          <i class="fas fa-globe"></i> -->
         <select id="register-country" required>
           <option value="" disabled selected>Select Country</option>
           <!-- Countries will be populated via JS -->
@@ -54,20 +62,23 @@
       <!-- Phone Number Input -->
       <div class="form-group">
         <label for="phone">Phone Number</label>
+        <div class="input-wrapper">
+          <i class="fas fa-phone"></i>
         <input
           type="tel"
           id="phone"
           name="phone"
-          placeholder=""
+          placeholder="Eneter phone number"
           pattern="[0-9]{10}"
           required
         />
-        <small>Format: +233000000000 (10 digits)</small>
       </div>
 
       <!-- Password Input -->
-      <div class="form-group">
+      <div class="form-group icon-input">
         <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock icon"></i>
         <input
           type="password"
           id="password"
@@ -91,13 +102,29 @@
         />
 
       <!-- Submit Button -->
-      <button type="submit" class="btn">Sign Up</button>
+      <button type="submit" class="btn" style="margin-top: 20px;">Sign Up</button>
+      <!-- <button type="submit" class="btn">Sign Up</button> -->
+
+       <!-- signup with google -->
+      <div class="social-login">
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">or</span>
+            <span class="divider-line"></span>
+        </div>
+        
+        <button type="button" id="googleSignIn" class="google-signin-btn">
+          <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google logo">
+            Sign up with Google
+        </button>
+    </div>
     </form>
 
     <!-- Link to Login Page -->
     <p>Already have an account? <a href="login.html">Login</a></p>
   </div>
 
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="signup.js"></script>
 </body>
 </html>
