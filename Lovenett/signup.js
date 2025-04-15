@@ -44,3 +44,43 @@ if (signupForm) {
     }
   });
 }
+
+// Countries Data
+const countries = [
+  "Australia",  "Brazil", "Canada", "China", "France", "Germany", "India",  "Italy",  "Japan", "Mexico", "Netherlands",  "Russia", "South Korea", "Spain", "Switzerland", "United Kingdom", "United States",   
+];
+
+// Handle Google Sign-In
+function handleGoogleSignIn(response) {
+  // Decode the JWT token to get user info
+  const payload = JSON.parse(atob(response.credential.split('.')[1]));
+  
+  console.log('Google user:', payload);
+  
+  // You can now use this data to:
+  // 1. Auto-fill your form
+  document.getElementById('register-username').value = payload.name || '';
+  document.getElementById('email').value = payload.email || '';
+  
+  // 2. Or submit directly to your backend
+  fetch('/api/auth/google', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          token: response.credential,
+          username: payload.name,
+          email: payload.email
+      })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          window.location.href = '/dashboard'; // Redirect on success
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
