@@ -45,11 +45,6 @@ if (signupForm) {
   });
 }
 
-// Countries Data
-const countries = [
-  "Australia",  "Brazil", "Canada", "China", "France", "Germany", "India",  "Italy",  "Japan", "Mexico", "Netherlands",  "Russia", "South Korea", "Spain", "Switzerland", "United Kingdom", "United States",   
-];
-
 // Handle Google Sign-In
 function handleGoogleSignIn(response) {
   // Decode the JWT token to get user info
