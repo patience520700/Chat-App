@@ -4,127 +4,366 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - L💞venett</title>
-  <link rel="stylesheet" href="main.css"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .signup-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 480px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ff4757;
+      font-size: 32px;
+      font-weight: 700;
+    }
+    
+    .form-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #555;
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .input-wrapper i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      z-index: 2;
+    }
+    
+    .fa-user { color: #1e90ff; }
+    .fa-envelope { color: #ff6b81; }
+    .fa-venus-mars { color: #9c88ff; }
+    .fa-globe { color: #2ed573; }
+    .fa-phone { color: #ffa502; }
+    .fa-lock { color: #3742fa; }
+    
+    input, select {
+      width: 100%;
+      padding: 14px 15px 14px 48px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+    
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-left: 48px;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    input:focus, select:focus {
+      border-color: #ff4757;
+      outline: none;
+      background-color: white;
+      box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.1);
+    }
+    
+    input[type="date"] {
+      padding-left: 15px;
+    }
+    
+      .password-toggle {
+    position: absolute;
+    right: 12px;  /* Réduit l'espace à droite */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    font-size: 18px;
+    padding: 0 420px; /* Ajout de padding pour une meilleure zone cliquable */
+    background: transparent;
+    border: none;
+    outline: none;
+    }
+      
+    .password-toggle:hover {
+      color: #333;
+    }
+    
+    small {
+      display: block;
+      margin-top: 6px;
+      color: #888;
+      font-size: 13px;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #ff4757;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .btn:hover {
+      background-color: #ff3344;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+    }
+    
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+    
+    .divider-text {
+      padding: 0 15px;
+      color: #999;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    
+    .google-signin-btn {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .google-signin-btn:hover {
+      background: #f8f9fa;
+      border-color: #d0d0d0;
+    }
+    
+    .google-signin-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+    }
+    
+    p {
+      text-align: center;
+      margin-top: 24px;
+      color: #666;
+      font-size: 15px;
+    }
+    
+    a {
+      color: #ff4757;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    
+    a:hover {
+      color: #ff1e2e;
+      text-decoration: underline;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+    
+    .checkbox-group input {
+      width: auto;
+      margin: 0 12px 0 0;
+      padding: 0;
+      transform: scale(1.4);
+    }
+    
+    .checkbox-group label {
+      margin: 0;
+      font-weight: normal;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .checkbox-group a {
+      font-weight: normal;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Signup Container -->
   <div class="signup-container">
     <h1>Create Account</h1>
-      <form id="signup-form">
+    <form id="signup-form">
       <!-- username -->
-      <div class="form-group icon-input">
+      <div class="form-group">
         <label for="register-username">Username</label>
         <div class="input-wrapper">
-          <i class="fas fa-user icon"></i>
+          <i class="fas fa-user"></i>
           <input type="text" id="register-username" placeholder="Choose a username" required>
         </div>
       </div>
         
       <!-- Email Input -->
-      <div class="form-group icon-input">
+      <div class="form-group">
         <label for="email">Email</label>
         <div class="input-wrapper">
-          <i class="fas fa-envelope icon"></i>
+          <i class="fas fa-envelope"></i>
           <input type="email" id="email" placeholder="name@example.com" required>
         </div>
       </div>
       
       <!-- Gender -->
-      <div class="form-group icon-input">
+      <div class="form-group">
         <label for="gender">Gender</label>
         <div class="input-wrapper">
-          <i class="fas fa-venus-mars icon"></i>
+          <i class="fas fa-venus-mars"></i>
           <select id="gender" required>
-            <option value="" disabled selected>Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="" disabled selected style="font-weight: normal; color: #999;">Select Gender</option>
+            <option value="male" style="font-weight: normal;">Male</option>
+            <option value="female" style="font-weight: normal;">Female</option>
           </select>
         </div>
       </div>
 
+      <!-- Birthdate -->
       <div class="form-group">
         <label for="register-birthdate">Birthdate</label>
         <input type="date" id="register-birthdate" required>
       </div>
 
+      <!-- Country -->
       <div class="form-group">
         <label for="register-country">Country</label>
-        <!-- <div class="input-wrapper">
-          <i class="fas fa-globe"></i> -->
-        <select id="register-country" required>
-          <option value="" disabled selected>Select Country</option>
-          <!-- Countries will be populated via JS -->
-        </select>
+        <div class="input-wrapper">
+          <i class="fas fa-globe"></i>
+          <select id="register-country" required>
+            <option value="" disabled selected style="font-weight: normal; color: #999;">Select Country</option>
+            <option value="us" style="font-weight: normal;">United States</option>
+            <option value="uk" style="font-weight: normal;">United Kingdom</option>
+            <!-- More countries can be added -->
+          </select>
+        </div>
       </div>
 
-      <!-- Phone Number Input -->
+      <!-- Phone Number -->
       <div class="form-group">
         <label for="phone">Phone Number</label>
         <div class="input-wrapper">
           <i class="fas fa-phone"></i>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Eneter phone number"
-          pattern="[0-9]{10}"
-          required
-        />
+          <input type="tel" id="phone" name="phone" placeholder="Enter phone number" pattern="[0-9]{10}" required>
+        </div>
       </div>
 
-      <!-- Password Input -->
-      <div class="form-group icon-input">
+      <!-- Password -->
+      <div class="form-group">
         <label for="password">Password</label>
         <div class="input-wrapper">
-          <i class="fas fa-lock icon"></i>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder=""
-          minlength="8"
-          required
-        />
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="Create password" minlength="8" required>
+          <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+        </div>
         <small>Minimum 8 characters</small>
       </div>
 
+      <!-- Confirm Password -->
       <div class="form-group">
-        <label for="confirm password">Confirm Password</label>
-        <input
-          type="confirm password"
-          id="confirm password"
-          name="confirm password"
-          placeholder=""
-          minlength="8"
-          required
-        />
+        <label for="confirm-password">Confirm Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" minlength="8" required>
+          <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+        </div>
+      </div>
+
+      <!-- Terms Checkbox -->
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+      </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="btn" style="margin-top: 20px;">Sign Up</button>
-      <!-- <button type="submit" class="btn">Sign Up</button> -->
+      <button type="submit" class="btn">Sign Up</button>
 
-       <!-- signup with google -->
+      <!-- Social Login Divider -->
       <div class="social-login">
         <div class="divider">
-            <span class="divider-line"></span>
-            <span class="divider-text">or</span>
-            <span class="divider-line"></span>
+          <span class="divider-line"></span>
+          <span class="divider-text">or</span>
+          <span class="divider-line"></span>
         </div>
         
         <button type="button" id="googleSignIn" class="google-signin-btn">
           <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google logo">
-            Sign up with Google
+          Sign up with Google
         </button>
-    </div>
+      </div>
     </form>
 
-    <!-- Link to Login Page -->
+    <!-- Login Link -->
     <p>Already have an account? <a href="login.html">Login</a></p>
   </div>
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="signup.js"></script>
+  <script>
+    // Password toggle functionality
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    
+    const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+    const confirmPassword = document.querySelector('#confirm-password');
+    
+    togglePassword.addEventListener('click', function() {
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      this.classList.toggle('fa-eye-slash');
+    });
+    
+    toggleConfirmPassword.addEventListener('click', function() {
+      const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+      confirmPassword.setAttribute('type', type);
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
 </body>
 </html>
