@@ -312,6 +312,120 @@
       color: white;
       transform: translateX(5px);
     }
+
+    /* Section Description Detector™ */
+    .detector-section {
+      background: linear-gradient(135deg, #ff8e8e 0%, #ff6b6b 100%);
+      padding: 60px 20px;
+      margin: 50px 0;
+      border-radius: 16px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detector-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 8s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .detector-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .feature-badge {
+      background-color: white;
+      color: #ff6b6b;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .detector-title {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .detector-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .detector-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    .feature-item {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: white;
+    }
+
+    .feature-name {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .feature-desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: white;
+      color: #ff6b6b;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      transition: all 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
   </style>
 </head>
 <body>
@@ -330,7 +444,9 @@
       <a href="forms.html" class="btn create-btn">Create account</a>
     </div>
   </div>
-
+  
+  
+  
   <!-- Contenu principal -->
   <div class="content">
     <h2 class="section-title">WELCOME TO L💞VENETT</h2>
@@ -362,20 +478,42 @@
       <div class="article-card">
         <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
         <div class="article-content">
-          <span class="article-date">January 25, 2024</span>
-          <h3 class="article-title">Complete Bumble guide</h3>
-          <p class="article-excerpt">Everything you need to know to get started on this dating app.</p>
-          <a href="#" class="read-more">Read guide</a>
+          <h3 class="article-title">The Ultimate L💞venett Guide</h3>
+          <p class="article-excerpt">Everything you need to find meaningful connections on Africa's most innovative...</p>
+          <a href="article3.html" class="read-more">Read guide</a>
         </div>
       </div>
     </div>
     
-    <!-- Section spéciale -->
-    <div class="feature-section">
-      <span class="feature-badge">New Feature</span>
-      <h2>Description Detector™</h2>
-      <p style="max-width: 700px; margin: 0 auto 20px;">Our exclusive tool analyzes your profile description and gives personalized advice to attract the right people.</p>
-      <a href="#" class="read-more" style="font-size: 1rem;">Try it now</a>
+            <!-- Description Detector™ Section -->
+    <div class="detector-section">
+      <div class="detector-content">
+        <span class="feature-badge">Exclusive Feature</span>
+        <h2 class="detector-title">Description Detector™</h2>
+        <p class="detector-subtitle">Our AI analyzes your profile and provides personalized advice to attract the right matches</p>
+        
+        <div class="detector-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 class="feature-name">Comprehensive Analysis</h3>
+            <p class="feature-desc">Evaluates tone, keywords and structure to maximize your profile's appeal.</p>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3 class="feature-name">Smart Suggestions</h3>
+            <p class="feature-desc">Actionable recommendations tailored to your ideal match's preferences.</p>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3 class="feature-name">Red Flag Detection</h3>
+            <p class="feature-desc">Identifies phrases that might deter potential matches.</p>
+          </div>
+        </div>
+        
+        <a href="#" class="cta-button">Try It Free</a>
+      </div>
     </div>
     
     <!-- Deuxième grille d'articles -->

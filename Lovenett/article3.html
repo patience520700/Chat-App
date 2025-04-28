@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Lovenett Guide | Find Your Perfect Match</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --primary-dark: #ff4757;
+            --secondary: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header */
+        .guide-header {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .guide-hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            z-index: -2;
+            animation: zoomAnimation 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes zoomAnimation {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .guide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,107,107,0.7) 0%, rgba(255,142,142,0.7) 100%);
+            z-index: -1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .article-date, .article-author {
+            font-size: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .guide-container {
+            max-width: 1100px;
+            margin: -50px auto 0;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .feature-badge {
+            background-color: var(--primary);
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+
+        /* Guide Sections */
+        .guide-section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-number {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        .section-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 350px;
+        }
+
+        .section-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .section-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .tip-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background-color: rgba(255,107,107,0.1);
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            margin: 50px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .article-footer {
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .likes {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .likes i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .guide-card {
+                padding: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .guide-header {
+                height: 60vh;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-number {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="guide-header">
+        <div class="guide-hero-image"></div>
+        <div class="guide-overlay"></div>
+        <div class="header-content">
+            <h1>The Ultimate Lovenett Guide</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Everything you need to find meaningful connections on Africa's most innovative meeting platform
+            </p>
+            <div class="tags">
+                <span class="tag">Dating Guide</span>
+                <span class="tag">Tips & Tricks</span>
+                <span class="tag">Success Stories</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="guide-container">
+        <div class="guide-card">
+            <span class="feature-badge">Updated June 2024</span>
+            
+            <div class="guide-section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2 class="section-title">Creating Your Perfect Profile</h2>
+                </div>
+                <div class="section-content">
+                    <div class="section-text">
+                        <p>Your Lovenett profile is your digital first impression. We recommend:</p>
+                        <ul style="margin: 20px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Profile Photos:</strong> Use 4-6 high-quality images showing different aspects of your life (1 clear face photo, 1 full-body, 1 activity you love, 1 social photo)</li>
+                            <li style="margin-bottom: 10px;"><strong>Bio Essentials:</strong> Share your passions, values, and what makes you unique in 100-150 words</li>
+                            <li style="margin-bottom: 10px;"><strong>Verification:</strong> Complete our 3-step verification process to get 5x more matches</li>
+                            <li><strong>Personality Quiz:</strong> Our 10-minute compatibility assessment improves matches by 73%</li>
+                        </ul>
+                    </div>
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Creating a dating profile">
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">
+                    "After updating my profile using Lovenett's guide, my matches became so much more compatible. I went from 2-3 mediocre matches a week to meeting my now-fiancé within a month!"
+                </p>
+                <p class="testimonial-author">- Fatima, 29, Lagos</p>
+            </div>
+
+            <div class="guide-section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2 class="section-title">Mastering Our Matching System</h2>
+                </div>
+                <div class="section-content">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lovenett matching algorithm">
+                    </div>
+                    <div class="section-text">
+                        <p>Lovenett's AI-powered matching goes beyond superficial swiping by analyzing:</p>
+                        <ul style="margin: 20px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Core Values:</strong> Life goals, relationship expectations, and personal beliefs</li>
+                            <li style="margin-bottom: 10px;"><strong>Communication Style:</strong> How you express affection and resolve conflicts</li>
+                            <li style="margin-bottom: 10px;"><strong>Interest Compatibility:</strong> Shared passions and complementary personalities</li>
+                            <li><strong>Behavior Patterns:</strong> Dating history and relationship readiness indicators</li>
+                        </ul>
+                        <p>Pro Tip: Update your "Looking For" preferences monthly to refine your matches.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="guide-section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2 class="section-title">Safety & Privacy Features</h2>
+                </div>
+                <div class="section-content">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Security lock icon">
+                    </div>
+                    <div class="section-text">
+                        <p>Lovenett prioritizes your safety with:</p>
+                        <ul style="margin: 20px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Photo Verification:</strong> All profiles must submit real-time selfies</li>
+                            <li style="margin-bottom: 10px;"><strong>Background Checks:</strong> Optional premium verification</li>
+                            <li style="margin-bottom: 10px;"><strong>Safe Meeting:</strong> Share date plans with friends through the app</li>
+                            <li style="margin-bottom: 10px;"><strong>Emergency Button:</strong> Instant access to local authorities if needed</li>
+                            <li><strong>Data Control:</strong> Delete conversations or your entire account anytime</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-footer">
+                <div class="likes">
+                    <i class="fas fa-heart"></i> <span>1,248 people found this guide helpful</span>
+                </div>
+                <div class="social-share">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fas fa-share-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+
+
+
+
+
+
