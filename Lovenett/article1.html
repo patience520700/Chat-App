@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Hearts Align on L💞venett | A Modern Love Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E91E63;
+            --primary-dark: #C2185B;
+            --secondary: #FFC107;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--white);
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .header-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .article-date, .article-author {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: -50px;
+            border-radius: 8px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content {
+            padding: 0 20px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background-color: rgba(233, 30, 99, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 40px 0;
+            color: var(--primary-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Footer */
+        .article-footer {
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                height: 50vh;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .article-footer {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>When Hearts Align on L💞venett</h1>
+            <div class="article-meta">
+                <span class="article-date">Accra, 2025</span>
+                <span class="article-author">By PR</span>
+            </div>
+            <div class="tags">
+                <span class="tag">Love Story</span>
+                <span class="tag">Emotional Connection</span>
+                <span class="tag">Modern Romance</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Couple holding hands" class="article-image">
+
+        <article class="article-content">
+            <p>In a world of fleeting digital connections, <strong>L💞venett</strong> surprised me with something rare - a conversation that felt like coming home. His first message wasn't just "Hey beautiful," but <em>"Your thoughts on vulnerability in relationships really resonated with me."</em></p>
+
+            <div class="highlight">
+                "This was different. Our chats flowed effortlessly, diving straight into meaningful topics most dating apps never touch. Within days, we were sharing childhood stories, personal fears, and secret dreams."
+            </div>
+
+            <p>Our first video call lasted 4 hours. No awkward pauses, just genuine connection. He told me about losing his father; I shared my struggles with anxiety. <strong>We built intimacy before we'd even met.</strong></p>
+
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Couple laughing">
+                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Couple cooking together">
+            </div>
+
+            <p class="quote">"L💞venett's compatibility system didn't just match our interests - it aligned our emotional wavelengths."</p>
+
+            <p>What made this connection <strong>different</strong>:</p>
+            <ul>
+                <li>💬 <strong>Deep questions</strong> that revealed our true selves early on</li>
+                <li>🧠 <strong>Psychological matching</strong> based on attachment styles</li>
+                <li>❤️ <strong>Shared values</strong> that created instant comfort</li>
+            </ul>
+
+            <p>Now, six months later, we're proof that <strong>digital connections can blossom into real, profound love</strong> when the platform fosters genuine emotional intimacy.</p>
+        </article>
+
+        <footer class="article-footer">
+            <div class="likes">
+                <span>❤️ 312 people found this inspiring</span>
+            </div>
+            
+        </footer>
+    </main>
+</body>
+</html>
