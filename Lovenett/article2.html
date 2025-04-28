@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military-Grade Security | Lovenett Data Protection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-dark: #1B5E20;
+            --secondary: #0277BD;
+            --light: #f8f9fa;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .security-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .security-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--white);
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Security Features */
+        .security-container {
+            max-width: 1000px;
+            margin: -30px auto 60px;
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 50px;
+            position: relative;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .security-feature {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .feature-content p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .security-badge {
+            position: absolute;
+            top: -25px;
+            right: 40px;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(2, 119, 189, 0.3);
+        }
+
+        /* Encryption Visual */
+        .encryption-visual {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .encryption-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .security-container {
+                padding: 30px;
+                margin: -20px 20px 40px;
+            }
+            
+            .security-badge {
+                right: 20px;
+                top: -20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .security-hero {
+                height: 60vh;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .security-feature {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="security-hero">
+        <div class="hero-content">
+            <h1>Lovenett's Military-Grade Security</h1>
+            <p class="hero-subtitle">Your safety is our top priority with cutting-edge technology protecting every interaction</p>
+        </div>
+    </section>
+
+    <div class="security-container">
+        <span class="security-badge">ISO 27001 Certified</span>
+        
+        <div class="security-grid">
+            <div class="security-feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-content">
+                    <h3>End-to-End Encryption</h3>
+                    <p>All messages and calls use "AES-256 encryption", ensuring only you and your match can access your private conversations.</p>
+                </div>
+            </div>
+            
+            <div class="security-feature">
+                <div class="feature-icon">👤</div>
+                <div class="feature-content">
+                    <h3>2-Step Verification</h3>
+                    <p>Email and number verification combine to eliminate fake profiles and catfishing.</p>
+                </div>
+            </div>
+            
+            <div class="security-feature">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-content">
+                    <h3>AI Fraud Detection</h3>
+                    <p>Proactive scanning for suspicious behavior with 24/7 human moderation support.</p>
+                </div>
+            </div>
+            
+            <div class="security-feature">
+                <div class="feature-icon">🌐</div>
+                <div class="feature-content">
+                    <h3>Secure Infrastructure</h3>
+                    <p>Enterprise-grade servers with advanced DDoS protection and quarterly penetration testing.</p>
+                </div>
+            </div>
+            
+            <div class="security-feature">
+                <div class="feature-icon">👁️</div>
+                <div class="feature-content">
+                    <h3>Data Control</h3>
+                    <p>You decide what to share with GDPR-compliant tools to manage or delete your data anytime.</p>
+                </div>
+            </div>
+            
+            <div class="security-feature">
+                <div class="feature-icon">🚨</div>
+                <div class="feature-content">
+                    <h3>Emergency Response</h3>
+                    <p>Instant reporting button shares your location with authorities if you feel unsafe during a meetup.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="encryption-visual">
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary-dark); margin-bottom: 20px;">How Our Encryption Works</h2>
+            <p style="max-width: 700px; margin: 0 auto 30px; color: var(--gray);">Every interaction passes through multiple security layers before reaching its destination</p>
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Advanced encryption technology" class="encryption-image">
+        </div>
+    </div>
+</body>
+</html>
