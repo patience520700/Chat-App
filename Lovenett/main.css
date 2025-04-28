@@ -44,28 +44,7 @@ body, html {
   box-sizing: border-box; 
 }
 
-/* Background Animation */
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('images/pexels-how-far-from-home-3341908-6788862.jpg'); 
-  background-size: cover;
-  background-position: center;
-  animation: zoomAnimation 2s infinite alternate ease-in-out;
-  z-index: -1;
-}
 
-@keyframes zoomAnimation {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.05);
-  }
-}
 
 /* Overlay */
 .overlay {
@@ -78,42 +57,7 @@ body, html {
   z-index: 0; 
 }
 
-/* Welcome Message */
-.welcome-message {
-  position: absolute;
-  white-space: nowrap;
-  animation: slideIn 30s linear infinite;
-  transform: translateX(-100%);
-}
 
-/* Adjustments for smaller screens */
-@keyframes slideIn {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100vw);
-  }
-}
-/* Welcome Message */
-.welcome-message {
-  font-size: 1.5rem; 
-  color: #fff;
-  padding: 0 20px;
-  z-index: 1;
-  max-width: 600px;
-  text-align: left;
-  line-height: 1.5;
-  white-space: normal;
-}
-
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-  .welcome-message {
-      font-size: 1.5rem; 
-      max-width: 90%; 
-  }
-}
 
 /* Action Buttons */
 .action-buttons {
@@ -2042,3 +1986,268 @@ margin-right: 10px;
 .signup-form::-webkit-scrollbar-thumb:hover {
   background: #ff3344;
 }
+
+
+
+
+/* Styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Barre de navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.app-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Contenu d'accueil */
+.welcome-container {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+.welcome-message {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  max-width: 800px;
+  padding: 0 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.login-btn {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: white;
+  color: #ff6b6b;
+}
+
+.create-btn {
+  background-color: #ff6b6b;
+  border: 2px solid #ff6b6b;
+  color: white;
+}
+
+.create-btn:hover {
+  background-color: transparent;
+  color: white;
+}
+
+/* Contenu des articles */
+.content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ff6b6b;
+  font-size: 2rem;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.article-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.article-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.article-content {
+  padding: 20px;
+}
+
+.article-date {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.article-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.article-excerpt {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.read-more {
+  display: inline-block;
+  color: #ff6b6b;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.read-more:hover {
+  color: #ff4757;
+}
+
+.read-more::after {
+  content: " →";
+  transition: transform 0.3s;
+}
+
+.read-more:hover::after {
+  transform: translateX(3px);
+}
+
+/* Section spéciale */
+.feature-section {
+  background-color: #f0f4f8;
+  padding: 50px 20px;
+  margin: 50px 0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.feature-badge {
+  background-color: #ff6b6b;
+  color: white;
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Pied de page */
+.app-footer {
+  background-color: #333;
+  color: white;
+  padding: 30px 0;
+}
+
+.footer-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-tab {
+  margin-bottom: 20px;
+}
+
+.tab-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tab-content a {
+  color: #ddd;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.tab-content a:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+
