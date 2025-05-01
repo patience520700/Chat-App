@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur | Abonnements Premium</title>
+    <style>
+         * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: white;
+      color: black;
+      line-height: 1.6;
+    }
+    
+         /* Barre de navigation améliorée */
+    .navbar {
+      background: linear-gradient(135deg, #ff4e7e 0%, #ff8a5c 100%);
+      color: white;
+      padding: 0 2rem;
+      box-shadow: 0 4px 12px rgba(255, 78, 126, 0.2);
+      position: relative;
+      z-index: 100;
+    }
+    
+    .navbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #3505a6, #fd0505);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    
+    .app-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .nav-tab {
+      position: relative;
+      margin: 0 0.5rem;
+    }
+    
+    .nav-tab a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 1.5rem 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-tab a:hover {
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-tab a.active {
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .nav-tab a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #fff;
+    }
+    
+        :root {
+            --bleu-nuit: #0a1a2e;
+            --bleu-fonce: #152942;
+            --orange: #ff7b25;
+            --rose: #ff85a2;
+            --blanc: #ffffff;
+            --gris-clair: #f0f4f8;
+            --vert: #2ecc71;
+            --or: #f1c40f;
+        }
+        
+        /* ... (conservez vos styles existants) ... */
+
+        .subscription-section {
+            padding: 40px;
+            background-color: var(--blanc);
+        }
+
+        .subscription-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .subscription-header h2 {
+            font-size: 32px;
+            color: var(--bleu-nuit);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .subscription-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--orange), var(--rose));
+            border-radius: 2px;
+        }
+
+        .subscription-header p {
+            color: var(--bleu-nuit);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        .subscription-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .subscription-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(10, 26, 46, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--blanc);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .subscription-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(10, 26, 46, 0.2);
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 26, 46, 0.9) 0%, rgba(21, 41, 66, 0.8) 100%);
+            z-index: 2;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 3;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-price span {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .card-period {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .card-features {
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .feature-item svg {
+            margin-right: 10px;
+            color: var(--vert);
+            min-width: 20px;
+        }
+
+        .card-button {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .btn-premium {
+            background-color: var(--orange);
+            color: var(--blanc);
+        }
+
+        .btn-premium:hover {
+            background-color: #e56a1a;
+            transform: translateY(-3px);
+        }
+
+        .btn-standard {
+            background-color: var(--rose);
+            color: var(--blanc);
+        }
+
+        .btn-standard:hover {
+            background-color: #e6738f;
+            transform: translateY(-3px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--or);
+            color: var(--bleu-nuit);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 4;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+        }
+
+        .subscription-benefits {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .benefit-item {
+            background-color: var(--blanc);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--rose) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanc);
+            font-size: 24px;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--bleu-nuit);
+        }
+
+        .benefit-desc {
+            font-size: 14px;
+            color: var(--bleu-nuit);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... (votre en-tête de profil existant) ... -->
+
+    <nav class="navbar">
+        <div class="nav-container">
+          <h1 class="app-name">L💞venett</h1>
+          <ul class="nav-tabs">
+            <li class="nav-tab"><a href="index.html" class="active">Menu</a></li>
+            <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
+            <li class="nav-tab"><a href="messages.html">Messages</a></li>
+            <li class="nav-tab"><a href="contacts.html">Contacts</a></li>
+            <li class="profile-dropdown">
+              <button class="profile-btn">
+                <i class="fas fa-user-circle"></i>
+              </button>
+              
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="subscription-section">
+        <div class="subscription-header">
+            <h2>Abonnements Premium</h2>
+            <p>Débloquez des fonctionnalités exclusives et améliorez votre expérience avec nos abonnements premium</p>
+        </div>
+
+        <div class="subscription-plans">
+            <!-- Carte Standard -->
+            <div class="subscription-card">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Standard Background">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Standard</div>
+                        <div class="card-price">FREE <span></span></div>
+                        <div class="card-period">Facturation mensuelle</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès à tous les groupes
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Publications illimitées
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Statistiques avancées
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Support prioritaire
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-standard">Choisir Standard</a>
+                </div>
+            </div>
+
+            <!-- Carte Premium (Mise en avant) -->
+            <div class="subscription-card">
+                <div class="popular-badge">Populaire</div>
+                <img src="https://images.unsplash.com/photo-1508313880080-c4bef0730395?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Premium Background">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Premium</div>
+                        <div class="card-price">2€ <span>/mois</span></div>
+                        <div class="card-period">Facturation mensuelle</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Tous les avantages Standard
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Création de groupes illimitée
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Badge exclusif Premium
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès aux événements VIP
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Support 24/7
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-premium">Choisir Premium</a>
+                </div>
+            </div>
+
+            <!-- Carte Annuelle (Économie) -->
+            <div class="subscription-card">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Annuel Background">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Annuel</div>
+                        <div class="card-price">5€ <span>/an</span></div>
+                        <div class="card-period">Économisez 20%</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Tous les avantages Premium
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Économisez 20%
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès anticipé aux nouvelles fonctionnalités
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Cadeau de bienvenue
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-premium">Choisir Annuel</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="subscription-benefits">
+            <h3>Pourquoi passer à Premium ?</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <div class="benefit-title">Visibilité accrue</div>
+                    <div class="benefit-desc">Votre profil et vos publications sont mis en avant dans les résultats de recherche</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="benefit-title">Analyses avancées</div>
+                    <div class="benefit-desc">Accédez à des statistiques détaillées sur vos publications et votre audience</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="benefit-title">Réseautage</div>
+                    <div class="benefit-desc">Connectez-vous avec des professionnels et influenceurs de votre domaine</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div class="benefit-title">Contenu exclusif</div>
+                    <div class="benefit-desc">Accédez à des ressources et formations réservées aux membres Premium</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... (le reste de votre code existant) ... -->
+
+    <script>
+        // Script pour gérer les interactions des abonnements
+        document.querySelectorAll('.card-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const plan = this.closest('.subscription-card').querySelector('.card-title').textContent;
+                alert(`Vous avez choisi l'abonnement ${plan}. Redirection vers le paiement...`);
+                // Ici vous ajouteriez la logique de redirection vers le paiement
+            });
+        });
+    </script>
+</body>
+</html>

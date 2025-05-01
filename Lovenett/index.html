@@ -6,14 +6,34 @@
   <title>L💞venett</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="souscription.html">
 
 
-  
 </head>
 <body>
-  <!-- Barre de navigation -->
+  <!-- Barre de navigation avec onglets -->
   <nav class="navbar">
-    <h1 class="app-name">L💞venett</h1>
+    <div class="nav-container">
+      <h1 class="app-name">L💞venett</h1>
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="index.html" class="active">Menu</a></li>
+        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
+        <li class="nav-tab"><a href="messages.html">Messages</a></li>
+        <li class="nav-tab"><a href="contacts.html">Contacts</a></li>
+        <li class="profile-dropdown">
+          <button class="profile-btn">
+            <i class="fas fa-user-circle"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="forms.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+            <a href="forms.html" class="dropdown-item"><i class="fas fa-user-plus"></i> Sign Up</a>
+            <a href="upload.html" class="dropdown-item"><i class="fas fa-camera"></i> Upload Photo</a>
+            <a href="users.html" class="dropdown-item"><i class="fas fa-pencil-alt"></i> Write Bio</a>
+            <a href="users.html" class="dropdown-item"><i class="fas fa-user-edit"></i> Edit Profile</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Section d'accueil -->
@@ -65,7 +85,7 @@
       </div>
     </div>
     
-            <!-- Description Detector™ Section -->
+    <!-- Description Detector™ Section -->
     <div class="detector-section">
       <div class="detector-content">
         <span class="feature-badge">Exclusive Feature</span>
@@ -132,56 +152,70 @@
       </div>
     </div>
   
-<!-- Pied de page -->
-<footer class="app-footer">
-  <div class="footer-tabs">
-    <!-- Onglet About -->
-    <div class="footer-tab">
-      <div class="tab-header">
-        <i class="fas fa-info-circle"></i>
-        <span>ABOUT</span>
+    <!-- Pied de page -->
+    <footer class="app-footer">
+      <div class="footer-tabs">
+        <!-- Onglet About -->
+        <div class="footer-tab">
+          <div class="tab-header">
+            <i class="fas fa-info-circle"></i>
+            <span>ABOUT</span>
+          </div>
+          <div class="tab-content">
+            <a href="about.html">>>About L💞venett</a>
+            <a href="advert.html">>>Advertise</a>
+          </div>
+        </div>
+        
+        <!-- Onglet Help -->
+        <div class="footer-tab">
+          <div class="tab-header">
+            <i class="fas fa-question-circle"></i>
+            <span>HELP</span>
+          </div>
+          <div class="tab-content">
+            <a href="contact-us.html">>>Contact Us</a>
+          </div>
+        </div>
+        
+        <!-- Onglet Community -->
+        <div class="footer-tab">
+          <div class="tab-header">
+            <i class="fas fa-language"></i>
+            <span>COMMUNITY</span>
+          </div>
+          <div class="tab-content">
+            <a href="guidelines.html">>>Guidelines</a>
+            <a href="success-stories.html">>>Success Stories</a>
+          </div>
+        </div>
+        
+        <!-- Onglet News -->
+        <div class="footer-tab">
+          <div class="tab-header">
+            <i class="fas fa-user-friends"></i>
+            <span>NEWS</span>
+          </div>
+          <div class="tab-content">
+            <a href="updates.html">>>Global Updates</a>
+            <a href="share.html">>>Share With Friends</a>
+          </div>
+        </div>
       </div>
-      <div class="tab-content">
-        <a href="about.html">>>About L💞venett</a>
-        <a href="advert.html">>>Advertise</a>
-      </div>
-    </div>
-    
-    <!-- Onglet Help -->
-    <div class="footer-tab">
-      <div class="tab-header">
-        <i class="fas fa-question-circle"></i>
-        <span>HELP</span>
-      </div>
-      <div class="tab-content">
-        <a href="contact-us.html">>>Contact Us</a>
-      </div>
-    </div>
-    
-    <!-- Onglet Community -->
-    <div class="footer-tab">
-      <div class="tab-header">
-        <i class="fas fa-language"></i>
-        <span>COMMUNITY</span>
-      </div>
-      <div class="tab-content">
-        <a href="guidelines.html">>>Guidelines</a>
-        <a href="success-stories.html">>>Success Stories</a>
-      </div>
-    </div>
-    
-    <!-- Onglet News -->
-    <div class="footer-tab">
-      <div class="tab-header">
-        <i class="fas fa-user-friends"></i>
-        <span>NEWS</span>
-      </div>
-      <div class="tab-content">
-        <a href="updates.html">>>Global Updates</a>
-        <a href="share.html">>>Share With Friends</a>
-      </div>
-    </div>
+    </footer>
   </div>
-</footer>
+
+  <script>
+    // Toggle dropdown menu
+    document.querySelector('.profile-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelector('.dropdown-menu').classList.toggle('show');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+      document.querySelector('.dropdown-menu').classList.remove('show');
+    });
+  </script>
 </body>
 </html>
