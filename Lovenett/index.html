@@ -15,11 +15,15 @@
   <nav class="navbar">
     <div class="nav-container">
       <h1 class="app-name">L💞venett</h1>
+      <!-- Hamburger menu button -->
+      <div class="hamburger" id="hamburger">
+        &#9776;
+      </div>
       <ul class="nav-tabs">
         <li class="nav-tab"><a href="index.html" class="active">Menu</a></li>
         <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
-        <li class="nav-tab"><a href="chat.html">Messages</a></li>
-        <li class="nav-tab"><a href="contact-us.html">Contacts</a></li>
+        <li class="nav-tab"><a href="FOR.html">Messages</a></li>
+        <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
         <li class="profile-dropdown">
           <button class="profile-btn">
             <i class="fas fa-user-circle"></i>
@@ -216,6 +220,44 @@
     document.addEventListener('click', function() {
       document.querySelector('.dropdown-menu').classList.remove('show');
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+  // Get elements with proper null checks
+  const hamburger = document.getElementById('hamburger');
+  const navTabs = document.querySelector('.nav-tabs'); // Changed to class selector
+  const profileBtn = document.querySelector('.profile-btn');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  
+  // Only proceed if elements exist
+  if (hamburger && navTabs) {
+    // Toggle mobile menu
+    hamburger.addEventListener('click', function() {
+      navTabs.classList.toggle('active');
+      this.classList.toggle('active');
+    });
+    
+    // Toggle profile dropdown on mobile
+    if (profileBtn && dropdownMenu) {
+      profileBtn.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdownMenu.classList.toggle('show');
+        }
+      });
+    }
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-tab a:not(.profile-btn)');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768 && navTabs.classList.contains('active')) {
+          navTabs.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      });
+    });
+  }
+});
   </script>
 </body>
 </html>
