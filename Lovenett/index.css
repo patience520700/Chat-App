@@ -74,7 +74,7 @@
     }
     
     .nav-tab a.active {
-      color: #fff;
+      color: #ffffff;
       font-weight: 600;
     }
     
@@ -85,7 +85,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background-color: #fff;
+      background-color: #ffffff;
     }
     
     /* Profile dropdown */
