@@ -6,11 +6,6 @@
   <title>Private Chat | L💞venett</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.css">
-  <!-- Ajout de Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
  
  <style>
     :root {
@@ -18,8 +13,6 @@
       --secondary-color: #f8f9fa;
       --dark-color: #343a40;
       --light-color: #ffffff;
-      --dark-bg: #1e1e1e;
-      --dark-text: #f0f0f0;
     }
     
     body {
@@ -30,13 +23,125 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      transition: background-color 0.3s, color 0.3s;
     }
+
     
-    body.dark-mode {
-      background-color: var(--dark-bg);
-      color: var(--dark-text);
-    }
+  :root {
+    --primary-color: #ff6b9d;
+    --secondary-color: #f8f9fa;
+    --dark-color: #343a40;
+    --light-color: #ffffff;
+    --dark-bg: #1e1e1e;
+    --dark-text: #f0f0f0;
+  }
+  
+  body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  .dark-mode .navbar {
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-mode .profile-dropdown-content {
+    background-color: #3a3a3a;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  }
+  
+  .dark-mode .profile-dropdown-content button {
+    color: var(--dark-text);
+  }
+  
+  .dark-mode .profile-dropdown-content button:hover {
+    background-color: #4a4a4a;
+  }
+  
+  .dark-mode .auth-form {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .dark-mode .auth-form input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+  }
+  
+  .dark-mode .auth-toggle {
+    color: #aaa;
+  }
+  
+  .dark-mode .contact-list {
+    background-color: #2c2c2c;
+    border-right-color: #3a3a3a;
+  }
+  
+  .dark-mode .search-bar input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+    border-radius: 20px; 
+  }
+  
+  .dark-mode .contact-item {
+    border-bottom-color: #3a3a3a;
+  }
+  
+  .dark-mode .contact-item:hover {
+    background-color: #3a3a3a;
+  }
+  
+  .dark-mode .contact-item.active {
+    background-color: #4a4a4a;
+  }
+  
+  .dark-mode .contact-name {
+    color: white;
+  }
+  
+  .dark-mode .contact-last-msg {
+    color: #aaa;
+  }
+  
+  .dark-mode .chat-area {
+    background-color: #252525;
+  }
+  
+  .dark-mode .chat-header {
+    background-color: #2c2c2c;
+    border-bottom-color: #3a3a3a;
+  }
+  
+  .dark-mode #current-chat-name {
+    color: white;
+  }
+  
+  .dark-mode .messages {
+    background-color: #1e1e1e;
+  }
+  
+  .dark-mode .received {
+    background-color: #3a3a3a;
+    color: white;
+  }
+  
+  .dark-mode .message-time {
+    color: #aaa;
+  }
+  
+  .dark-mode .message-input-container {
+    background-color: #2c2c2c;
+    border-top-color: #3a3a3a;
+  }
+  
+  .dark-mode #message-input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+  }
+
     
     /* Navbar */
     .navbar {
@@ -49,17 +154,11 @@
       z-index: 100;
     }
     
-    .dark-mode .navbar {
-      background-color: #2c2c2c;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
     .app-name {
       color: var(--primary-color);
       font-size: 1.5rem;
       font-weight: bold;
       margin: 0;
-      padding: 0.5rem;
     }
     
     .profile-dropdown {
@@ -78,8 +177,6 @@
       justify-content: center;
       cursor: pointer;
       font-size: 1.2rem;
-      background-size: cover;
-      background-position: center;
     }
     
     .profile-dropdown-content {
@@ -94,11 +191,6 @@
       overflow: hidden;
     }
     
-    .dark-mode .profile-dropdown-content {
-      background-color: #3a3a3a;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-    }
-    
     .profile-dropdown-content button {
       color: var(--dark-color);
       padding: 12px 16px;
@@ -111,99 +203,8 @@
       cursor: pointer;
     }
     
-    .dark-mode .profile-dropdown-content button {
-      color: var(--dark-text);
-    }
-    
     .profile-dropdown-content button:hover {
       background-color: #f1f1f1;
-    }
-    
-    .dark-mode .profile-dropdown-content button:hover {
-      background-color: #4a4a4a;
-    }
-    
-    /* Auth forms */
-    .auth-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      padding: 20px;
-    }
-    
-    .auth-form {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    
-    .dark-mode .auth-form {
-      background-color: #2c2c2c;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    
-    .auth-form h2 {
-      margin-top: 0;
-      color: var(--primary-color);
-      text-align: center;
-    }
-    
-    .auth-form input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    
-    .dark-mode .auth-form input {
-      background-color: #3a3a3a;
-      border-color: #4a4a4a;
-      color: white;
-    }
-    
-    .auth-form button {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    
-    .auth-form button:hover {
-      background-color: #e0558a;
-    }
-    
-    .auth-toggle {
-      text-align: center;
-      margin-top: 15px;
-      color: #666;
-    }
-    
-    .dark-mode .auth-toggle {
-      color: #aaa;
-    }
-    
-    .auth-toggle a {
-      color: var(--primary-color);
-      cursor: pointer;
-      text-decoration: none;
-    }
-    
-    .error-message {
-      color: #ff4444;
-      text-align: center;
-      margin-top: 10px;
     }
     
     /* Main Chat Container */
@@ -223,34 +224,19 @@
       overflow: hidden;
     }
     
-    .dark-mode .contact-list {
-      background-color: #2c2c2c;
-      border-right-color: #3a3a3a;
-    }
-    
     .search-bar {
       padding: 15px;
       border-bottom: 1px solid #e0e0e0;
     }
     
-    .dark-mode .search-bar {
-      border-bottom-color: #3a3a3a;
-    }
-    
     .search-bar input {
-      width: 100%;
-      padding: 10px 15px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      outline: none;
-      font-size: 0.9rem;
-    }
-    
-    .dark-mode .search-bar input {
-      background-color: #3a3a3a;
-      border-color: #4a4a4a;
-      color: white;
-    }
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px; /* Cette valeur arrondit déjà les coins */
+  outline: none;
+  font-size: 0.9rem;
+}
     
     #contacts-list {
       list-style: none;
@@ -269,24 +255,12 @@
       transition: background-color 0.2s;
     }
     
-    .dark-mode .contact-item {
-      border-bottom-color: #3a3a3a;
-    }
-    
     .contact-item:hover {
       background-color: #f9f9f9;
     }
     
-    .dark-mode .contact-item:hover {
-      background-color: #3a3a3a;
-    }
-    
     .contact-item.active {
       background-color: #f0f0f0;
-    }
-    
-    .dark-mode .contact-item.active {
-      background-color: #4a4a4a;
     }
     
     .contact-avatar {
@@ -300,8 +274,6 @@
       justify-content: center;
       margin-right: 15px;
       font-weight: bold;
-      background-size: cover;
-      background-position: center;
     }
     
     .contact-info {
@@ -313,20 +285,12 @@
       margin-bottom: 3px;
     }
     
-    .dark-mode .contact-name {
-      color: white;
-    }
-    
     .contact-last-msg {
       font-size: 0.8rem;
       color: #777;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-    
-    .dark-mode .contact-last-msg {
-      color: #aaa;
     }
     
     /* Chat Area */
@@ -337,10 +301,6 @@
       background-color: var(--secondary-color);
     }
     
-    .dark-mode .chat-area {
-      background-color: #252525;
-    }
-    
     .chat-header {
       padding: 15px 20px;
       background-color: var(--light-color);
@@ -349,19 +309,10 @@
       align-items: center;
     }
     
-    .dark-mode .chat-header {
-      background-color: #2c2c2c;
-      border-bottom-color: #3a3a3a;
-    }
-    
     #current-chat-name {
       margin: 0;
       font-size: 1.2rem;
       color: var(--dark-color);
-    }
-    
-    .dark-mode #current-chat-name {
-      color: white;
     }
     
     .messages {
@@ -369,10 +320,6 @@
       padding: 20px;
       overflow-y: auto;
       background-color: #f9f9f9;
-    }
-    
-    .dark-mode .messages {
-      background-color: #1e1e1e;
     }
     
     .message {
@@ -390,11 +337,6 @@
       border-bottom-left-radius: 5px;
     }
     
-    .dark-mode .received {
-      background-color: #3a3a3a;
-      color: white;
-    }
-    
     .sent {
       background-color: var(--primary-color);
       color: white;
@@ -410,21 +352,12 @@
       text-align: right;
     }
     
-    .dark-mode .message-time {
-      color: #aaa;
-    }
-    
     .message-input-container {
       display: flex;
       padding: 15px;
       background-color: var(--light-color);
       border-top: 1px solid #e0e0e0;
       align-items: center;
-    }
-    
-    .dark-mode .message-input-container {
-      background-color: #2c2c2c;
-      border-top-color: #3a3a3a;
     }
     
     #message-input {
@@ -435,12 +368,6 @@
       outline: none;
       font-size: 0.9rem;
       margin: 0 10px;
-    }
-    
-    .dark-mode #message-input {
-      background-color: #3a3a3a;
-      border-color: #4a4a4a;
-      color: white;
     }
     
     #send-button {
@@ -499,87 +426,30 @@
         display: flex;
       }
     }
-    
-    /* Emoji picker */
-    .emoji-picker-container {
-      display: none;
-      position: absolute;
-      bottom: 70px;
-      right: 20px;
-      z-index: 100;
-    }
-    
-    /* Loading spinner */
-    .spinner {
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      border-top: 4px solid var(--primary-color);
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .hidden {
-      display: none !important;
-    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <h1 class="app-name">L💞venett Chat</h1>
-    <div class="navbar-right">
-      <button id="dark-mode-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-      </button>
-      
-      <div class="profile-dropdown">
-        <div class="profile-icon" id="profile-icon">👤</div>
-        <div class="profile-dropdown-content" id="profile-dropdown-content">
-          <button id="upload-profile-pic">Upload Picture</button>
-          <button id="delete-profile-pic">Delete Picture</button>
-          <button id="logout-button">Logout</button>
-          <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
-        </div>
-      </div>
+<h1 class="app-name" id="app-name">L💞venett Chat</h1>    <div class="navbar-right">
+    
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="profile-dropdown">
+      <div class="profile-icon" id="profile-icon">👤</div>
+    <div class="profile-dropdown-content" id="profile-dropdown-content">
+      <button id="upload-profile-pic">Upload Picture</button>
+      <button id="delete-profile-pic">Delete Picture</button>
+      <button id="set-default-pic">Set Default</button>
+      <input type="file" id="profile-pic-upload" accept="image/*">
+    </div>
     </div>
   </nav>
 
-  <!-- Auth Container -->
-  <div class="auth-container" id="auth-container">
-    <div class="auth-form" id="login-form">
-      <h2>Login</h2>
-      <input type="email" id="login-email" placeholder="Email" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button id="login-button">Login</button>
-      <div class="auth-toggle">
-        Don't have an account? <a id="show-register">Register</a>
-      </div>
-      <div class="error-message" id="login-error"></div>
-    </div>
-    
-    <div class="auth-form hidden" id="register-form">
-      <h2>Register</h2>
-      <input type="text" id="register-name" placeholder="Full Name" required>
-      <input type="email" id="register-email" placeholder="Email" required>
-      <input type="password" id="register-password" placeholder="Password" required>
-      <input type="password" id="register-confirm-password" placeholder="Confirm Password" required>
-      <button id="register-button">Register</button>
-      <div class="auth-toggle">
-        Already have an account? <a id="show-login">Login</a>
-      </div>
-      <div class="error-message" id="register-error"></div>
-    </div>
-  </div>
-
   <!-- Main Chat Container -->
-  <div class="chat-container hidden" id="chat-container">
+  <div class="chat-container">
     <!-- Contact List -->
     <div class="contact-list">
       <div class="search-bar">
@@ -606,448 +476,100 @@
         <div class="emoji-picker-container" id="emoji-picker-container">
           <emoji-picker id="emoji-picker"></emoji-picker>
         </div>
-        <input type="text" id="message-input" placeholder="Type a message..." disabled>
-        <button id="send-button" disabled><i class="fas fa-paper-plane"></i></button>
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
       </div>
-    </div>
-  </div>
+
+
+
 
   <script>
-    // Configuration Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyDEXAMPLEEXAMPLEEXAMPLE", // Remplacez par votre clé API
-      authDomain: "your-project-id.firebaseapp.com",
-      projectId: "your-project-id",
-      storageBucket: "your-project-id.appspot.com",
-      messagingSenderId: "123456789012",
-      appId: "1:123456789012:web:abcdef1234567890"
-    };
+   
 
-    // Initialisation Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const storage = firebase.storage();
 
-    // Références aux éléments du DOM
-    const authContainer = document.getElementById('auth-container');
-    const chatContainer = document.getElementById('chat-container');
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const showRegister = document.getElementById('show-register');
-    const showLogin = document.getElementById('show-login');
-    const loginButton = document.getElementById('login-button');
-    const registerButton = document.getElementById('register-button');
-    const logoutButton = document.getElementById('logout-button');
-    const loginEmail = document.getElementById('login-email');
-    const loginPassword = document.getElementById('login-password');
-    const registerName = document.getElementById('register-name');
-    const registerEmail = document.getElementById('register-email');
-    const registerPassword = document.getElementById('register-password');
-    const registerConfirmPassword = document.getElementById('register-confirm-password');
-    const loginError = document.getElementById('login-error');
-    const registerError = document.getElementById('register-error');
-    const profileIcon = document.getElementById('profile-icon');
-    const profileDropdown = document.getElementById('profile-dropdown-content');
-    const uploadProfilePic = document.getElementById('upload-profile-pic');
-    const deleteProfilePic = document.getElementById('delete-profile-pic');
-    const profilePicUpload = document.getElementById('profile-pic-upload');
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const contactsList = document.getElementById('contacts-list');
-    const currentChatName = document.getElementById('current-chat-name');
-    const messagesContainer = document.getElementById('messages-container');
-    const messageInput = document.getElementById('message-input');
-    const sendButton = document.getElementById('send-button');
-    const contactSearch = document.getElementById('contact-search');
 
-    // Variables d'état
-    let currentUser = null;
-    let currentChatId = null;
-    let users = [];
-    let messagesListener = null;
-    let contactsListener = null;
+    // Gestion du dark mode
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  
+  darkModeToggle.addEventListener('click', toggleDarkMode);
+  
+  // Vérifier le mode stocké
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+  }
+});
 
-    // Initialisation de l'application
-    document.addEventListener('DOMContentLoaded', function() {
-      // Gestion du dark mode
-      darkModeToggle.addEventListener('click', toggleDarkMode);
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-      }
+// Fonction pour basculer le mode sombre
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+}
 
-      // Gestion de l'authentification
-      showRegister.addEventListener('click', () => {
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-      });
 
-      showLogin.addEventListener('click', () => {
-        registerForm.classList.add('hidden');
-        loginForm.classList.remove('hidden');
-      });
 
-      loginButton.addEventListener('click', handleLogin);
-      registerButton.addEventListener('click', handleRegister);
-      logoutButton.addEventListener('click', handleLogout);
+// Remplacer la partie "Sample contacts" par :
+let contacts = []; // Cette variable sera remplie avec les vrais utilisateurs
 
-      // Gestion du profil
-      profileIcon.addEventListener('click', toggleProfileDropdown);
-      uploadProfilePic.addEventListener('click', () => profilePicUpload.click());
-      deleteProfilePic.addEventListener('click', deleteProfilePicture);
-      profilePicUpload.addEventListener('change', uploadProfilePicture);
+// Fonction pour charger les vrais contacts
+async function loadRealContacts() {
+  // Ici vous devrez implémenter la logique pour récupérer les vrais utilisateurs
+  // depuis votre base de données Firebase
+  // Ceci est un exemple simplifié :
+  const usersSnapshot = await db.collection('users').get();
+  contacts = usersSnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  
+  updateContactsList();
+}
 
-      // Gestion du chat
-      messageInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          sendMessage();
-        }
-      });
-      sendButton.addEventListener('click', sendMessage);
-
-      // Écouteur d'état d'authentification
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          // Utilisateur connecté
-          currentUser = user;
-          authContainer.classList.add('hidden');
-          chatContainer.classList.remove('hidden');
-          loadUserProfile();
-          setupChat();
-        } else {
-          // Utilisateur non connecté
-          currentUser = null;
-          authContainer.classList.remove('hidden');
-          chatContainer.classList.add('hidden');
-          if (messagesListener) messagesListener();
-          if (contactsListener) contactsListener();
-        }
-      });
-    });
-
-    // Fonctions d'authentification
-    async function handleLogin() {
-      const email = loginEmail.value;
-      const password = loginPassword.value;
-
-      try {
-        await auth.signInWithEmailAndPassword(email, password);
-        loginError.textContent = '';
-      } catch (error) {
-        loginError.textContent = error.message;
-      }
-    }
-
-    async function handleRegister() {
-      const name = registerName.value;
-      const email = registerEmail.value;
-      const password = registerPassword.value;
-      const confirmPassword = registerConfirmPassword.value;
-
-      if (password !== confirmPassword) {
-        registerError.textContent = 'Passwords do not match';
-        return;
-      }
-
-      try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        await db.collection('users').doc(userCredential.user.uid).set({
-          name: name,
-          email: email,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          profilePicture: null,
-          online: true
-        });
-        registerError.textContent = '';
-      } catch (error) {
-        registerError.textContent = error.message;
-      }
-    }
-
-    async function handleLogout() {
-      try {
-        if (currentUser) {
-          await db.collection('users').doc(currentUser.uid).update({
-            online: false,
-            lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-          });
-        }
-        await auth.signOut();
-      } catch (error) {
-        console.error('Logout error:', error);
-      }
-    }
-
-    // Fonctions de profil
-    function toggleProfileDropdown() {
-      profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
-    }
-
-    async function loadUserProfile() {
-      if (!currentUser) return;
-
-      const userDoc = await db.collection('users').doc(currentUser.uid).get();
-      if (userDoc.exists) {
-        const userData = userDoc.data();
-        if (userData.profilePicture) {
-          profileIcon.style.backgroundImage = `url(${userData.profilePicture})`;
-          profileIcon.textContent = '';
-        } else {
-          profileIcon.style.backgroundImage = '';
-          profileIcon.textContent = userData.name ? userData.name.charAt(0) : '👤';
-        }
-      }
-    }
-
-    async function uploadProfilePicture() {
-      const file = profilePicUpload.files[0];
-      if (!file || !currentUser) return;
-
-      try {
-        // Upload de l'image
-        const storageRef = storage.ref(`profile_pictures/${currentUser.uid}`);
-        const snapshot = await storageRef.put(file);
-        const downloadURL = await snapshot.ref.getDownloadURL();
-
-        // Mise à jour du profil
-        await db.collection('users').doc(currentUser.uid).update({
-          profilePicture: downloadURL
-        });
-
-        // Mise à jour de l'affichage
-        profileIcon.style.backgroundImage = `url(${downloadURL})`;
-        profileIcon.textContent = '';
-      } catch (error) {
-        console.error('Error uploading profile picture:', error);
-      }
-    }
-
-    async function deleteProfilePicture() {
-      if (!currentUser) return;
-
-      try {
-        // Suppression de l'image dans le stockage
-        const storageRef = storage.ref(`profile_pictures/${currentUser.uid}`);
-        await storageRef.delete();
-
-        // Mise à jour du profil
-        await db.collection('users').doc(currentUser.uid).update({
-          profilePicture: null
-        });
-
-        // Mise à jour de l'affichage
-        const userDoc = await db.collection('users').doc(currentUser.uid).get();
-        if (userDoc.exists) {
-          const userData = userDoc.data();
-          profileIcon.style.backgroundImage = '';
-          profileIcon.textContent = userData.name ? userData.name.charAt(0) : '👤';
-        }
-      } catch (error) {
-        console.error('Error deleting profile picture:', error);
-      }
-    }
-
-    // Fonctions de chat
-    function setupChat() {
-      if (!currentUser) return;
-
-      // Mettre à jour le statut en ligne
-      db.collection('users').doc(currentUser.uid).update({
-        online: true,
-        lastSeen: null
-      });
-
-      // Gérer la déconnexion
-      window.addEventListener('beforeunload', async () => {
-        await db.collection('users').doc(currentUser.uid).update({
-          online: false,
-          lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-        });
-      });
-
-      // Charger les contacts
-      loadContacts();
-
-      // Recherche de contacts
-      contactSearch.addEventListener('input', filterContacts);
-    }
-
-    async function loadContacts() {
-      contactsListener = db.collection('users')
-        .where(firebase.firestore.FieldPath.documentId(), '!=', currentUser.uid)
-        .onSnapshot(snapshot => {
-          users = [];
-          contactsList.innerHTML = '';
-
-          snapshot.forEach(doc => {
-            const user = { id: doc.id, ...doc.data() };
-            users.push(user);
-            
-            const contactItem = document.createElement('li');
-            contactItem.className = 'contact-item';
-            contactItem.dataset.userId = user.id;
-            
-            // Créer l'avatar
-            const avatar = document.createElement('div');
-            avatar.className = 'contact-avatar';
-            if (user.profilePicture) {
-              avatar.style.backgroundImage = `url(${user.profilePicture})`;
-            } else {
-              avatar.textContent = user.name ? user.name.charAt(0) : '?';
-            }
-            
-            contactItem.innerHTML = `
-              <div class="contact-avatar">${user.name ? user.name.charAt(0) : '?'}</div>
-              <div class="contact-info">
-                <div class="contact-name">${user.name || 'Unknown User'} 
-                  <span class="${user.online ? 'online' : 'offline'}"></span>
-                </div>
-                <div class="contact-last-msg">${user.lastMessage || 'No messages yet'}</div>
-              </div>
-            `;
-            
-            contactItem.addEventListener('click', () => openChat(user.id, user.name));
-            contactsList.appendChild(contactItem);
-          });
-        }, error => {
-          console.error('Error loading contacts:', error);
-        });
-    }
-
-    function filterContacts() {
-      const searchTerm = contactSearch.value.toLowerCase();
-      const contactItems = contactsList.querySelectorAll('.contact-item');
-      
-      contactItems.forEach(item => {
-        const name = item.querySelector('.contact-name').textContent.toLowerCase();
-        if (name.includes(searchTerm)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-
-    function openChat(userId, userName) {
-      // Fermer l'écouteur précédent s'il existe
-      if (messagesListener) messagesListener();
-      
-      currentChatId = userId;
-      currentChatName.textContent = userName;
-      messageInput.disabled = false;
-      sendButton.disabled = false;
-      
-      // Charger les messages
-      messagesContainer.innerHTML = '<div class="spinner"></div>';
-      
-      messagesListener = db.collection('messages')
-        .where('participants', 'array-contains', currentUser.uid)
-        .where('participants', 'array-contains', userId)
-        .orderBy('timestamp', 'asc')
-        .onSnapshot(snapshot => {
-          messagesContainer.innerHTML = '';
-          
-          snapshot.forEach(doc => {
-            const message = doc.data();
-            displayMessage(message);
-          });
-          
-          // Faire défiler vers le bas
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }, error => {
-          console.error('Error loading messages:', error);
-        });
-    }
-
-    function displayMessage(message) {
-      const messageElement = document.createElement('div');
-      const isCurrentUser = message.senderId === currentUser.uid;
-      messageElement.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
-      
-      const timestamp = message.timestamp ? message.timestamp.toDate() : new Date();
-      const timeString = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      
-      messageElement.innerHTML = `
-        <p>${message.text}</p>
-        <div class="message-time">${timeString}</div>
+// Fonction pour mettre à jour la liste des contacts
+function updateContactsList() {
+  const contactsList = document.getElementById('contacts-list');
+  contactsList.innerHTML = '';
+  
+  contacts.forEach(contact => {
+    if (contact.id !== currentUser.uid) { // Ne pas afficher l'utilisateur courant
+      const contactItem = document.createElement('li');
+      contactItem.className = 'contact-item';
+      contactItem.innerHTML = `
+        <div class="contact-avatar">${contact.name.charAt(0)}</div>
+        <div class="contact-info">
+          <div class="contact-name">${contact.name} 
+            <span class="${contact.online ? 'online' : 'offline'}"></span>
+          </div>
+          <div class="contact-last-msg">${contact.lastMessage || 'No messages yet'}</div>
+        </div>
       `;
       
-      messagesContainer.appendChild(messageElement);
+      // Ajouter le reste de la logique de gestion des clics...
+      contactsList.appendChild(contactItem);
     }
+  });
+}
 
-    async function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text || !currentChatId || !currentUser) return;
-      
-      try {
-        // Créer ou obtenir l'ID de conversation
-        const conversationId = generateConversationId(currentUser.uid, currentChatId);
-        
-        // Envoyer le message
-        await db.collection('messages').add({
-          text: text,
-          senderId: currentUser.uid,
-          participants: [currentUser.uid, currentChatId],
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          conversationId: conversationId
-        });
-        
-        // Mettre à jour le dernier message dans le profil du contact
-        await db.collection('users').doc(currentChatId).update({
-          lastMessage: text
-        });
-        
-        // Effacer le champ de saisie
-        messageInput.value = '';
-      } catch (error) {
-        console.error('Error sending message:', error);
-      }
-    }
-
-    function generateConversationId(userId1, userId2) {
-      return [userId1, userId2].sort().join('_');
-    }
-
-    // Fonction pour basculer le mode sombre
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      const isDarkMode = document.body.classList.contains('dark-mode');
-      localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-    }
-
-    // Fermer les menus déroulants en cliquant à l'extérieur
-    window.addEventListener('click', function(event) {
-      if (!event.target.matches('#profile-icon') && !event.target.closest('.profile-dropdown-content')) {
-        if (profileDropdown.style.display === 'block') {
-          profileDropdown.style.display = 'none';
-        }
-      }
-      
-      if (!event.target.closest('#emoji-btn') && !event.target.closest('#emoji-picker-container')) {
-        document.getElementById('emoji-picker-container').style.display = 'none';
+// Dans la fonction qui gère la connexion :
+auth.onAuthStateChanged(user => {
+  if (user) {
+    currentUser = user;
+    // Charger le nom de l'utilisateur
+    db.collection('users').doc(user.uid).get().then(doc => {
+      if (doc.exists) {
+        document.getElementById('app-name').textContent = doc.data().name;
       }
     });
-  </script>
-  
-  <script type="module">
-    import 'https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.js';
-  
-    document.addEventListener('DOMContentLoaded', () => {
-      const emojiBtn = document.getElementById('emoji-btn');
-      const emojiPickerContainer = document.getElementById('emoji-picker-container');
-      const messageInput = document.getElementById('message-input');
-      const emojiPicker = document.getElementById('emoji-picker');
-  
-      // Toggle emoji picker
-      emojiBtn.addEventListener('click', () => {
-        emojiPickerContainer.style.display = emojiPickerContainer.style.display === 'block' ? 'none' : 'block';
-      });
-  
-      // Insert emoji when clicked
-      emojiPicker.addEventListener('emoji-click', (event) => {
-        messageInput.value += event.detail.unicode;
-        messageInput.focus();
-      });
-    });
+    loadRealContacts();
+    // ... reste du code de connexion
+  } else {
+    // Réinitialiser l'affichage quand déconnecté
+    document.getElementById('app-name').textContent = "L💞venett Chat";
+    document.getElementById('contacts-list').innerHTML = '';
+    // ... reste du code de déconnexion
+  }
+});
   </script>
 </body>
 </html>
