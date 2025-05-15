@@ -55,6 +55,124 @@
       background-color: var(--dark-bg);
       color: var(--dark-text);
     }
+
+    
+  :root {
+    --primary-color: #ff6b9d;
+    --secondary-color: #f8f9fa;
+    --dark-color: #343a40;
+    --light-color: #ffffff;
+    --dark-bg: #1e1e1e;
+    --dark-text: #f0f0f0;
+  }
+  
+  body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  .dark-mode .navbar {
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-mode .profile-dropdown-content {
+    background-color: #3a3a3a;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  }
+  
+  .dark-mode .profile-dropdown-content button {
+    color: var(--dark-text);
+  }
+  
+  .dark-mode .profile-dropdown-content button:hover {
+    background-color: #4a4a4a;
+  }
+  
+  .dark-mode .auth-form {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .dark-mode .auth-form input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+  }
+  
+  .dark-mode .auth-toggle {
+    color: #aaa;
+  }
+  
+  .dark-mode .contact-list {
+    background-color: #2c2c2c;
+    border-right-color: #3a3a3a;
+  }
+  
+  .dark-mode .search-bar input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+    border-radius: 20px; 
+  }
+  
+  .dark-mode .contact-item {
+    border-bottom-color: #3a3a3a;
+  }
+  
+  .dark-mode .contact-item:hover {
+    background-color: #3a3a3a;
+  }
+  
+  .dark-mode .contact-item.active {
+    background-color: #4a4a4a;
+  }
+  
+  .dark-mode .contact-name {
+    color: white;
+  }
+  
+  .dark-mode .contact-last-msg {
+    color: #aaa;
+  }
+  
+  .dark-mode .chat-area {
+    background-color: #252525;
+  }
+  
+  .dark-mode .chat-header {
+    background-color: #2c2c2c;
+    border-bottom-color: #3a3a3a;
+  }
+  
+  .dark-mode #current-chat-name {
+    color: white;
+  }
+  
+  .dark-mode .messages {
+    background-color: #1e1e1e;
+  }
+  
+  .dark-mode .received {
+    background-color: #3a3a3a;
+    color: white;
+  }
+  
+  .dark-mode .message-time {
+    color: #aaa;
+  }
+  
+  .dark-mode .message-input-container {
+    background-color: #2c2c2c;
+    border-top-color: #3a3a3a;
+  }
+  
+  .dark-mode #message-input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+  }
+
     
     .navbar {
       background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
@@ -222,6 +340,7 @@
     } */
     
     .search-bar input {
+<<<<<<< HEAD
       width: 80%;
       padding: 10px 15px 10px 40px;
       border: 1px solid var(--border-color);
@@ -247,6 +366,15 @@
       transform: translateY(-50%);
       font-size: 1.1rem;
     }
+=======
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px; /* Cette valeur arrondit déjà les coins */
+  outline: none;
+  font-size: 0.9rem;
+}
+>>>>>>> 0caa62949ce8b39e1e0b28a3b74c6fa2d2eeaef2
     
     #contacts-list {
       list-style: none;
@@ -988,6 +1116,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
+<<<<<<< HEAD
     <h1 class="app-name" id="app-name">L💞venett Chat <span>💌</span></h1>
     <div class="navbar-right">
       <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
@@ -1003,6 +1132,22 @@
           <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
         </div>
       </div>
+=======
+<h1 class="app-name" id="app-name">L💞venett Chat</h1>    <div class="navbar-right">
+    
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="profile-dropdown">
+      <div class="profile-icon" id="profile-icon">👤</div>
+    <div class="profile-dropdown-content" id="profile-dropdown-content">
+      <button id="upload-profile-pic">Upload Picture</button>
+      <button id="delete-profile-pic">Delete Picture</button>
+      <button id="set-default-pic">Set Default</button>
+      <input type="file" id="profile-pic-upload" accept="image/*">
+    </div>
+>>>>>>> 0caa62949ce8b39e1e0b28a3b74c6fa2d2eeaef2
     </div>
   </nav>
 
@@ -1080,6 +1225,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/index.min.js"></script>
   <script>
+<<<<<<< HEAD
     // Variables globales
     let currentUser = null;
     let currentChatId = null;
@@ -1650,6 +1796,94 @@
         messageInput.value = '';
       }
     }
+=======
+   
+
+
+
+    // Gestion du dark mode
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  
+  darkModeToggle.addEventListener('click', toggleDarkMode);
+  
+  // Vérifier le mode stocké
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+  }
+});
+
+// Fonction pour basculer le mode sombre
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+}
+
+
+
+// Remplacer la partie "Sample contacts" par :
+let contacts = []; // Cette variable sera remplie avec les vrais utilisateurs
+
+// Fonction pour charger les vrais contacts
+async function loadRealContacts() {
+  // Ici vous devrez implémenter la logique pour récupérer les vrais utilisateurs
+  // depuis votre base de données Firebase
+  // Ceci est un exemple simplifié :
+  const usersSnapshot = await db.collection('users').get();
+  contacts = usersSnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  
+  updateContactsList();
+}
+
+// Fonction pour mettre à jour la liste des contacts
+function updateContactsList() {
+  const contactsList = document.getElementById('contacts-list');
+  contactsList.innerHTML = '';
+  
+  contacts.forEach(contact => {
+    if (contact.id !== currentUser.uid) { // Ne pas afficher l'utilisateur courant
+      const contactItem = document.createElement('li');
+      contactItem.className = 'contact-item';
+      contactItem.innerHTML = `
+        <div class="contact-avatar">${contact.name.charAt(0)}</div>
+        <div class="contact-info">
+          <div class="contact-name">${contact.name} 
+            <span class="${contact.online ? 'online' : 'offline'}"></span>
+          </div>
+          <div class="contact-last-msg">${contact.lastMessage || 'No messages yet'}</div>
+        </div>
+      `;
+      
+      // Ajouter le reste de la logique de gestion des clics...
+      contactsList.appendChild(contactItem);
+    }
+  });
+}
+
+// Dans la fonction qui gère la connexion :
+auth.onAuthStateChanged(user => {
+  if (user) {
+    currentUser = user;
+    // Charger le nom de l'utilisateur
+    db.collection('users').doc(user.uid).get().then(doc => {
+      if (doc.exists) {
+        document.getElementById('app-name').textContent = doc.data().name;
+      }
+    });
+    loadRealContacts();
+    // ... reste du code de connexion
+  } else {
+    // Réinitialiser l'affichage quand déconnecté
+    document.getElementById('app-name').textContent = "L💞venett Chat";
+    document.getElementById('contacts-list').innerHTML = '';
+    // ... reste du code de déconnexion
+  }
+});
+>>>>>>> 0caa62949ce8b39e1e0b28a3b74c6fa2d2eeaef2
   </script>
 </body>
 </html>
