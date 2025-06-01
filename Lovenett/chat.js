@@ -185,7 +185,7 @@ async function sendMessage() {
               participants: [currentUserId, currentChatId],
               timestamp: serverTimestamp(),
               read: false
-          });
+           });
           
           saveToHistory(text, true);
           input.value = '';

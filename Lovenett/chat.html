@@ -8,16 +8,36 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.css">
   <style>
     :root {
-      --primary-color: #ff6b9d;
-      --secondary-color: #f8f9fa;
-      --dark-color: #343a40;
-      --light-color: #ffffff;
-      --heart-color: #ff2e63;
-      --gradient-start: #ff9a9e;
-      --gradient-end: #fad0c4;
-      --dark-bg: #1e1e1e;
-      --dark-text: #f0f0f0;
-      --dark-primary: #ff4d88;
+        --primary-color: #ff6b9d;
+        --secondary-color: #f8f9fa;
+        --dark-color: #343a40;
+        --light-color: #ffffff;
+        --heart-color: #ff2e63;
+        --gradient-start: #ff9a9e;
+        --gradient-end: #fad0c4;
+        --dark-bg: #1e1e1e;
+        --dark-primary: #ff4d88;
+        
+        /* New variables for sidebar */
+        --sidebar-color: #ffffff;
+        --background-color: #f8f9fa;
+        --text-color: #212529;
+        --text-secondary: #6c757d;
+        --border-color: #e9ecef;
+        --online-indicator: #4cc9f0;
+        --input-bg: #ffffff;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode {
+        --sidebar-color: #1e1e1e;
+        --background-color: #121212;
+        --text-color: #f8f9fa;
+        --text-secondary: #adb5bd;
+        --border-color: #343a40;
+        --online-indicator: #4cc9f0;
+        --input-bg: #343a40;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
     
     body {
@@ -175,38 +195,42 @@
     }
     
     .contact-list {
-      width: 320px;
-      background-color: var(--light-color);
-      border-right: 1px solid #e0e0e0;
+      width: 350px;
+      background-color: var(--sidebar-color);
+      border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      height: 100%;
+      box-shadow: var(--shadow);
+      z-index: 10;
     }
+
     
-    .dark-mode .contact-list {
+    /* .dark-mode .contact-list {
       background-color: #2c2c2c;
       border-right-color: #3a3a3a;
-    }
+    } */
     
     .search-bar {
-      padding: 18px;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 15px;
+      border-bottom: 1px solid var(--border-color);
       position: relative;
     }
     
-    .dark-mode .search-bar {
+    /* .dark-mode .search-bar {
       border-bottom-color: #3a3a3a;
-    }
+    } */
     
     .search-bar input {
-      width: 100%;
-      padding: 12px 15px 12px 40px;
-      border: 1px solid #e0e0e0;
-      border-radius: 25px;
+      width: 80%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
       outline: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      /* transition: all 0.3s ease; */
     }
     
     .dark-mode .search-bar input {
@@ -230,15 +254,16 @@
       margin: 0;
       overflow-y: auto;
       flex: 1;
+      padding-top: 20px;
     }
     
     .contact-item {
       display: flex;
       align-items: center;
-      padding: 16px 20px;
-      border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      /* cursor: pointer; */
+      transition: background-color 0.3s;
     }
     
     .dark-mode .contact-item {
@@ -250,21 +275,28 @@
     }
     
     .dark-mode .contact-item:hover {
-      background-color: #3a3a3a;
+      background-color:var(--background-color);
     }
     
     .contact-item.active {
-      background-color: #f0f0f0;
-      border-left: 4px solid var(--heart-color);
+      background-color: var(--primary-color);
+      color: white;
+      /* border-left: 4px solid var(--heart-color); */
     }
     
-    .dark-mode .contact-item.active {
-      background-color: #4a4a4a;
+    .contact-item.active .contact-name,
+    .contact-item.active .contact-last-msg,
+    .contact-item.active .contact-time {
+      color: white;
     }
+
+    /* .dark-mode .contact-item.active {
+      background-color: #4a4a4a;
+    } */
     
     .contact-avatar {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background-color: var(--primary-color);
       color: white;
@@ -273,12 +305,12 @@
       justify-content: center;
       margin-right: 15px;
       font-weight: bold;
-      font-size: 1.3rem;
+      /* font-size: 1.3rem; */
       position: relative;
-      transition: all 0.3s ease;
+      /* transition: all 0.3s ease; */
     }
     
-    .contact-avatar::after {
+    /* .contact-avatar::after {
       content: "";
       position: absolute;
       bottom: -2px;
@@ -287,14 +319,27 @@
       height: 12px;
       border-radius: 50%;
       border: 2px solid white;
+    } */
+
+    .online::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--online-indicator);
+        border-radius: 50%;
+        border: 2px solid var(--sidebar-color);
+        bottom: 0;
+        right: 0;
     }
     
-    .online::after {
+    /* .online::after {
       background-color: #4CAF50;
-    }
+    } */
     
     .offline::after {
       background-color: #ccc;
+      display: none;
     }
     
     .contact-info {
@@ -304,46 +349,47 @@
     
     .contact-name {
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       font-size: 1.05rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: var(--text-color);
     }
     
-    .dark-mode .contact-name {
+    /* .dark-mode .contact-name {
       color: white;
-    }
+    } */
     
     .contact-last-msg {
-      font-size: 0.85rem;
-      color: #777;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: flex;
-      align-items: center;
+      /* display: flex;
+      align-items: center; */
     }
     
-    .dark-mode .contact-last-msg {
+    /* .dark-mode .contact-last-msg {
       color: #aaa;
     }
     
     .contact-last-msg .emoji {
       font-size: 1rem;
       margin-right: 5px;
-    }
+    } */
     
     .contact-time {
-      font-size: 0.75rem;
-      color: #999;
-      margin-left: auto;
-      padding-left: 10px;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      /* margin-left: auto;
+      padding-left: 10px; */
     }
     
-    .dark-mode .contact-time {
+    /* .dark-mode .contact-time {
       color: #777;
-    }
+    } */
     
     .chat-area {
       flex: 1;
@@ -380,10 +426,10 @@
       align-items: center;
     }
     
-    .dark-mode #current-chat-name {
+    /* .dark-mode #current-chat-name {
       color: white;
     }
-    
+     */
     #current-chat-name .emoji {
       margin-left: 10px;
       font-size: 1.2rem;
@@ -403,7 +449,7 @@
     }
     
     .dark-mode .messages {
-      background-color: #1e1e1e;
+      background-color: #1d1a1a;
       background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff4d8822" d="M30,30 Q50,10 70,30 T90,50 Q70,70 50,90 T30,70 Q10,50 30,30 Z" /></svg>');
     }
     
@@ -420,29 +466,30 @@
     }
     
     .received {
-      background-color: var(--light-color);
-      align-self: flex-start;
-      border-bottom-left-radius: 5px;
-      animation: fadeInLeft 0.3s ease;
-    }
-    
-    .dark-mode .received {
-      background-color: #3a3a3a;
-      color: white;
-    }
-    
-    .sent {
-      background-color: var(--primary-color);
-      color: white;
-      align-self: flex-end;
-      border-bottom-right-radius: 5px;
-      margin-left: auto;
-      animation: fadeInRight 0.3s ease;
-    }
-    
-    .dark-mode .sent {
-      background-color: var(--dark-primary);
-    }
+    background-color: var(--light-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    animation: fadeInLeft 0.3s ease;
+  }
+  
+  .dark-mode .received {
+    background-color: #3a3a3a;
+    color: white; /* Ajout de cette ligne pour le texte en blanc */
+  }
+  
+  .sent {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+    margin-left: auto;
+    animation: fadeInRight 0.3s ease;
+  }
+  
+  .dark-mode .sent {
+    background-color: var(--dark-primary);
+    color: white; /* Déjà présent pour les messages envoyés */
+  }
     
     @keyframes fadeInLeft {
       from {
@@ -470,7 +517,7 @@
       font-size: 1rem;
       line-height: 1.5;
     }
-    
+  =
     .message-text .emoji {
       font-size: 1.2rem;
       vertical-align: middle;
@@ -974,14 +1021,11 @@
 
     <!-- Chat Area -->
     <div class="chat-area">
-      <div class="chat-header">
-        <h3 id="current-chat-name">Please login to start chatting <span class="emoji">🔒</span></h3>
-      </div>
+      
       <div class="messages" id="messages-container">
         <div class="welcome-message">
           <div class="emoji">🔐</div>
           <p>Welcome to L💞venett Chat! 💕</p>
-          <p>Please login to access your conversations. 👆</p>
           <p>Share love and joy with your friends! 💖😊</p>
         </div>
       </div>
