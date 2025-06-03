@@ -188,6 +188,7 @@
       flex: 1;
       overflow: hidden;
       background-color: var(--light-color);
+      position: relative;
     }
     
     .dark-mode .chat-container {
@@ -203,6 +204,10 @@
       height: 100%;
       box-shadow: var(--shadow);
       z-index: 10;
+      position: absolute; /* Add this line */
+      left: 0; /* Add this line */
+      top: 0; /* Add this line */
+      bottom: 0;
     }
 
     
@@ -397,6 +402,8 @@
       flex-direction: column;
       background-color: var(--secondary-color);
       position: relative;
+      margin-left: 350px; /* Add this line */
+      height: 100%;
     }
     
     .dark-mode .chat-area {
@@ -406,10 +413,12 @@
     .chat-header {
       padding: 18px 25px;
       background-color: var(--light-color);
-      border-bottom: 1px solid #e0e0e0;
+      /* border-bottom: 1px solid #e0e0e0; */
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
+      border-left: 1px solid var(--border-color);
+      
     }
     
     .dark-mode .chat-header {
@@ -446,11 +455,13 @@
       background-attachment: fixed;
       background-position: center;
       transition: all 0.3s ease;
+       border-top: 1px solid var(--border-color);
     }
     
     .dark-mode .messages {
       background-color: #1d1a1a;
       background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff4d8822" d="M30,30 Q50,10 70,30 T90,50 Q70,70 50,90 T30,70 Q10,50 30,30 Z" /></svg>');
+      border-top: 1px solid var(--border-color);
     }
     
     .message {
