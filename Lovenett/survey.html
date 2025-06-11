@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey | Your Dating App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .survey-container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #ff6b6b;
+            outline: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+            accent-color: #ff6b6b;
+            width: 18px;
+            height: 18px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .rating-option {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .rating-option input {
+            display: none;
+        }
+
+        .rating-option label {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background: #eee;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .rating-option input:checked + label {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        button {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .thank-you {
+            text-align: center;
+            display: none;
+        }
+
+        .thank-you h2 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <form id="survey-form" action="https://formsubmit.co/dossour210@gmail.com" method="POST">
+            <!-- FormSubmit Configuration -->
+            <input type="hidden" name="_subject" value="New Dating App Survey Response">
+            <input type="hidden" name="_autoresponse" value="Thank you for helping us improve our dating app!">
+            <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+            <input type="hidden" name="_template" value="table"> <!-- Makes email formatting nicer -->
+            
+            <h1>Help Us Improve Your Experience</h1>
+            
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email (optional)</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label>How likely are you to recommend our app?</label>
+                <div class="rating">
+                    <div class="rating-option">
+                        <input type="radio" name="rating" id="rating-1" value="1" required>
+                        <label for="rating-1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="rating" id="rating-2" value="2">
+                        <label for="rating-2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="rating" id="rating-3" value="3">
+                        <label for="rating-3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="rating" id="rating-4" value="4">
+                        <label for="rating-4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="rating" id="rating-5" value="5">
+                        <label for="rating-5">5</label>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                    <small>Not likely</small>
+                    <small>Very likely</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>What features would you like to see? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-1" name="desired_features[]" value="Video chat">
+                        <label for="feature-1">Video chat</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-2" name="desired_features[]" value="Icebreaker games">
+                        <label for="feature-2">Icebreaker games</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-3" name="desired_features[]" value="Local dating events">
+                        <label for="feature-3">Local dating events</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-4" name="desired_features[]" value="Profile verification">
+                        <label for="feature-4">Profile verification</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">Any other feedback?</label>
+                <textarea id="feedback" name="feedback" rows="4" placeholder="Your thoughts..."></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn">Submit Survey</button>
+        </form>
+
+        <div class="thank-you" id="thank-you">
+            <h2>Thank You! ❤️</h2>
+            <p>Your feedback helps us create a better dating experience.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('survey-form').addEventListener('submit', function(e) {
+            // Optional: Show thank you message before redirect
+            e.preventDefault();
+            document.getElementById('survey-form').style.display = 'none';
+            document.getElementById('thank-you').style.display = 'block';
+            
+            // Submit the form after showing message
+            setTimeout(() => {
+                this.submit();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

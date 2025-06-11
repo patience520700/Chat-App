@@ -7,8 +7,107 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="souscription.html">
+  <style>
+    /* Nouveau CSS pour les statistiques avec fond animé */
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 60px 20px;
+      margin: 40px 0;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .stats-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      z-index: -2;
+    }
+    
+    .stats-container::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      background: 
+        linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: animateBackground 20s linear infinite;
+      z-index: -1;
+      opacity: 0.6;
+    }
+    
+    @keyframes animateBackground {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-40px, -40px);
+      }
+    }
 
+    .stat-item {
+      text-align: center;
+      padding: 30px;
+      min-width: 200px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
 
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #ff4757;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-label {
+      font-size: 1.3rem;
+      color: #555;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .stats-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 15px;
+      }
+      .stat-item {
+        min-width: 80%;
+        padding: 25px 15px;
+      }
+      .stat-number {
+        font-size: 2.8rem;
+      }
+      .stat-label {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Barre de navigation avec onglets -->
@@ -24,7 +123,6 @@
         <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
         <li class="nav-tab"><a href="chat.html">Messages</a></li>
         <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
-        
       </ul>
     </div>
   </nav>
@@ -43,6 +141,24 @@
   <!-- Contenu principal -->
   <div class="content">
     <h2 class="section-title">WELCOME TO L💞VENETT</h2>
+    
+    <!-- Statistics Section Modifiée -->
+    <div class="stats-container">
+      <div class="stat-item">
+        <div id="counter1" class="stat-number" data-target="10000">0</div>
+        <div class="stat-label">Active Users</div>
+      </div>
+      
+      <div class="stat-item">
+        <div id="counter2" class="stat-number" data-target="98">0</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+      
+      <div class="stat-item">
+        <div id="counter3" class="stat-number" data-target="100">0</div>
+        <div class="stat-label">Security</div>
+      </div>
+    </div>
     
     <!-- Grille d'articles -->
     <div class="article-grid">
@@ -159,7 +275,6 @@
             <a href="advert.html">>>Advert</a>
           </div>
         </div>
-      
         
         <!-- Onglet Help -->
         <div class="footer-tab">
@@ -169,6 +284,7 @@
           </div>
           <div class="tab-content">
             <a href="contact-us.html">>>Contact Us</a>
+            <a href="survey.html">>>Survey</a>
           </div>
         </div>
         
@@ -187,7 +303,7 @@
         <!-- Onglet News -->
         <div class="footer-tab">
           <div class="tab-header">
-            <i class="fas fa-user-friends"></i>
+            <i class="fas fa-user-friends"></i> 
             <span>NEWS</span>
           </div>
           <div class="tab-content">
@@ -200,54 +316,98 @@
   </div>
 
   <script>
-    // Toggle dropdown menu
-    document.querySelector('.profile-btn').addEventListener('click', function(e) {
-      e.stopPropagation();
-      document.querySelector('.dropdown-menu').classList.toggle('show');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function() {
-      document.querySelector('.dropdown-menu').classList.remove('show');
+    // Animation des compteurs
+    function animateCounter(element, target, suffix = '') {
+      let current = 0;
+      const duration = 2000; // 2 secondes
+      const increment = target / (duration / 16); // ~60fps
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          clearInterval(timer);
+          current = target;
+          // Formatage spécial pour 10K+
+          element.textContent = target === 1? '10+' : Math.floor(current) + suffix;
+        } else {
+          element.textContent = Math.floor(current) + suffix;
+        }
+      }, 16);
+    }
+
+    // Démarrer les animations quand la section est visible
+    function startCounters() {
+      const counter1 = document.getElementById('counter1');
+      const counter2 = document.getElementById('counter2');
+      const counter3 = document.getElementById('counter3');
+
+      if (counter1 && counter2 && counter3) {
+        animateCounter(counter1, 1, '+');
+        animateCounter(counter2, 98, '%');
+        animateCounter(counter3, 100, '%');
+      }
+    }
+
+    // Observer pour déclencher l'animation quand la section est visible
+    document.addEventListener('DOMContentLoaded', function() {
+      const statsSection = document.querySelector('.stats-container');
+      
+      if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            startCounters();
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+
+        observer.observe(statsSection);
+      } else {
+        // Fallback si l'Observer n'est pas supporté
+        startCounters();
+      }
+
+      // Gestion du menu mobile (code existant)
+      const hamburger = document.getElementById('hamburger');
+      const navTabs = document.querySelector('.nav-tabs');
+      const profileBtn = document.querySelector('.profile-btn');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      
+      if (hamburger && navTabs) {
+        hamburger.addEventListener('click', function() {
+          navTabs.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+        
+        if (profileBtn && dropdownMenu) {
+          profileBtn.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              dropdownMenu.classList.toggle('show');
+            }
+          });
+        }
+        
+        const navLinks = document.querySelectorAll('.nav-tab a:not(.profile-btn)');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            if (window.innerWidth <= 768 && navTabs.classList.contains('active')) {
+              navTabs.classList.remove('active');
+              hamburger.classList.remove('active');
+            }
+          });
+        });
+      }
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-  // Get elements with proper null checks
-  const hamburger = document.getElementById('hamburger');
-  const navTabs = document.querySelector('.nav-tabs'); // Changed to class selector
-  const profileBtn = document.querySelector('.profile-btn');
-  const dropdownMenu = document.querySelector('.dropdown-menu');
-  
-  // Only proceed if elements exist
-  if (hamburger && navTabs) {
-    // Toggle mobile menu
-    hamburger.addEventListener('click', function() {
-      navTabs.classList.toggle('active');
-      this.classList.toggle('active');
+    // Toggle dropdown menu (code existant)
+    document.querySelector('.profile-btn')?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelector('.dropdown-menu')?.classList.toggle('show');
     });
     
-    // Toggle profile dropdown on mobile
-    if (profileBtn && dropdownMenu) {
-      profileBtn.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          dropdownMenu.classList.toggle('show');
-        }
-      });
-    }
-    
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('.nav-tab a:not(.profile-btn)');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        if (window.innerWidth <= 768 && navTabs.classList.contains('active')) {
-          navTabs.classList.remove('active');
-          hamburger.classList.remove('active');
-        }
-      });
+    document.addEventListener('click', function() {
+      document.querySelector('.dropdown-menu')?.classList.remove('show');
     });
-  }
-});
   </script>
 </body>
 </html>

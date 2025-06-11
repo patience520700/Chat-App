@@ -7,6 +7,8 @@
   <!-- Fontawesome CDN Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="main.css">
+  <!-- Add Google Identity Services script -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <body class="form-container-body"></body>
@@ -114,12 +116,24 @@
                 <span class="divider-line"></span>
                 </div>
                 
-                <button type="button" class="google-signin-btn">
-                <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google logo">
-                Sign up with Google
-                </button>
+                 <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                     data-context="signup"
+                     data-ux_mode="popup"
+                     data-callback="handleGoogleSignIn"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="outline"
+                     data-text="signup_with"
+                     data-size="large"
+                     data-logo_alignment="left"
+                     data-width="300">
+                </div>
             </div>
-                    <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                   <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
                     </div>
             </form>
             </div>
@@ -199,9 +213,51 @@
       const selected = this.options[this.selectedIndex];
       phoneInput.value = selected.dataset.phone || '';
     });
-    </script>
+    
+    // Add this new function to handle Google Sign-In
+    function handleGoogleSignIn(response) {
+      // Decode the credential response
+      const responsePayload = parseJwt(response.credential);
+      
+      // Populate form fields with Google data
+      document.getElementById('register-username').value = responsePayload.given_name || '';
+      document.getElementById('email').value = responsePayload.email || '';
+      
+      // Try to guess gender from name (this is just a simple example)
+      if (responsePayload.given_name) {
+        const femaleNames = ['Maria', 'Anna', 'Emma', 'Sophia']; // Add more as needed
+        const isLikelyFemale = femaleNames.some(name => 
+          responsePayload.given_name.toLowerCase().includes(name.toLowerCase())
+        );
+        if (isLikelyFemale) {
+          document.getElementById('gender').value = 'female';
+        }
+      }
+      
+      // Focus on the= next field that needs attention
+      document.getElementById('phone').focus();
+      
+      console.log('Google sign-in successful:', responsePayload);
+    }
+    
+    // Helper function to parse JWT
+    function parseJwt(token) {
+      try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        
+        return JSON.parse(jsonPayload);
+      } catch (e) {
+        console.error('Error parsing JWT:', e);
+        return {};
+      }
+    }
+  </script>
   <script>
-    // Password toggle functionality
+    // Password toggle functionality (keep this exactly as is)
     document.querySelectorAll('.password-toggle').forEach(toggle => {
       toggle.addEventListener('click', function() {
         const input = this.parentElement.querySelector('input');

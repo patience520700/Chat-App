@@ -8,9 +8,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^1.20.3",
-    "express": "^4.21.2"
-  }
+    "express": "^4.21.2",
+    "firebase": "^11.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patience520700/Chat-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patience520700/Chat-App/issues"
+  },
+  "homepage": "https://github.com/patience520700/Chat-App#readme",
+  "description": ""
 }

@@ -19,3 +19,5 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     // Redirect to the chat page (e.g., chat.html)
     window.location.href = 'chat.html';
     });
+
+    
