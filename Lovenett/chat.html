@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.css">
   <style>
+
     :root {
         --primary-color: #ff6b9d;
-        --secondary-color: #f8f9fa;
+        --secondary-color: hsl(210, 17%, 98%);
         --dark-color: #343a40;
         --light-color: #ffffff;
         --heart-color: #ff2e63;
@@ -123,7 +124,7 @@
     .profile-icon {
       background-color: var(--heart-color);
       color: white;
-      width: 45px;
+      width: 46px;
       height: 45px;
       border-radius: 50%;
       display: flex;
@@ -477,29 +478,30 @@
     }
     
     .received {
-      background-color: var(--light-color);
-      align-self: flex-start;
-      border-bottom-left-radius: 5px;
-      animation: fadeInLeft 0.3s ease;
-    }
-    
-    /* .dark-mode .received {
-      background-color: #3a3a3a;
-      color: white;
-    } */
-    
-    .sent {
-      background-color: var(--primary-color);
-      color: white;
-      align-self: flex-end;
-      border-bottom-right-radius: 5px;
-      margin-left: auto;
-      animation: fadeInRight 0.3s ease;
-    }
-    
-    /* .dark-mode .sent {
-      background-color: var(--dark-primary);
-    } */
+    background-color: var(--light-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    animation: fadeInLeft 0.3s ease;
+  }
+  
+  .dark-mode .received {
+    background-color: #3a3a3a;
+    color: white; /* Ajout de cette ligne pour le texte en blanc */
+  }
+  
+  .sent {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+    margin-left: auto;
+    animation: fadeInRight 0.3s ease;
+  }
+  
+  .dark-mode .sent {
+    background-color: var(--dark-primary);
+    color: white; /* Déjà présent pour les messages envoyés */
+  }
     
     @keyframes fadeInLeft {
       from {
@@ -527,7 +529,7 @@
       font-size: 1rem;
       line-height: 1.5;
     }
-    
+  =
     .message-text .emoji {
       font-size: 1.2rem;
       vertical-align: middle;
@@ -1031,14 +1033,11 @@
 
     <!-- Chat Area -->
     <div class="chat-area">
-      <div class="chat-header">
-        <h3 id="current-chat-name">Please login to start chatting <span class="emoji">🔒</span></h3>
-      </div>
+      
       <div class="messages" id="messages-container">
         <div class="welcome-message">
           <div class="emoji">🔐</div>
           <p>Welcome to L💞venett Chat! 💕</p>
-          <p>Please login to access your conversations. 👆</p>
           <p>Share love and joy with your friends! 💖😊</p>
         </div>
       </div>
