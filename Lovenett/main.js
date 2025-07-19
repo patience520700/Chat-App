@@ -1,21 +1,61 @@
-document.getElementById('hamburger-menu').addEventListener('click', function() {
-    var dropdownMenu = document.getElementById('dropdown-menu');
-    if (dropdownMenu.style.display === 'block') {
-        dropdownMenu.style.display = 'none';
-    } else {
-        dropdownMenu.style.display = 'block';
+import { initAuth, loginUser, registerUser, logoutUser } from './auth.js';
+import { getConversations, createConversation } from './chat.js';
+import { getMessages, sendMessage } from './message.js';
+import { getUserProfile } from './user.js';
+
+// Variables globales
+let currentUser = null;
+let currentChatId = null;
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+  // Gestion de l'authentification
+  initAuth(
+    (user) => { // onAuthSuccess
+      currentUser = user;
+      setupChatUI();
+      loadUserData();
+    },
+    () => { // onAuthFailure
+      showLoginScreen();
     }
+  );
+
+  // Écouteurs d'événements
+  setupEventListeners();
 });
 
+function setupChatUI() {
+  // Cacher l'écran de login, montrer le chat
+  document.getElementById('auth-container').style.display = 'none';
+  document.getElementById('chat-container').style.display = 'flex';
 
-// Mise à jour dynamique de l'IP (exemple)
-document.getElementById('ip-address').textContent = 'PR-Hub';
+  // Charger les conversations
+  getConversations(currentUser.uid, (conversations) => {
+    updateContactsList(conversations);
+  });
+}
 
-// Gestion du clic sur l'activité
-document.getElementById('view-activity').addEventListener('click', (e) => {
-  e.preventDefault();
-  // Votre logique ici
-  alert("Affichage de l'activité du compte");
-});
+function loadUserData() {
+  getUserProfile(currentUser.uid).then(profile => {
+    if (profile) {
+      document.getElementById('profile-icon').textContent = profile.name.charAt(0);
+      document.getElementById('app-name').textContent = `Hi, ${profile.name}! 💞`;
+    }
+  });
+}
 
+function setupEventListeners() {
+  // Bouton d'envoi de message
+  document.getElementById('send-button').addEventListener('click', () => {
+    const input = document.getElementById('message-input');
+    if (currentChatId && input.value.trim()) {
+      sendMessage(currentChatId, currentUser.uid, input.value.trim());
+      input.value = '';
+    }
+  });
 
+  // ... (vos autres écouteurs existants)
+}
+
+// ... (vos fonctions existantes comme updateContactsList, displayMessage, etc.)
