@@ -1,23 +1,82 @@
-// Add event listener to the login form
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    // Prevent the default form submission
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialisation du stockage
+    initUserStorage();
     
-    // Get form inputs
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    // Gestion de la connexion
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
     
-    // Basic validation (optional)
-    if (!email || !password) {
-        alert('Please fill in all fields.');
+    // Gestion de l'inscription
+    document.getElementById('signupForm').addEventListener('submit', handleSignup);
+});
+
+function initUserStorage() {
+    if (!localStorage.getItem('registeredUsers')) {
+        localStorage.setItem('registeredUsers', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('conversations')) {
+        localStorage.setItem('conversations', JSON.stringify([]));
+    }
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    
+    const email = document.querySelector('#loginForm input[type="email"]').value;
+    const password = document.querySelector('#loginForm input[type="password"]').value;
+    
+    const users = JSON.parse(localStorage.getItem('registeredUsers'));
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'chat.html';
+    } else {
+        showError('Email ou mot de passe incorrect');
+    }
+}
+
+function handleSignup(e) {
+    e.preventDefault();
+    
+    // Validation
+    if (document.getElementById('password').value !== document.getElementById('confirm-password').value) {
+        alert('Les mots de passe ne correspondent pas!');
         return;
     }
     
-    // Simulate a successful login (replace with actual authentication logic)
-    console.log('Logging in with:', email, password);
+    // Création utilisateur
+    const newUser = {
+        id: Date.now().toString(),
+        username: document.getElementById('register-username').value,
+        email: document.getElementById('email').value,
+        gender: document.getElementById('gender').value,
+        country: document.getElementById('country').value,
+        phone: document.getElementById('phone').value,
+        birthdate: document.getElementById('register-birthdate').value,
+        password: document.getElementById('password').value,
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(document.getElementById('register-username').value)}&background=random`,
+        verified: false,
+        lastSeen: new Date().toISOString()
+    };
     
-    // Redirect to the chat page (e.g., chat.html)
-    window.location.href = 'chat.html';
-    });
+    // Sauvegarde
+    const users = JSON.parse(localStorage.getItem('registeredUsers'));
+    users.push(newUser);
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
+    
+    // Soumission FormSubmit
+    e.target.submit();
+    alert('Inscription réussie! Un email de confirmation a été envoyé.');
+}
 
+function showError(message) {
+    const existingError = document.querySelector('.login-error');
+    if (existingError) existingError.remove();
     
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'login-error';
+    errorDiv.textContent = message;
+    
+    const submitButton = document.querySelector('#loginForm .button');
+    submitButton.parentNode.insertBefore(errorDiv, submitButton);
+}
