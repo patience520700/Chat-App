@@ -270,6 +270,9 @@
 //   }
 // }
 
+
+
+
 import { db } from './firebase.js';
 
 export const createConversation = (participants) => {
@@ -293,3 +296,53 @@ export const getConversations = (userId, callback) => {
       callback(conversations);
     });
 };
+
+
+function setupReactionHandlers() {
+    // Gestionnaire pour le clic sur le message
+    document.querySelectorAll('.message-content').forEach(content => {
+        content.addEventListener('click', function(e) {
+            // Ne pas déclencher si on clique sur une réaction existante
+            if (e.target.closest('.reaction, .add-reaction-btn, .reaction-picker')) {
+                return;
+            }
+            
+            const messageElement = this.closest('.message');
+            showReactionPicker(messageElement);
+        });
+    });
+
+    // ... (le reste de votre fonction existante)
+}
+
+function showReactionPicker(messageElement) {
+    // Fermer tous les autres sélecteurs de réaction
+    document.querySelectorAll('.reaction-picker').forEach(picker => {
+        picker.style.display = 'none';
+    });
+    
+    const messageId = messageElement.dataset.messageId;
+    
+    let picker = messageElement.querySelector('.reaction-picker');
+    if (!picker) {
+        picker = document.createElement('div');
+        picker.className = 'reaction-picker';
+        
+        // Liste des émojis de réaction courants
+        const commonReactions = ['👍', '❤️', '😂', '😮', '😢', '🙏'];
+        
+        commonReactions.forEach(emoji => {
+            const span = document.createElement('span');
+            span.textContent = emoji;
+            span.addEventListener('click', () => addReaction(messageId, emoji));
+            picker.appendChild(span);
+        });
+        
+        messageElement.appendChild(picker);
+    }
+    
+    // Positionner le sélecteur au-dessus du message
+    const messageContent = messageElement.querySelector('.message-content');
+    picker.style.bottom = `${messageContent.offsetHeight + 10}px`;
+    picker.style.display = picker.style.display === 'block' ? 'none' : 'block';
+}
