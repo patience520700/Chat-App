@@ -3,122 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Utilisateur | Abonnements Premium</title>
+    <title>Abonnements Premium | L💞venett</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-         * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background-color: white;
-      color: black;
-      line-height: 1.6;
-    }
-    
-         /* Barre de navigation améliorée */
-    .navbar {
-      background: linear-gradient(135deg, #ff4e7e 0%, #ff8a5c 100%);
-      color: white;
-      padding: 0 2rem;
-      box-shadow: 0 4px 12px rgba(255, 78, 126, 0.2);
-      position: relative;
-      z-index: 100;
-    }
-    
-    .navbar::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #3505a6, #fd0505);
-    }
-    
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 70px;
-    }
-    
-    .app-name {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .nav-tabs {
-      display: flex;
-      list-style: none;
-      align-items: center;
-    }
-    
-    .nav-tab {
-      position: relative;
-      margin: 0 0.5rem;
-    }
-    
-    .nav-tab a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 1.5rem 1rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .nav-tab a:hover {
-      color: #fff;
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-tab a.active {
-      color: #fff;
-      font-weight: 600;
-    }
-    
-    .nav-tab a.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #08d936;
-    }
-    
-        :root {
-            --bleu-nuit: #0a1a2e;
-            --bleu-fonce: #152942;
-            --orange: #ff7b25;
-            --rose: #ff85a2;
-            --blanc: #ffffff;
-            --gris-clair: #f0f4f8;
-            --vert: #2ecc71;
-            --or: #f1c40f;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* ... (conservez vos styles existants) ... */
-
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Barre de navigation avec la couleur bleue */
+        .navbar {
+            background: linear-gradient(to right, #0062cc, #0080ff);
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .app-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-tab a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        
+        .nav-tab a:hover, .nav-tab a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Variables de couleurs bleues */
+        :root {
+            --bleu-principal: #0062cc;
+            --bleu-secondaire: #0080ff;
+            --bleu-clair: #4a90e2;
+            --bleu-tres-clair: #e6f5ff;
+            --blanc: #ffffff;
+            --texte-fonce: #333;
+            --texte-clair: #666;
+            --vert: #2ecc71;
+            --ombre: rgba(0, 98, 204, 0.15);
+        }
+        
         .subscription-section {
-            padding: 40px;
-            background-color: var(--blanc);
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
 
         .subscription-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .subscription-header h2 {
             font-size: 32px;
-            color: var(--bleu-nuit);
+            color: var(--bleu-principal);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
@@ -132,16 +103,16 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--orange), var(--rose));
+            background: linear-gradient(to right, var(--bleu-principal), var(--bleu-secondaire));
             border-radius: 2px;
         }
 
         .subscription-header p {
-            color: var(--bleu-nuit);
-            opacity: 0.8;
+            color: var(--texte-clair);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto 0;
             font-size: 16px;
+            line-height: 1.6;
         }
 
         .subscription-plans {
@@ -152,46 +123,24 @@
         }
 
         .subscription-card {
-            border-radius: 15px;
+            background: var(--blanc);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(10, 26, 46, 0.1);
+            box-shadow: 0 10px 25px var(--ombre);
             transition: all 0.3s ease;
             position: relative;
-            color: var(--blanc);
-            height: 400px;
+            height: auto;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(0, 98, 204, 0.1);
         }
 
         .subscription-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(10, 26, 46, 0.2);
-        }
-
-        .card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            opacity: 0.9;
-        }
-
-        .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 26, 46, 0.9) 0%, rgba(21, 41, 66, 0.8) 100%);
-            z-index: 2;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--ombre);
         }
 
         .card-content {
-            position: relative;
-            z-index: 3;
             padding: 30px;
             flex: 1;
             display: flex;
@@ -200,31 +149,34 @@
 
         .card-header {
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             padding-bottom: 20px;
+            text-align: center;
         }
 
         .card-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 10px;
+            color: var(--bleu-principal);
         }
 
         .card-price {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 5px;
+            color: var(--bleu-principal);
         }
 
         .card-price span {
             font-size: 16px;
             font-weight: 400;
-            opacity: 0.8;
+            color: var(--texte-clair);
         }
 
         .card-period {
             font-size: 14px;
-            opacity: 0.8;
+            color: var(--texte-clair);
         }
 
         .card-features {
@@ -237,11 +189,12 @@
             align-items: center;
             margin-bottom: 12px;
             font-size: 15px;
+            color: var(--texte-fonce);
         }
 
         .feature-item svg {
             margin-right: 10px;
-            color: var(--vert);
+            color: var(--bleu-secondaire);
             min-width: 20px;
         }
 
@@ -254,72 +207,84 @@
             font-size: 16px;
             transition: all 0.3s ease;
             margin-top: auto;
+            text-decoration: none;
+        }
+
+        .btn-free {
+            background-color: var(--bleu-tres-clair);
+            color: var(--bleu-principal);
+            border: 1px solid var(--bleu-secondaire);
+        }
+
+        .btn-free:hover {
+            background-color: var(--bleu-secondaire);
+            color: white;
         }
 
         .btn-premium {
-            background-color: var(--orange);
+            background: linear-gradient(to right, var(--bleu-principal), var(--bleu-secondaire));
             color: var(--blanc);
         }
 
         .btn-premium:hover {
-            background-color: #e56a1a;
-            transform: translateY(-3px);
-        }
-
-        .btn-standard {
-            background-color: var(--rose);
-            color: var(--blanc);
-        }
-
-        .btn-standard:hover {
-            background-color: #e6738f;
-            transform: translateY(-3px);
+            background: linear-gradient(to right, #0055b3, #006fe6);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 98, 204, 0.3);
         }
 
         .popular-badge {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: var(--or);
-            color: var(--bleu-nuit);
+            background-color: var(--bleu-secondaire);
+            color: var(--blanc);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             z-index: 4;
-            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 128, 255, 0.3);
         }
 
         .subscription-benefits {
-            margin-top: 60px;
+            margin-top: 80px;
             text-align: center;
+            background-color: var(--blanc);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--ombre);
+        }
+
+        .subscription-benefits h3 {
+            font-size: 26px;
+            color: var(--bleu-principal);
+            margin-bottom: 40px;
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
 
         .benefit-item {
-            background-color: var(--blanc);
+            background-color: var(--bleu-tres-clair);
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
 
         .benefit-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px var(--ombre);
         }
 
         .benefit-icon {
             width: 60px;
             height: 60px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--orange) 0%, var(--rose) 100%);
+            background: linear-gradient(135deg, var(--bleu-principal) 0%, var(--bleu-secondaire) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -332,31 +297,154 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
-            color: var(--bleu-nuit);
+            color: var(--bleu-principal);
         }
 
         .benefit-desc {
             font-size: 14px;
-            color: var(--bleu-nuit);
-            opacity: 0.8;
+            color: var(--texte-clair);
+            line-height: 1.5;
+        }
+        
+        /* Boutons de navigation */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: linear-gradient(to right, var(--bleu-principal), var(--bleu-secondaire));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--ombre);
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 98, 204, 0.4);
+        }
+        
+        .nav-button i {
+            margin-right: 8px;
+        }
+        
+        /* Floating Buttons - Styles ajoutés */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .floating-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0080ff, #0062cc);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .floating-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
+        }
+        
+        .back-to-menu {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .subscription-plans {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .nav-tabs {
+                display: none;
+            }
+            
+            .subscription-header h2 {
+                font-size: 28px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            /* Responsive pour les boutons flottants */
+            .floating-button {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .back-to-menu, .floating-buttons {
+                bottom: 20px;
+            }
+            
+            .back-to-menu {
+                left: 20px;
+            }
+            
+            .floating-buttons {
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-  <!-- Barre de navigation avec onglets -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="app-name">L💞venett</h1>
-     
-      <ul class="nav-tabs">
-        <li class="nav-tab"><a href="index.html" class="active">Menu</a></li>
-        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
-        <li class="nav-tab"><a href="forms.html">Messages</a></li>
-        <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
-        
-      </ul>
-    </div>
-  </nav>
+    <!-- Barre de navigation avec onglets -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="app-name">L💞venett</h1>
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="index.html">Menu</a></li>
+                <li class="nav-tab"><a href="subscription.html" class="active">Subscription</a></li>
+                <li class="nav-tab"><a href="chat.html">Messages</a></li>
+                <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="subscription-section">
         <div class="subscription-header">
             <h2>Abonnements Premium</h2>
@@ -366,53 +454,49 @@
         <div class="subscription-plans">
             <!-- Carte Standard -->
             <div class="subscription-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Standard Background">
-                <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-header">
                         <div class="card-title">Standard</div>
-                        <div class="card-price">FREE <span></span></div>
-                        <div class="card-period">Facturation mensuelle</div>
+                        <div class="card-price">Gratuit <span></span></div>
+                        <div class="card-period">Accès essentiel</div>
                     </div>
                     <div class="card-features">
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Accès à tous les groupes
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Publications illimitées
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            Statistiques avancées
+                            Statistiques de base
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            Support prioritaire
+                            Support standard
                         </div>
                     </div>
-                    <a href="#" class="card-button btn-standard">Choisir Standard</a>
+                    <a href="#" class="card-button btn-free">Commencer gratuitement</a>
                 </div>
             </div>
 
             <!-- Carte Premium (Mise en avant) -->
             <div class="subscription-card">
                 <div class="popular-badge">Populaire</div>
-                <img src="https://images.unsplash.com/photo-1508313880080-c4bef0730395?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Premium Background">
-                <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-header">
                         <div class="card-title">Premium</div>
@@ -421,39 +505,39 @@
                     </div>
                     <div class="card-features">
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Tous les avantages Standard
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Création de groupes illimitée
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Badge exclusif Premium
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Accès aux événements VIP
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            Support 24/7
+                            Support prioritaire
                         </div>
                     </div>
                     <a href="#" class="card-button btn-premium">Choisir Premium</a>
@@ -462,38 +546,36 @@
 
             <!-- Carte Annuelle (Économie) -->
             <div class="subscription-card">
-                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-bg" alt="Annuel Background">
-                <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-header">
                         <div class="card-title">Annuel</div>
-                        <div class="card-price">5€ <span>/an</span></div>
-                        <div class="card-period">Économisez 20%</div>
+                        <div class="card-price">20€ <span>/an</span></div>
+                        <div class="card-period">Économisez 17%</div>
                     </div>
                     <div class="card-features">
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Tous les avantages Premium
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            Économisez 20%
+                            Économisez 17%
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             Accès anticipé aux nouvelles fonctionnalités
                         </div>
                         <div class="feature-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
@@ -510,52 +592,50 @@
             <div class="benefits-grid">
                 <div class="benefit-item">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                        </svg>
+                        <i class="fas fa-eye"></i>
                     </div>
                     <div class="benefit-title">Visibilité accrue</div>
                     <div class="benefit-desc">Votre profil et vos publications sont mis en avant dans les résultats de recherche</div>
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
+                        <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="benefit-title">Analyses avancées</div>
                     <div class="benefit-desc">Accédez à des statistiques détaillées sur vos publications et votre audience</div>
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                        <i class="fas fa-users"></i>
                     </div>
                     <div class="benefit-title">Réseautage</div>
                     <div class="benefit-desc">Connectez-vous avec des professionnels et influenceurs de votre domaine</div>
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
+                        <i class="fas fa-gift"></i>
                     </div>
                     <div class="benefit-title">Contenu exclusif</div>
                     <div class="benefit-desc">Accédez à des ressources et formations réservées aux membres Premium</div>
                 </div>
             </div>
         </div>
+        
+        
     </div>
-
-    <!-- ... (le reste de votre code existant) ... -->
+    
+    <!-- Floating Buttons - Ajoutés -->
+    <div class="back-to-menu">
+        <a href="index.html" class="floating-button">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    
+    <div class="floating-buttons">
+        <button class="floating-button" id="backToTopBtn">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
 
     <script>
         // Script pour gérer les interactions des abonnements
@@ -567,6 +647,38 @@
                 // Ici vous ajouteriez la logique de redirection vers le paiement
             });
         });
+        
+        // Script pour le bouton Back to Top
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        const backToTopTrigger = document.querySelector('.back-to-top-trigger');
+        
+        // Back to top functionality
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        backToTopTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.visibility = 'visible';
+            } else {
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.visibility = 'hidden';
+            }
+        });
+        
+        // Initialize back to top button as hidden
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.visibility = 'hidden';
     </script>
 </body>
 </html>

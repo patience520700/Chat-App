@@ -4,8 +4,212 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Success Stories - L💞venett</title>
-  <link rel="stylesheet" href="main.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e6f5ff, #cce6ff);
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(to right, #0062cc, #0080ff);
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .app-name {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    /* Stories Container */
+    .stories-wrapper {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-bottom: 100px; /* Espace pour les boutons */
+    }
+    
+    .stories-container h1 {
+      text-align: center;
+      margin: 20px 0;
+      color: #0062cc;
+      font-size: 2.2rem;
+    }
+    
+    .share-story-btn {
+      display: block;
+      background: linear-gradient(to right, #0062cc, #0080ff);
+      color: white;
+      padding: 12px 25px;
+      text-align: center;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 20px auto;
+      width: fit-content;
+      box-shadow: 0 4px 8px rgba(0, 98, 204, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .share-story-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 98, 204, 0.4);
+    }
+    
+    /* Story Cards */
+    .story-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      border-left: 4px solid #0080ff;
+    }
+    
+    .story-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .story-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #0062cc, #0080ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 15px;
+    }
+    
+    .user-info h3 {
+      color: #0062cc;
+      margin-bottom: 5px;
+    }
+    
+    .story-content p {
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    /* Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .floating-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0080ff, #0062cc);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .floating-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
+    }
+    
+    .back-to-menu {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .stories-wrapper {
+        padding: 15px;
+      }
+      
+      .stories-container h1 {
+        font-size: 1.8rem;
+      }
+      
+      .floating-button {
+        width: 55px;
+        height: 55px;
+      }
+      
+      .back-to-menu, .floating-buttons {
+        bottom: 20px;
+      }
+      
+      .back-to-menu {
+        left: 20px;
+      }
+      
+      .floating-buttons {
+        right: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 12px 15px;
+      }
+      
+      .app-name {
+        font-size: 1.5rem;
+      }
+      
+      .story-card {
+        padding: 15px;
+      }
+      
+      .user-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
+      
+      .floating-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   
@@ -65,17 +269,76 @@
             Beninese coder Bilinda (26) and Ghanaian UX designer Eulalia (29) connected through L💞venett's "African Women in Tech" forum. Their collaboration birthed "MamaPay", an app simplifying remittances for market women. After winning $50k at Accra Tech Week, they've hired 8 female developers. "We found sisterhood and success in one inbox," Eulalia shares. The duo now mentors others on the platform.</p>
         </div>
       </div>
+      
+      <!-- Additional stories for scrolling -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">TJ</div>
+          <div class="user-info">
+            <h3>Tunde & Jasmine's Culinary Connection</h3>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>(Culinary Success Story - June 10, 2024)
+
+            Tunde (31, Nigerian chef) and Jasmine (29, South African food blogger) connected over their shared passion for African fusion cuisine. Through L💞venett's interest-based matching, they started exchanging recipes and cooking techniques. Their virtual cooking sessions turned into a popular YouTube channel with over 100k subscribers. They recently opened a pop-up restaurant in Johannesburg. "From matching recipes to matching hearts," Jasmine smiles.</p>
+        </div>
+      </div>
+      
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">FA</div>
+          <div class="user-info">
+            <h3>From Pen Pals to Business Partners</h3>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>(Business Success Story - February 28, 2025)
+
+            Fatima (27, Tanzanian artist) and Amara (30, Ghanaian gallery owner) connected through L💞venett's creative arts community. What began as conversations about art evolved into a thriving online gallery showcasing East and West African artists. They've facilitated over $200,000 in art sales and launched a mentorship program for young African artists. "We painted our success story together," Fatima says proudly.</p>
+        </div>
+      </div>
     </div>
   </div>
   
-  <footer class="app-footer">
-    <div class="footer-tabs">
-      <div class="tab-content">
-        <a href="index.html">Home</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Floating Buttons -->
+  <div class="back-to-menu">
+    <a href="index.html" class="floating-button">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  
+  <div class="floating-buttons">
+    <button class="floating-button" id="backToTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
 
-  <script src="main.js"></script>
+  <script>
+    // Back to top functionality
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.opacity = '1';
+        backToTopBtn.style.visibility = 'visible';
+      } else {
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.visibility = 'hidden';
+      }
+    });
+    
+    // Initialize back to top button as hidden
+    backToTopBtn.style.opacity = '0';
+    backToTopBtn.style.visibility = 'hidden';
+  </script>
 </body>
 </html>
