@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L💞venett</title>
+  <title>L💞venett - Find Meaningful Connections</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Styles de base */
+    /* ===== BASE STYLES ===== */
+    :root {
+      --primary: #0062cc;
+      --primary-light: #4a90e2;
+      --primary-gradient: linear-gradient(135deg, #0062cc 0%, #0080ff 100%);
+      --secondary: #ff4b93;
+      --white: #ffffff;
+      --light-bg: #f8faff;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --shadow: 0 5px 15px rgba(0, 98, 204, 0.1);
+      --radius: 12px;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -14,34 +28,119 @@
     }
     
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #e6f5ff, #cce6ff);
-      min-height: 100vh;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
     
-    /* Barre de navigation */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: var(--white);
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+    
+    /* ===== NAVIGATION ===== */
     .navbar {
-      background: linear-gradient(to right, #0062cc, #0080ff);
-      color: white;
-      padding: 15px 20px;
+      background: var(--white);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      padding: 15px 0;
     }
     
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
     }
     
     .app-name {
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .app-name span {
+      margin-right: 5px;
     }
     
     .nav-tabs {
@@ -50,176 +149,125 @@
     }
     
     .nav-tab a {
-      color: white;
+      color: var(--text-dark);
       text-decoration: none;
-      padding: 10px 15px;
+      padding: 10px 20px;
       display: block;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
       border-radius: 5px;
-      margin: 0 5px;
+      font-weight: 500;
     }
     
     .nav-tab a:hover, .nav-tab a.active {
-      background-color: rgba(255, 255, 255, 0.2);
+      color: var(--primary);
+      background: rgba(0, 98, 204, 0.05);
     }
     
     .hamburger {
       display: none;
       font-size: 1.5rem;
       cursor: pointer;
+      color: var(--primary);
     }
     
-    /* Section d'accueil - Bleu plus transparent */
-    .welcome-container {
+    /* ===== HERO SECTION ===== */
+    .hero {
       position: relative;
-      height: 80vh;
+      height: 90vh;
+      min-height: 700px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
       overflow: hidden;
     }
     
-    .background-image {
+    .hero::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(0, 98, 204, 0.5), rgba(0, 128, 255, 0.5)), 
-                  url('https://images.unsplash.com/photo-1572742850837-6fbb4175e562?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw=');
-      background-size: cover;
-      background-position: center;
-      animation: zoomAnimation 1s infinite alternate ease-in-out;
-      z-index: -2;
-    }
-    
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(0, 98, 204, 0.6) 0%, rgba(0, 128, 255, 0.6) 100%);
+      background: linear-gradient(135deg, rgba(0, 98, 204, 0.7) 0%, rgba(0, 128, 255, 0.7) 100%);
       z-index: -1;
     }
     
-    .welcome-message {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    .hero-content {
+      text-align: center;
+      color: var(--white);
       max-width: 800px;
+      margin: 0 auto;
       padding: 0 20px;
+      position: relative;
+      z-index: 2;
     }
     
-    .action-buttons {
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    .hero-buttons {
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
       justify-content: center;
-    }
-    
-    .btn {
-      padding: 12px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    .login-btn {
-      background-color: white;
-      color: #0062cc;
-      border: 2px solid white;
-    }
-    
-    .login-btn:hover {
-      background-color: transparent;
-      color: white;
-    }
-    
-    .create-btn {
-      background-color: #0062cc;
-      color: white;
-      border: 2px solid white;
-    }
-    
-    .create-btn:hover {
-      background-color: white;
-      color: #0062cc;
-    }
-    
-    /* Contenu principal */
-    .content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    
-    .section-title {
-      text-align: center;
-      color: #0062cc;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, #0062cc, #0080ff);
-      margin: 15px auto;
-      border-radius: 2px;
-    }
-    
-    /* Nouveau CSS pour les statistiques avec fond animé */
-    .stats-container {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
       flex-wrap: wrap;
-      padding: 60px 20px;
-      margin: 40px 0;
-      border-radius: 15px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
     
-    .stats-container::before {
-      content: '';
+    .hero-bg-slider {
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #4a90e2 0%, #0062cc 100%);
+      width: 100%;
+      height: 100%;
       z-index: -2;
     }
     
-    .stats-container::after {
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .slide.active {
+      opacity: 1;
+    }
+    
+    /* ===== STATS SECTION ===== */
+    .stats {
+      background: var(--primary-gradient);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stats::before {
       content: '';
       position: absolute;
       top: -50%;
       left: -50%;
-      right: -50%;
-      bottom: -50%;
+      width: 200%;
+      height: 200%;
       background: 
-        linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+        radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
       background-size: 40px 40px;
-      animation: animateBackground 20s linear infinite;
-      z-index: -1;
-      opacity: 0.6;
+      animation: float 20s linear infinite;
+      z-index: 1;
     }
     
-    @keyframes animateBackground {
+    @keyframes float {
       0% {
         transform: translate(0, 0);
       }
@@ -227,160 +275,126 @@
         transform: translate(-40px, -40px);
       }
     }
-
-    .stat-item {
-      text-align: center;
-      padding: 30px;
-      min-width: 200px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      margin: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      position: relative;
+      z-index: 2;
     }
     
-    .stat-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    .stat-card {
+      background: rgba(243, 5, 5, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 40px 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-
+    
+    .stat-card:hover {
+      transform: translateY(-10px);
+    }
+    
     .stat-number {
       font-size: 3.5rem;
       font-weight: 800;
-      color: #0062cc;
       margin-bottom: 10px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      display: block;
     }
-
+    
     .stat-label {
-      font-size: 1.3rem;
-      color: #555;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 1.2rem;
+      font-weight: 500;
     }
-
-    /* Grille d'articles */
-    .article-grid {
+    
+    /* ===== FEATURES SECTION ===== */
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
-      margin: 50px 0;
     }
     
-    .article-card {
-      background: white;
-      border-radius: 15px;
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
     }
     
-    .article-card:hover {
+    .feature-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 98, 204, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 98, 204, 0.15);
     }
     
-    .article-image {
+    .feature-img {
       height: 200px;
       background-size: cover;
       background-position: center;
     }
     
-    .article-content {
-      padding: 20px;
+    .feature-content {
+      padding: 25px;
     }
     
-    .article-date {
-      color: #0080ff;
-      font-size: 0.9rem;
-      font-weight: 500;
+    .feature-content h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
     }
     
-    .article-title {
-      color: #0062cc;
-      margin: 10px 0;
-      font-size: 1.3rem;
-    }
-    
-    .article-excerpt {
-      color: #666;
-      line-height: 1.6;
+    .feature-content p {
+      color: var(--text-light);
       margin-bottom: 20px;
     }
     
-    .read-more {
-      color: #0080ff;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      position: relative;
-    }
-    
-    .read-more::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #0080ff;
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.3s;
-    }
-    
-    .read-more:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-    
-    /* Description Detector™ Section */
-    .detector-section {
+    /* ===== DETECTOR SECTION ===== */
+    .detector {
       background: linear-gradient(135deg, #e6f5ff 0%, #cce6ff 100%);
-      padding: 60px 40px;
-      border-radius: 15px;
-      margin: 60px 0;
+      border-radius: var(--radius);
+      padding: 80px 40px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0, 98, 204, 0.1);
     }
     
-    .feature-badge {
+    .detector-badge {
       display: inline-block;
-      background: linear-gradient(to right, #0062cc, #0080ff);
-      color: white;
-      padding: 5px 15px;
-      border-radius: 20px;
+      background: var(--primary-gradient);
+      color: var(--white);
+      padding: 8px 20px;
+      border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     
-    .detector-title {
-      color: #0062cc;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+    .detector-content h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
     
-    .detector-subtitle {
-      color: #555;
-      font-size: 1.1rem;
+    .detector-content p {
+      color: var(--text-light);
       max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
+      margin: 0 auto 50px;
+      font-size: 1.1rem;
     }
     
-    .detector-features {
+    .features-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
     
     .feature-item {
-      background: white;
+      background: var(--white);
       padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       transition: transform 0.3s ease;
     }
     
@@ -389,205 +403,310 @@
     }
     
     .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #0062cc, #0080ff);
-      color: white;
+      width: 70px;
+      height: 70px;
+      background: var(--primary-gradient);
+      color: var(--white);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin: 0 auto 20px;
     }
     
     .feature-name {
-      color: #0062cc;
+      color: var(--primary);
       margin-bottom: 15px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
     
     .feature-desc {
-      color: #666;
+      color: var(--text-light);
       line-height: 1.6;
     }
     
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(to right, #0062cc, #0080ff);
-      color: white;
-      padding: 15px 40px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
+    /* ===== TESTIMONIALS SECTION ===== */
+    .testimonials {
+      background: var(--light-bg);
+    }
+    
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 5rem;
+      color: rgba(0, 98, 204, 0.1);
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .testimonial-text {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      margin-right: 15px;
+    }
+    
+    .author-info h4 {
+      color: var(--primary);
       font-size: 1.1rem;
-      box-shadow: 0 5px 15px rgba(0, 98, 204, 0.3);
-      transition: all 0.3s ease;
+      margin-bottom: 5px;
     }
     
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.4);
+    .author-info p {
+      color: var(--text-light);
+      font-size: 0.9rem;
     }
     
-    /* Pied de page - Bleu plus clair et harmonieux */
-    .app-footer {
-      margin-top: 80px;
-      background: linear-gradient(to right, #4a90e2, #5fa8ff);
-      border-radius: 15px;
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary-gradient);
+      color: var(--white);
+      border-radius: var(--radius) var(--radius) 0 0;
       overflow: hidden;
-      box-shadow: 0 5px 20px rgba(74, 144, 226, 0.3);
     }
     
-    .footer-tabs {
+    .footer-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
     }
     
-    .footer-tab {
-      padding: 30px;
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--white);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s;
+      display: block;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+      transform: translateX(5px);
+    }
+    
+    .footer-bottom {
       text-align: center;
-      border-right: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 20px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
     
-    .footer-tab:last-child {
-      border-right: none;
-    }
-    
-    .tab-header {
-      color: white;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    
-    .tab-header i {
-      margin-right: 10px;
-    }
-    
-    .tab-content {
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btns {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 15px;
     }
     
-    .tab-content a {
-      color: rgba(255, 255, 255, 0.9);
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
     }
     
-    .tab-content a:hover {
-      color: white;
-      text-decoration: underline;
+    .floating-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
     }
     
-    /* Responsive Design */
+    .back-to-menu {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+    }
+    
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+    }
+    
     @media (max-width: 768px) {
-      .hamburger {
-        display: block;
+      .navbar {
+        padding: 12px 0;
       }
       
       .nav-tabs {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to right, #0062cc, #0080ff);
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--white);
         flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transform: translateY(-10px);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
       }
       
       .nav-tabs.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
+        right: 0;
       }
       
       .nav-tab {
-        margin: 10px 0;
+        margin: 15px 0;
       }
       
-      .welcome-message {
-        font-size: 2rem;
+      .nav-tab a {
+        padding: 15px;
+        font-size: 1.1rem;
       }
       
-      .stats-container {
+      .hamburger {
+        display: block;
+        z-index: 1000;
+      }
+      
+      .hero {
+        height: auto;
+        min-height: auto;
+        padding: 100px 0;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .hero-buttons {
         flex-direction: column;
-        gap: 30px;
-        padding: 40px 15px;
-      }
-      
-      .stat-item {
-        min-width: 80%;
-        padding: 25px 15px;
+        align-items: center;
       }
       
       .stat-number {
         font-size: 2.8rem;
       }
       
-      .stat-label {
-        font-size: 1.1rem;
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
       }
       
-      .footer-tabs {
-        grid-template-columns: 1fr;
+      .back-to-menu, .floating-btns {
+        bottom: 20px;
       }
       
-      .footer-tab {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      .back-to-menu {
+        left: 20px;
       }
       
-      .footer-tab:last-child {
-        border-bottom: none;
+      .floating-btns {
+        right: 20px;
       }
     }
     
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 12px 15px;
+    @media (max-width: 576px) {
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .detector {
+        padding: 60px 20px;
+      }
+      
+      .detector-content h2 {
+        font-size: 2rem;
+      }
+      
+      .feature-content h3 {
+        font-size: 1.3rem;
       }
       
       .app-name {
-        font-size: 1.5rem;
-      }
-      
-      .welcome-message {
         font-size: 1.7rem;
-      }
-      
-      .btn {
-        padding: 10px 20px;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
-      .detector-title {
-        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Barre de navigation avec onglets -->
+  <!-- Navigation -->
   <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="app-name">L💞venett</h1>
-      <!-- Hamburger menu button -->
+    <div class="container nav-container">
+      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
       <div class="hamburger" id="hamburger">
-        &#9776;
+        <i class="fas fa-bars"></i>
       </div>
       <ul class="nav-tabs">
-        <li class="nav-tab"><a href="index.html" class="active">Menu</a></li>
+        <li class="nav-tab"><a href="index.html" class="active">Home</a></li>
         <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
         <li class="nav-tab"><a href="chat.html">Messages</a></li>
         <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
@@ -595,81 +714,90 @@
     </div>
   </nav>
 
-  <!-- Section d'accueil -->
-  <div class="welcome-container">
-    <div class="background-image"></div>
-    <div class="overlay"></div>
-    <p class="welcome-message">Your journey to meaningful connections starts here</p>
-    <div class="action-buttons">
-      <a href="forms.html" class="btn login-btn">Login</a>
-      <a href="forms.html" class="btn create-btn">Create account</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-slider">
+      <div class="slide active" style="background-image: url('https://plus.unsplash.com/premium_photo-1723507288048-70a54515dc18?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhhbmQlMjBpbiUyMGhhbmQlMjBsb3ZlfGVufDB8fDB8fHww');"></div>
+      <div class="slide" style="background-image: url('https://media.istockphoto.com/id/2149654921/photo/female-carer-holding-hands-of-senior-man.jpg?s=612x612&w=0&k=20&c=h6cOKy1AQHHmmq-BJXYoWXastxUBBISnF2voKx4nymk=');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1499568509606-4f9b771232ed?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVnfGVufDB8fDB8fHww');"></div>
+      <div class="slide" style="background-image: url('https://plus.unsplash.com/premium_photo-1677507947944-e4f80fbb9ff4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aHVnfGVufDB8fDB8fHww');"></div>
     </div>
-  </div>
-  
-  <!-- Contenu principal -->
-  <div class="content">
-    <h2 class="section-title">WELCOME TO L💞VENETT</h2>
-    
-    <!-- Statistics Section Modifiée -->
-    <div class="stats-container">
-      <div class="stat-item">
-        <div id="counter1" class="stat-number" data-target="10000">0</div>
-        <div class="stat-label">Active Users</div>
-      </div>
-      
-      <div class="stat-item">
-        <div id="counter2" class="stat-number" data-target="98">0</div>
-        <div class="stat-label">Satisfaction</div>
-      </div>
-      
-      <div class="stat-item">
-        <div id="counter3" class="stat-number" data-target="100">0</div>
-        <div class="stat-label">Security</div>
+    <div class="container hero-content">
+      <h1>Your Journey to Meaningful Connections Starts Here</h1>
+      <p>L💞venett brings people together through authentic relationships built on shared values and interests</p>
+      <div class="hero-buttons">
+        <a href="forms.html" class="btn btn-primary">Create Account</a>
+        <a href="forms.html" class="btn btn-secondary">Login</a>
       </div>
     </div>
-    
-    <!-- Grille d'articles -->
-    <div class="article-grid">
-      <!-- Article 1 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/1414026551/photo/happy-carefree-and-in-love-couple-at-the-beach-enjoying-a-relaxing-summer-vacation-outdoors.jpg?s=612x612&w=0&k=20&c=0drWf59GS4VqeywOEkMA7D2-fNOMfFc7J744yDtpoio=');"></div>
-        <div class="article-content">
-          <span class="article-date">Accra, 2025</span>
-          <h3 class="article-title">When Hearts Align on L💞venett | A Modern Love Story</h3>
-          <p class="article-excerpt">...Our first video call lasted 4 hours. No awkward pauses, just genuine connection...</p>
-          <a href="article1.html" class="read-more">Read article</a>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stat-card">
+          <span id="counter1" class="stat-number" data-target="10000">0</span>
+          <span class="stat-label">Active Users</span>
         </div>
-      </div>
-      
-      <!-- Article 2 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-        <div class="article-content">
-          <h3 class="article-title">Security | L💞venett Data Protection</h3>
-          <p class="article-excerpt">Our revolutionary tool to secure L💞venett.</p>
-          <a href="article2.html" class="read-more">Discover</a>
+        <div class="stat-card">
+          <span id="counter2" class="stat-number" data-target="98">0</span>
+          <span class="stat-label">Satisfaction Rate</span>
         </div>
-      </div>
-      
-      <!-- Article 3 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-        <div class="article-content">
-          <h3 class="article-title">The Ultimate L💞venett Guide</h3>
-          <p class="article-excerpt">Everything you need to find meaningful connections on Africa's most innovative...</p>
-          <a href="article3.html" class="read-more">Read guide</a>
+        <div class="stat-card">
+          <span id="counter3" class="stat-number" data-target="100">0</span>
+          <span class="stat-label">Security Score</span>
         </div>
       </div>
     </div>
-    
-    <!-- Description Detector™ Section -->
-    <div class="detector-section">
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Success Stories</h2>
+        <p>Real connections, real stories from our community</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-img" style="background-image: url('https://media.istockphoto.com/id/1414026551/photo/happy-carefree-and-in-love-couple-at-the-beach-enjoying-a-relaxing-summer-vacation-outdoors.jpg?s=612x612&w=0&k=20&c=0drWf59GS4VqeywOEkMA7D2-fNOMfFc7J744yDtpoio=');"></div>
+          <div class="feature-content">
+            <span class="article-date">Accra, 2025</span>
+            <h3>When Hearts Align on L💞venett</h3>
+            <p>Our first video call lasted 4 hours. No awkward pauses, just genuine connection...</p>
+            <a href="article1.html" class="btn btn-secondary">Read Story</a>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+          <div class="feature-content">
+            <h3>Security & Data Protection</h3>
+            <p>Our revolutionary tool to secure L💞venett and protect your privacy.</p>
+            <a href="article2.html" class="btn btn-secondary">Discover</a>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+          <div class="feature-content">
+            <h3>The Ultimate L💞venett Guide</h3>
+            <p>Everything you need to find meaningful connections on Africa's most innovative platform...</p>
+            <a href="article3.html" class="btn btn-secondary">Read Guide</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detector Section -->
+  <section class="detector">
+    <div class="container">
       <div class="detector-content">
-        <span class="feature-badge">Exclusive Feature</span>
-        <h2 class="detector-title">Description Detector™</h2>
-        <p class="detector-subtitle">Our AI analyzes your profile and provides personalized advice to attract the right matches</p>
+        <span class="detector-badge">Exclusive Feature</span>
+        <h2>Description Detector™</h2>
+        <p>Our AI analyzes your profile and provides personalized advice to attract the right matches</p>
         
-        <div class="detector-features">
+        <div class="features-container">
           <div class="feature-item">
             <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
             <h3 class="feature-name">Comprehensive Analysis</h3>
@@ -689,152 +817,103 @@
           </div>
         </div>
         
-        <a href="advert.html" class="cta-button">PARTENAIRES</a>
+        <a href="advert.html" class="btn btn-primary">Explore Partners</a>
       </div>
     </div>
-    
-    <!-- Deuxième grille d'articles -->
-    <div class="article-grid">
-      <!-- Article 4 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1579208570378-8c970854bc23?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29ubmVjdGlvbnxlbnwwfHwwfHx8MA%3D%3D');"></div>
-        <div class="article-content">
-          <span class="article-date">Accra 2025</span>
-          <h3 class="article-title">A Match Made by Mother Nature: How L💞venett Connected Two Wild Hearts</h3>
-          <p class="article-excerpt">One lazy morning, as I scrolled through L💞venett—a haven for nature lovers—a profile stopped me mid-swipe...</p>
-          <a href="article4.html" class="read-more">Read article</a>
-        </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Love Stories</h2>
+        <p>Discover how L💞venett changed lives across Africa</p>
       </div>
-      
-      <!-- Article 5 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-        <div class="article-content">
-          <span class="article-date">South Africa, 2025</span>
-          <h3 class="article-title">From Office Stress to Daily Smiles: How L💞venett Changed Everything</h3>
-          <p class="article-excerpt">Sarah was drowning in spreadsheets and stress until she discovered a different kind of connection...</p>
-          <a href="article5.html" class="read-more">Read story</a>
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <p class="testimonial-text">L💞venett connected me with someone who shares my passion for nature and conservation. We're now planning our eco-friendly wedding!</p>
+          <div class="testimonial-author">
+            <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+            <div class="author-info">
+              <h4>Ama & Kofi</h4>
+              <p>Accra, Ghana</p>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <!-- Article 6 -->
-      <div class="article-card">
-        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-        <div class="article-content">
-          <span class="article-date">Morroco, 2025</span>
-          <h3 class="article-title">Daily Growth: The Personal Development Tips Changing Relationships</h3>
-          <p class="article-excerpt">How one partner's daily wisdom posts became our shared growth journey...</p>
-          <a href="article6.html" class="read-more">Read wisdom</a>
+        <div class="testimonial-card">
+          <p class="testimonial-text">After years of failed relationships, I almost gave up. L💞venett's matching algorithm understood what I truly needed in a partner.</p>
+          <div class="testimonial-author">
+            <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
+            <div class="author-info">
+              <h4>Chidinma</h4>
+              <p>Lagos, Nigeria</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">The Description Detector™ helped me present my authentic self. I matched with someone who appreciates me for who I truly am.</p>
+          <div class="testimonial-author">
+            <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
+            <div class="author-info">
+              <h4>David & Sarah</h4>
+              <p>Nairobi, Kenya</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  
-    <!-- Pied de page -->
-    <footer class="app-footer">
-      <div class="footer-tabs">
-        <!-- Onglet About -->
-        <div class="footer-tab">
-          <div class="tab-header">
-            <i class="fas fa-info-circle"></i>
-            <span>ABOUT</span>
-          </div>
-          <div class="tab-content">
-            <a href="about.html">About L💞venett</a>
-            <a href="advert.html">Advert</a>
-          </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>About Us</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="values.html">Our Values</a></li>
+          </ul>
         </div>
-        
-        <!-- Onglet Help -->
-        <div class="footer-tab">
-          <div class="tab-header">
-            <i class="fas fa-question-circle"></i>
-            <span>HELP</span>
-          </div>
-          <div class="tab-content">
-            <a href="contact-us.html">Contact Us</a>
-            <a href="survey.html">Survey</a>
-          </div>
+        <div class="footer-col">
+          <h3>Help & Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="guidelines.html">Community Guidelines</a></li>
+          </ul>
         </div>
-        
-        <!-- Onglet Community -->
-        <div class="footer-tab">
-          <div class="tab-header">
-            <i class="fas fa-language"></i>
-            <span>COMMUNITY</span>
-          </div>
-          <div class="tab-content">
-            <a href="guidelines.html">Guidelines</a>
-            <a href="success-stories.html">Success Stories</a>
-          </div>
+        <div class="footer-col">
+          <h3>Features</h3>
+          <ul class="footer-links">
+            <li><a href="events.html">Local Events</a></li>
+            <li><a href="premium.html">Premium Features</a></li>
+          </ul>
         </div>
-        
-        <!-- Onglet News -->
-        <div class="footer-tab">
-          <div class="tab-header">
-            <i class="fas fa-user-friends"></i> 
-            <span>NEWS</span>
-          </div>
-          <div class="tab-content">
-            <a href="updates.html">Global Updates</a> 
-            <a href="share.html">Share With Friends</a>
-          </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul class="footer-links">
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li><a href="social.html">Social Media</a></li>
+          </ul>
         </div>
       </div>
-    </footer>
+      <div class="footer-bottom">
+        <p>&copy; 2025 L💞venett. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | <a href="terms.html" style="color: rgba(255,255,255,0.8);">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Button -->
+  <div class="floating-btns">
+    <button class="floating-btn" id="backToTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
   </div>
 
   <script>
-    // Animation des compteurs
-    function animateCounter(element, target, suffix = '') {
-      let current = 0;
-      const duration = 2000; // 2 secondes
-      const increment = target / (duration / 16); // ~60fps
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          clearInterval(timer);
-          current = target;
-          // Formatage spécial pour 10K+
-          element.textContent = target === 1? '10K+' : Math.floor(current) + suffix;
-        } else {
-          element.textContent = Math.floor(current) + suffix;
-        }
-      }, 16);
-    }
-
-    // Démarrer les animations quand la section est visible
-    function startCounters() {
-      const counter1 = document.getElementById('counter1');
-      const counter2 = document.getElementById('counter2');
-      const counter3 = document.getElementById('counter3');
-
-      if (counter1 && counter2 && counter3) {
-        animateCounter(counter1, 1, 'K+');
-        animateCounter(counter2, 98, '%');
-        animateCounter(counter3, 100, '%');
-      }
-    }
-
-    // Observer pour déclencher l'animation quand la section est visible
+    // DOM Ready
     document.addEventListener('DOMContentLoaded', function() {
-      const statsSection = document.querySelector('.stats-container');
-      
-      if (statsSection) {
-        const observer = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            startCounters();
-            observer.disconnect();
-          }
-        }, { threshold: 0.5 });
-
-        observer.observe(statsSection);
-      } else {
-        // Fallback si l'Observer n'est pas supporté
-        startCounters();
-      }
-
-      // Gestion du menu mobile
+      // Mobile Menu Toggle
       const hamburger = document.getElementById('hamburger');
       const navTabs = document.querySelector('.nav-tabs');
       
@@ -842,18 +921,103 @@
         hamburger.addEventListener('click', function() {
           navTabs.classList.toggle('active');
           this.classList.toggle('active');
-        });
-        
-        const navLinks = document.querySelectorAll('.nav-tab a');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            if (window.innerWidth <= 768 && navTabs.classList.contains('active')) {
-              navTabs.classList.remove('active');
-              hamburger.classList.remove('active');
-            }
-          });
+          
+          // Change icon
+          const icon = this.querySelector('i');
+          if (navTabs.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
         });
       }
+      
+      // Counter Animation
+      function animateCounter(element, target, suffix = '') {
+        let current = 0;
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            clearInterval(timer);
+            current = target;
+            element.textContent = target === 10000 ? '10K+' : Math.floor(current) + suffix;
+          } else {
+            element.textContent = Math.floor(current) + suffix;
+          }
+        }, 16);
+      }
+      
+      // Start counters when stats section is visible
+      const statsSection = document.querySelector('.stats');
+      if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            const counter1 = document.getElementById('counter1');
+            const counter2 = document.getElementById('counter2');
+            const counter3 = document.getElementById('counter3');
+            
+            if (counter1 && counter2 && counter3) {
+              animateCounter(counter1, 10000, '+');
+              animateCounter(counter2, 98, '%');
+              animateCounter(counter3, 100, '%');
+            }
+            
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
+      }
+      
+      // Background Slider
+      function initSlider() {
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+          slides.forEach(slide => slide.classList.remove('active'));
+          slides[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }
+        
+        // Change slide every 4 seconds
+        setInterval(nextSlide, 4000);
+      }
+      
+      initSlider();
+      
+      // Back to Top Button
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.style.opacity = '1';
+          backToTopBtn.style.visibility = 'visible';
+        } else {
+          backToTopBtn.style.opacity = '0';
+          backToTopBtn.style.visibility = 'hidden';
+        }
+      });
+      
+      // Initialize back to top button as hidden
+      backToTopBtn.style.opacity = '0';
+      backToTopBtn.style.visibility = 'hidden';
     });
   </script>
 </body>

@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L💞venett - FAQ</title>
+    <title>FAQ | L💞venett</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ===== BASE STYLES ===== */
         :root {
-            --primary-blue: #0062cc;
-            --secondary-blue: #0080ff;
-            --light-blue: #4a90e2;
-            --very-light-blue: #e6f5ff;
+            --primary: #0062cc;
+            --primary-light: #4a90e2;
+            --primary-gradient: linear-gradient(135deg, #0062cc 0%, #0080ff 100%);
+            --secondary: #ff4b93;
             --white: #ffffff;
-            --dark-text: #333;
-            --light-text: #666;
-            --green: #2ecc71;
-            --shadow: rgba(0, 98, 204, 0.15);
+            --light-bg: #cce6ff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow: 0 5px 15px rgba(0, 98, 204, 0.1);
+            --radius: 12px;
         }
         
         * {
@@ -26,20 +29,98 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f9ff 0%, #e8eaf6 100%);
-            color: var(--dark-text);
+            background: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
         }
         
-        /* Barre de navigation améliorée */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 98, 204, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-gradient);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        
+        /* ===== NAVIGATION ===== */
         .navbar {
-            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            padding: 15px 20px;
+            background: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            padding: 15px 0;
         }
         
         .nav-container {
@@ -48,11 +129,20 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .app-name {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-name span {
+            margin-right: 5px;
         }
         
         .nav-tabs {
@@ -61,38 +151,47 @@
         }
         
         .nav-tab a {
-            color: white;
+            color: var(--text-dark);
             text-decoration: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             display: block;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             border-radius: 5px;
-            margin: 0 5px;
+            font-weight: 500;
         }
         
         .nav-tab a:hover, .nav-tab a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--primary);
+            background: rgba(0, 98, 204, 0.05);
         }
         
-        /* FAQ Container */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            padding: 60px 0;
+        }
+        
         .faq-container {
             max-width: 800px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px var(--shadow);
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .faq-header {
             text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-blue);
+            margin-bottom: 50px;
         }
         
         .faq-header h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
@@ -105,12 +204,12 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            background: var(--primary-gradient);
             border-radius: 2px;
         }
         
         .faq-header p {
-            color: var(--light-text);
+            color: var(--text-light);
             max-width: 600px;
             margin: 20px auto 0;
             font-size: 16px;
@@ -119,17 +218,22 @@
         
         /* FAQ Items */
         .faq-item {
-            margin-bottom: 1rem;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             border: 1px solid rgba(0, 98, 204, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 20px rgba(0, 98, 204, 0.15);
         }
         
         .faq-question {
-            background: var(--primary-blue);
-            color: white;
-            padding: 1.2rem;
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: 20px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
@@ -139,7 +243,7 @@
         }
         
         .faq-question:hover {
-            background: var(--secondary-blue);
+            background: linear-gradient(135deg, #0055b3, #006fe6);
         }
         
         .faq-question i {
@@ -147,27 +251,79 @@
         }
         
         .faq-answer {
-            background: white;
-            color: var(--dark-text);
+            background: var(--white);
+            color: var(--text-dark);
             padding: 0;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
-            font-weight: 500;
-            border-left: 4px solid var(--light-blue);
+            font-weight: 400;
+            border-left: 4px solid var(--primary-light);
+            line-height: 1.6;
         }
         
         .faq-item.active .faq-answer {
-            padding: 1.2rem;
-            max-height: 300px;
+            padding: 20px;
+            max-height: 500px;
         }
         
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
         
-        /* Floating Buttons - Styles ajoutés */
-        .floating-buttons {
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(0, 98, 204, 0.2);
+            border-radius: 50px;
+            font-size: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 98, 204, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+        
+        .contact-support {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-support h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-support p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ===== FLOATING BUTTONS ===== */
+        .floating-btns {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -177,12 +333,12 @@
             gap: 15px;
         }
         
-        .floating-button {
+        .floating-btn {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
-            color: white;
+            background: var(--primary-gradient);
+            color: var(--white);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -194,7 +350,7 @@
             font-size: 1.2rem;
         }
         
-        .floating-button:hover {
+        .floating-btn:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
         }
@@ -206,14 +362,69 @@
             z-index: 1000;
         }
         
-        /* Responsive pour les boutons flottants */
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .faq-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .floating-button {
-                width: 55px;
-                height: 55px;
+            .navbar {
+                padding: 12px 0;
             }
             
-            .back-to-menu, .floating-buttons {
+            .nav-tabs {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-tabs.active {
+                right: 0;
+            }
+            
+            .nav-tab {
+                margin: 15px 0;
+            }
+            
+            .nav-tab a {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1000;
+            }
+            
+            .faq-container {
+                padding: 0 15px;
+            }
+            
+            .faq-question {
+                padding: 15px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 15px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+            
+            .back-to-menu, .floating-btns {
                 bottom: 20px;
             }
             
@@ -221,305 +432,374 @@
                 left: 20px;
             }
             
-            .floating-buttons {
+            .floating-btns {
                 right: 20px;
-            }
-            
-            .nav-tabs {
-                display: none;
             }
         }
         
         @media (max-width: 480px) {
-            .floating-button {
+            .faq-header h2 {
+                font-size: 2rem;
+            }
+            
+            .app-name {
+                font-size: 1.7rem;
+            }
+            
+            .floating-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 1rem;
             }
             
-            .faq-container {
-                margin: 1rem;
-                padding: 1rem;
+            .faq-question {
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
- <!-- Barre de navigation avec onglets -->
- <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="app-name">L💞venett</h1>
-     
-      <ul class="nav-tabs">
-        <li class="nav-tab"><a href="index.html">Menu</a></li>
-        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
-        <li class="nav-tab"><a href="forms.html">Messages</a></li>
-        <li class="nav-tab"><a href="FAQ.html" class="active">FAQ</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="index.html">Home</a></li>
+                <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
+                <li class="nav-tab"><a href="chat.html">Messages</a></li>
+                <li class="nav-tab"><a href="FAQ.html" class="active">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="faq-container">
-        <div class="faq-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about L💞venett</p>
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about L💞venett</p>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for questions..." id="faqSearch">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I create an account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Click on "Sign Up" and enter your email, username, and password. Verify your email to activate your account.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I forgot my password. What should I do?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Click "Forgot Password" on the login page and follow the instructions sent to your registered email.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I start a new chat?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Click the "+" or "New Chat" button and select the contact you want to message.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I send images and files?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Click the attachment icon (paperclip) in the chat to send images, documents, and other files.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I create a group chat?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Go to "New Group", select participants, name your group, and click "Create".
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my data secure?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we use end-to-end encryption for all messages to protect your privacy.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I block a user?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Open the chat with the user, click their profile, and select "Block User".
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I use the app on multiple devices?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, your account syncs across all your devices when you log in.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I delete my account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Go to Settings > Account > Delete Account. Note: This action is permanent.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why can't I see my messages?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Check your internet connection. If the problem persists, try logging out and back in.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I change my profile picture?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Go to your profile in Settings and click on your current picture to upload a new one.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I recover deleted messages?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        No, once messages are deleted they cannot be recovered.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I report inappropriate content?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Long-press the message and select "Report" or contact our support team.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the maximum file size I can send?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        The current limit is 100MB per file.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I turn off notifications?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Go to Settings > Notifications and adjust your preferences.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I use the app without a phone number?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can register with just an email address.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I search for old messages?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Use the search bar at the top of the chat list to find specific messages.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why is my contact not appearing?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Ensure they've registered for the app and you have the correct phone number/username.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I change my username?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Go to Settings > Profile > Username to make changes.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Where can I suggest new features?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We welcome suggestions! Email us at feedback@lovenett.com or use the in-app feedback form.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-support">
+                <h3>Still need help?</h3>
+                <p>Can't find the answer you're looking for? Please contact our support team for assistance.</p>
+                <a href="contact.html" class="btn btn-primary">Contact Support</a>
+            </div>
         </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>1. How do I create an account?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Click on "Sign Up" and enter your email, username, and password. Verify your email to activate your account.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>2. I forgot my password. What should I do?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Click "Forgot Password" on the login page and follow the instructions sent to your registered email.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>3. How do I start a new chat?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Click the "+" or "New Chat" button and select the contact you want to message.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>4. Can I send images and files?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Yes! Click the attachment icon (paperclip) in the chat to send images, documents, and other files.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>5. How do I create a group chat?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Go to "New Group", select participants, name your group, and click "Create".
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>6. Is my data secure?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Yes, we use end-to-end encryption for all messages to protect your privacy.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>7. How do I block a user?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Open the chat with the user, click their profile, and select "Block User".
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>8. Can I use the app on multiple devices?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Yes, your account syncs across all your devices when you log in.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>9. How do I delete my account?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Go to Settings > Account > Delete Account. Note: This action is permanent.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>10. Why can't I see my messages?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Check your internet connection. If the problem persists, try logging out and back in.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>11. How do I change my profile picture?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Go to your profile in Settings and click on your current picture to upload a new one.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>12. Can I recover deleted messages?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                No, once messages are deleted they cannot be recovered.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>13. How do I report inappropriate content?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Long-press the message and select "Report" or contact our support team.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>14. What's the maximum file size I can send?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                The current limit is 100MB per file.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>15. How do I turn off notifications?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Go to Settings > Notifications and adjust your preferences.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>16. Can I use the app without a phone number?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Yes, you can register with just an email address.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>17. How do I search for old messages?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Use the search bar at the top of the chat list to find specific messages.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>18. Why is my contact not appearing?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Ensure they've registered for the app and you have the correct phone number/username.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>19. How do I change my username?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Go to Settings > Profile > Username to make changes.
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">
-                <span>20. Where can I suggest new features?</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                We welcome suggestions! Email us at feedback@lovenett.com or use the in-app feedback form.
-            </div>
-        </div>
-    </div>
+    </section>
     
-    <!-- Floating Buttons - Ajoutés -->
+    <!-- Floating Buttons -->
     <div class="back-to-menu">
-        <a href="index.html" class="floating-button">
+        <a href="index.html" class="floating-btn">
             <i class="fas fa-home"></i>
         </a>
     </div>
     
-    <div class="floating-buttons">
-        <button class="floating-button" id="backToTopBtn">
+    <div class="floating-btns">
+        <button class="floating-btn" id="backToTopBtn">
             <i class="fas fa-arrow-up"></i>
         </button>
     </div>
 
     <script>
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentNode;
-                item.classList.toggle('active');
-                
-                // Close other open items
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navTabs = document.querySelector('.nav-tabs');
+            
+            if (hamburger && navTabs) {
+                hamburger.addEventListener('click', function() {
+                    navTabs.classList.toggle('active');
+                    this.classList.toggle('active');
+                    
+                    // Change icon
+                    const icon = this.querySelector('i');
+                    if (navTabs.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
                     }
                 });
-            });
-        });
-        
-        // Script pour le bouton Back to Top
-        const backToTopBtn = document.getElementById('backToTopBtn');
-        
-        // Back to top functionality
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.style.opacity = '1';
-                backToTopBtn.style.visibility = 'visible';
-            } else {
-                backToTopBtn.style.opacity = '0';
-                backToTopBtn.style.visibility = 'hidden';
             }
+            
+            // FAQ toggle functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentNode;
+                    item.classList.toggle('active');
+                    
+                    // Close other open items
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // FAQ Search functionality
+            const faqSearch = document.getElementById('faqSearch');
+            if (faqSearch) {
+                faqSearch.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const faqItems = document.querySelectorAll('.faq-item');
+                    
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                        
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            
+                            // Auto-open if search term found
+                            if (searchTerm.length > 2) {
+                                item.classList.add('active');
+                            }
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            }
+            
+            // Script pour le bouton Back to Top
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            
+            // Back to top functionality
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Show/hide back to top button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.opacity = '1';
+                    backToTopBtn.style.visibility = 'visible';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.visibility = 'hidden';
+                }
+            });
+            
+            // Initialize back to top button as hidden
+            backToTopBtn.style.opacity = '0';
+            backToTopBtn.style.visibility = 'hidden';
         });
-        
-        // Initialize back to top button as hidden
-        backToTopBtn.style.opacity = '0';
-        backToTopBtn.style.visibility = 'hidden';
     </script>
 </body>
 </html>
