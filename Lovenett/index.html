@@ -187,7 +187,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 98, 204, 0.7) 0%, rgba(0, 128, 255, 0.7) 100%);
+      /* background: linear-gradient(135deg, rgba(0, 98, 204, 0.7) 0%, #a4a9b719 100%); */
       z-index: -1;
     }
     
@@ -724,7 +724,7 @@
     </div>
     <div class="container hero-content">
       <h1>Your Journey to Meaningful Connections Starts Here</h1>
-      <p>L💞venett brings people together through authentic relationships built on shared values and interests</p>
+      <!-- <p>L💞venett brings people together through authentic relationships built on shared values and interests</p> -->
       <div class="hero-buttons">
         <a href="forms.html" class="btn btn-primary">Create Account</a>
         <a href="forms.html" class="btn btn-secondary">Login</a>
@@ -766,7 +766,7 @@
             <span class="article-date">Accra, 2025</span>
             <h3>When Hearts Align on L💞venett</h3>
             <p>Our first video call lasted 4 hours. No awkward pauses, just genuine connection...</p>
-            <a href="article1.html" class="btn btn-secondary">Read Story</a>
+            <a href="forms.html" class="btn btn-secondary">Read Story</a>
           </div>
         </div>
         <div class="feature-card">
@@ -774,7 +774,7 @@
           <div class="feature-content">
             <h3>Security & Data Protection</h3>
             <p>Our revolutionary tool to secure L💞venett and protect your privacy.</p>
-            <a href="article2.html" class="btn btn-secondary">Discover</a>
+            <a href="forms.html" class="btn btn-secondary">Discover</a>
           </div>
         </div>
         <div class="feature-card">
@@ -782,7 +782,7 @@
           <div class="feature-content">
             <h3>The Ultimate L💞venett Guide</h3>
             <p>Everything you need to find meaningful connections on Africa's most innovative platform...</p>
-            <a href="article3.html" class="btn btn-secondary">Read Guide</a>
+            <a href="forms.html" class="btn btn-secondary">Read Guide</a>
           </div>
         </div>
       </div>
@@ -937,7 +937,7 @@
       // Counter Animation
       function animateCounter(element, target, suffix = '') {
         let current = 0;
-        const duration = 2000;
+        const duration = 200;
         const increment = target / (duration / 16);
         
         const timer = setInterval(() => {
@@ -945,7 +945,7 @@
           if (current >= target) {
             clearInterval(timer);
             current = target;
-            element.textContent = target === 10000 ? '10K+' : Math.floor(current) + suffix;
+            element.textContent = target === 1 ? '1+' : Math.floor(current) + suffix;
           } else {
             element.textContent = Math.floor(current) + suffix;
           }
@@ -962,7 +962,7 @@
             const counter3 = document.getElementById('counter3');
             
             if (counter1 && counter2 && counter3) {
-              animateCounter(counter1, 10000, '+');
+              animateCounter(counter1, 10, '+');
               animateCounter(counter2, 98, '%');
               animateCounter(counter3, 100, '%');
             }
