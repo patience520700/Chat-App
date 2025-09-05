@@ -128,6 +128,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
     }
     
     .app-name {
@@ -168,6 +169,7 @@
       font-size: 1.5rem;
       cursor: pointer;
       color: var(--primary);
+      z-index: 1001;
     }
     
     /* ===== HERO SECTION ===== */
@@ -187,7 +189,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* background: linear-gradient(135deg, rgba(0, 98, 204, 0.7) 0%, #a4a9b719 100%); */
       z-index: -1;
     }
     
@@ -285,7 +286,7 @@
     }
     
     .stat-card {
-      background: rgba(243, 5, 5, 0.15);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       border-radius: var(--radius);
       padding: 40px 20px;
@@ -625,11 +626,12 @@
       .nav-tab a {
         padding: 15px;
         font-size: 1.1rem;
+        text-align: center;
       }
       
       .hamburger {
         display: block;
-        z-index: 1000;
+        z-index: 1001;
       }
       
       .hero {
@@ -694,6 +696,10 @@
       .app-name {
         font-size: 1.7rem;
       }
+      
+      .nav-tabs {
+        width: 80%;
+      }
     }
   </style>
 </head>
@@ -705,7 +711,7 @@
       <div class="hamburger" id="hamburger">
         <i class="fas fa-bars"></i>
       </div>
-      <ul class="nav-tabs">
+      <ul class="nav-tabs" id="navTabs">
         <li class="nav-tab"><a href="index.html" class="active">Home</a></li>
         <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
         <li class="nav-tab"><a href="chat.html">Messages</a></li>
@@ -724,7 +730,6 @@
     </div>
     <div class="container hero-content">
       <h1>Your Journey to Meaningful Connections Starts Here</h1>
-      <!-- <p>L💞venett brings people together through authentic relationships built on shared values and interests</p> -->
       <div class="hero-buttons">
         <a href="forms.html" class="btn btn-primary">Create Account</a>
         <a href="forms.html" class="btn btn-secondary">Login</a>
@@ -737,7 +742,7 @@
     <div class="container">
       <div class="stats-container">
         <div class="stat-card">
-          <span id="counter1" class="stat-number" data-target="10000">0</span>
+          <span id="counter1" class="stat-number" data-target="10">0</span>
           <span class="stat-label">Active Users</span>
         </div>
         <div class="stat-card">
@@ -872,28 +877,28 @@
           <h3>About Us</h3>
           <ul class="footer-links">
             <li><a href="about.html">About</a></li>
-            <li><a href="values.html">Our Values</a></li>
+            <li><a >Our Values</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Help & Support</h3>
           <ul class="footer-links">
             <li><a href="contact-us.html">Contact Us</a></li>
-            <li><a href="guidelines.html">Community Guidelines</a></li>
+            <li><a >Community Guidelines</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Features</h3>
           <ul class="footer-links">
-            <li><a href="events.html">Local Events</a></li>
-            <li><a href="premium.html">Premium Features</a></li>
+            <li><a >Local Events</a></li>
+            <li><a >Premium Features</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Connect</h3>
           <ul class="footer-links">
             <li><a href="success-stories.html">Success Stories</a></li>
-            <li><a href="social.html">Social Media</a></li>
+            <li><a >Social Media</a></li>
           </ul>
         </div>
       </div>
@@ -915,12 +920,11 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Mobile Menu Toggle
       const hamburger = document.getElementById('hamburger');
-      const navTabs = document.querySelector('.nav-tabs');
+      const navTabs = document.getElementById('navTabs');
       
       if (hamburger && navTabs) {
         hamburger.addEventListener('click', function() {
           navTabs.classList.toggle('active');
-          this.classList.toggle('active');
           
           // Change icon
           const icon = this.querySelector('i');
@@ -931,6 +935,16 @@
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
           }
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-tab a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navTabs.classList.remove('active');
+            hamburger.querySelector('i').classList.remove('fa-times');
+            hamburger.querySelector('i').classList.add('fa-bars');
+          });
         });
       }
       
