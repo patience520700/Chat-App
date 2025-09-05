@@ -44,8 +44,6 @@ body, html {
   box-sizing: border-box; 
 }
 
-
-
 /* Overlay */
 .overlay {
   position: absolute;
@@ -56,8 +54,6 @@ body, html {
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 0; 
 }
-
-
 
 /* Action Buttons */
 .action-buttons {
@@ -2296,6 +2292,7 @@ body {
       font-weight: 700;
       background: linear-gradient(to right, #FF6B8B, #FF4757);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     
