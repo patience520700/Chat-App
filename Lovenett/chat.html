@@ -78,6 +78,24 @@
             outline: none;
         }
         
+        .contacts-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 2px solid var(--primary);
+        }
+        
         .contacts {
             flex: 1;
             overflow-y: auto;
@@ -104,6 +122,10 @@
             margin-right: 15px;
         }
         
+        .contact-info {
+            flex: 1;
+        }
+        
         .contact-info h4 {
             font-size: 16px;
             margin-bottom: 3px;
@@ -122,6 +144,47 @@
             margin-left: auto;
             font-size: 12px;
             color: #999;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+        }
+        
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .action-btn.accept {
+            background: #4CAF50;
+        }
+        
+        .action-btn.reject {
+            background: #f44336;
+        }
+        
+        .unread-badge {
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-left: 5px;
         }
         
         /* Chat Area */
@@ -374,6 +437,44 @@
             transform: scale(1.2);
         }
         
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            margin-right: 10px;
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-close {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #999;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -414,6 +515,12 @@
         
         <div class="search-bar">
             <input type="text" placeholder="Rechercher des personnes..." id="searchInput">
+        </div>
+        
+        <div class="contacts-tabs">
+            <div class="tab active" data-tab="contacts">Contacts</div>
+            <div class="tab" data-tab="invitations">Invitations</div>
+            <div class="tab" data-tab="discover">Découvrir</div>
         </div>
         
         <div class="contacts" id="contactsList">
@@ -462,6 +569,17 @@
         </div>
     </div>
     
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="notification-content" id="notificationContent"></div>
+        <button class="notification-close" id="notificationClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
     <!-- Emoji Picker Element -->
     <script src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.12.0/dist/emoji-picker.min.js"></script>
     
@@ -470,6 +588,9 @@
         let currentChatUser = null;
         let conversations = JSON.parse(localStorage.getItem('conversations')) || {};
         let selectedFile = null;
+        let invitations = JSON.parse(localStorage.getItem('invitations')) || {};
+        let friends = JSON.parse(localStorage.getItem('friends')) || {};
+        let currentTab = 'contacts';
         
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
@@ -484,8 +605,23 @@
             document.getElementById('currentUserName').textContent = currentUser.username;
             document.getElementById('currentUserAvatar').src = currentUser.avatar;
             
+            // Initialiser les données si elles n'existent pas
+            if (!friends[currentUser.id]) {
+                friends[currentUser.id] = [];
+            }
+            
             // Charger les contacts
             loadContacts();
+            
+            // Gestion des onglets
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentTab = tab.dataset.tab;
+                    loadContacts();
+                });
+            });
             
             // Gestion de la recherche
             document.getElementById('searchInput').addEventListener('input', filterContacts);
@@ -523,6 +659,11 @@
                 if (!emojiBtn.contains(e.target) && !emojiPickerContainer.contains(e.target)) {
                     emojiPickerContainer.style.display = 'none';
                 }
+            });
+            
+            // Gestion de la notification
+            document.getElementById('notificationClose').addEventListener('click', () => {
+                document.getElementById('notification').classList.remove('show');
             });
             
             // Rafraîchir périodiquement les contacts
@@ -568,37 +709,114 @@
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             
-            // Filtrer pour ne pas montrer l'utilisateur actuel
-            const contacts = users.filter(user => user.id !== currentUser.id);
             const contactsList = document.getElementById('contactsList');
             
-            if (contacts.length === 0) {
-                contactsList.innerHTML = `
-                    <div class="no-contacts">
-                        <i class="fas fa-user-friends" style="font-size: 48px; margin-bottom: 15px; color: var(--primary);"></i>
-                        <h3>Aucun autre utilisateur</h3>
-                        <p>Invitez vos amis à rejoindre Lovenett</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            contactsList.innerHTML = contacts.map(contact => {
-                // Vérifier s'il y a des messages non lus
-                const conversationId = getConversationId(currentUser.id, contact.id);
-                const unreadCount = conversations[conversationId]?.unreadCount || 0;
+            if (currentTab === 'contacts') {
+                // Afficher les amis/contacts
+                const userFriends = friends[currentUser.id] || [];
+                const contacts = users.filter(user => user.id !== currentUser.id && userFriends.includes(user.id));
                 
-                return `
-                    <div class="contact" onclick="openChat('${contact.id}')">
-                        <img src="${contact.avatar}" alt="${contact.username}" class="contact-avatar">
-                        <div class="contact-info">
-                            <h4>${contact.username} ${unreadCount > 0 ? `<span class="unread-badge">${unreadCount}</span>` : ''}</h4>
-                            <p>${getLastMessagePreview(conversationId)}</p>
+                if (contacts.length === 0) {
+                    contactsList.innerHTML = `
+                        <div class="no-contacts">
+                            <i class="fas fa-user-friends" style="font-size: 48px; margin-bottom: 15px; color: var(--primary);"></i>
+                            <h3>Aucun contact</h3>
+                            <p>Allez dans l'onglet "Découvrir" pour trouver des personnes à ajouter</p>
                         </div>
-                        <div class="contact-time">${getLastMessageTime(conversationId)}</div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                    return;
+                }
+                
+                contactsList.innerHTML = contacts.map(contact => {
+                    // Vérifier s'il y a des messages non lus
+                    const conversationId = getConversationId(currentUser.id, contact.id);
+                    const unreadCount = conversations[conversationId]?.unreadCount || 0;
+                    
+                    return `
+                        <div class="contact" onclick="openChat('${contact.id}')">
+                            <img src="${contact.avatar}" alt="${contact.username}" class="contact-avatar">
+                            <div class="contact-info">
+                                <h4>${contact.username} ${unreadCount > 0 ? `<span class="unread-badge">${unreadCount}</span>` : ''}</h4>
+                                <p>${getLastMessagePreview(conversationId)}</p>
+                            </div>
+                            <div class="contact-time">${getLastMessageTime(conversationId)}</div>
+                        </div>
+                    `;
+                }).join('');
+                
+            } else if (currentTab === 'invitations') {
+                // Afficher les invitations reçues
+                const userInvitations = invitations[currentUser.id] || [];
+                
+                if (userInvitations.length === 0) {
+                    contactsList.innerHTML = `
+                        <div class="no-contacts">
+                            <i class="fas fa-envelope" style="font-size: 48px; margin-bottom: 15px; color: var(--primary);"></i>
+                            <h3>Aucune invitation</h3>
+                            <p>Vous n'avez pas encore reçu d'invitations</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                contactsList.innerHTML = userInvitations.map(invitation => {
+                    const sender = users.find(user => user.id === invitation.senderId);
+                    if (!sender) return '';
+                    
+                    return `
+                        <div class="contact">
+                            <img src="${sender.avatar}" alt="${sender.username}" class="contact-avatar">
+                            <div class="contact-info">
+                                <h4>${sender.username}</h4>
+                                <p>Vous a envoyé une invitation</p>
+                            </div>
+                            <div class="contact-actions">
+                                <button class="action-btn accept" onclick="acceptInvitation('${sender.id}')">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn reject" onclick="rejectInvitation('${sender.id}')">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+            } else if (currentTab === 'discover') {
+                // Afficher tous les utilisateurs (sauf l'utilisateur actuel et ses amis)
+                const userFriends = friends[currentUser.id] || [];
+                const discoverUsers = users.filter(user => 
+                    user.id !== currentUser.id && 
+                    !userFriends.includes(user.id) &&
+                    !hasPendingInvitation(currentUser.id, user.id)
+                );
+                
+                if (discoverUsers.length === 0) {
+                    contactsList.innerHTML = `
+                        <div class="no-contacts">
+                            <i class="fas fa-globe-americas" style="font-size: 48px; margin-bottom: 15px; color: var(--primary);"></i>
+                            <h3>Plus de personnes à découvrir</h3>
+                            <p>Revenez plus tard pour découvrir de nouvelles personnes</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                contactsList.innerHTML = discoverUsers.map(user => {
+                    return `
+                        <div class="contact">
+                            <img src="${user.avatar}" alt="${user.username}" class="contact-avatar">
+                            <div class="contact-info">
+                                <h4>${user.username}</h4>
+                                <p>Nouveau membre sur Lovenett</p>
+                            </div>
+                            <button class="action-btn" onclick="sendInvitation('${user.id}')">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
         }
         
         function filterContacts() {
@@ -641,6 +859,98 @@
             
             // Actualiser la liste des contacts
             loadContacts();
+        }
+        
+        function sendInvitation(userId) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Initialiser les invitations si elles n'existent pas
+            if (!invitations[userId]) {
+                invitations[userId] = [];
+            }
+            
+            // Vérifier si une invitation a déjà été envoyée
+            const hasInvitation = invitations[userId].some(inv => inv.senderId === currentUser.id);
+            
+            if (hasInvitation) {
+                showNotification("Vous avez déjà envoyé une invitation à cette personne");
+                return;
+            }
+            
+            // Ajouter l'invitation
+            invitations[userId].push({
+                senderId: currentUser.id,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Sauvegarder dans le localStorage
+            localStorage.setItem('invitations', JSON.stringify(invitations));
+            
+            showNotification("Invitation envoyée avec succès");
+            loadContacts();
+        }
+        
+        function acceptInvitation(senderId) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Retirer l'invitation
+            if (invitations[currentUser.id]) {
+                invitations[currentUser.id] = invitations[currentUser.id].filter(inv => inv.senderId !== senderId);
+            }
+            
+            // Ajouter aux amis
+            if (!friends[currentUser.id]) {
+                friends[currentUser.id] = [];
+            }
+            if (!friends[senderId]) {
+                friends[senderId] = [];
+            }
+            
+            friends[currentUser.id].push(senderId);
+            friends[senderId].push(currentUser.id);
+            
+            // Sauvegarder
+            localStorage.setItem('invitations', JSON.stringify(invitations));
+            localStorage.setItem('friends', JSON.stringify(friends));
+            
+            showNotification("Invitation acceptée, vous êtes maintenant amis");
+            loadContacts();
+        }
+        
+        function rejectInvitation(senderId) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Retirer l'invitation
+            if (invitations[currentUser.id]) {
+                invitations[currentUser.id] = invitations[currentUser.id].filter(inv => inv.senderId !== senderId);
+            }
+            
+            // Sauvegarder
+            localStorage.setItem('invitations', JSON.stringify(invitations));
+            
+            showNotification("Invitation refusée");
+            loadContacts();
+        }
+        
+        function hasPendingInvitation(currentUserId, targetUserId) {
+            // Vérifier si l'utilisateur a déjà envoyé une invitation
+            if (invitations[targetUserId]) {
+                return invitations[targetUserId].some(inv => inv.senderId === currentUserId);
+            }
+            return false;
+        }
+        
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationContent = document.getElementById('notificationContent');
+            
+            notificationContent.textContent = message;
+            notification.classList.add('show');
+            
+            // Masquer automatiquement après 3 secondes
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
         }
         
         function loadMessages(contactId) {
