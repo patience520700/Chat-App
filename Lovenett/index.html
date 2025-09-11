@@ -8,8 +8,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="mains.css">
   <link rel="icon" type="image/png" href="images/favicon.jpg">
-
   
+  <style>
+    /* Styles pour le sélecteur de langue dans le footer */
+    .footer-language {
+      width: 100%;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .footer-language-selector {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 8px 15px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .footer-language-selector span {
+      margin: 0 10px;
+      color: white;
+    }
+    
+    .footer-language-options {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 150px;
+      z-index: 1000;
+      margin-bottom: 10px;
+    }
+    
+    .footer-language-option {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      color: #333;
+      transition: background 0.3s;
+    }
+    
+    .footer-language-option:hover {
+      background: #f5f5f5;
+    }
+    
+    .footer-language-option .flag {
+      margin-right: 10px;
+      width: 20px;
+      height: auto;
+    }
+    
+    .footer-language-selector:hover .footer-language-options {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -20,10 +78,10 @@
         <i class="fas fa-bars"></i>
       </div>
       <ul class="nav-tabs" id="navTabs">
-        <li class="nav-tab"><a href="index.html" class="active">Home</a></li>
-        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
-        <li class="nav-tab"><a href="chat.html">Messages</a></li>
-        <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
+        <li class="nav-tab"><a href="index.html" class="active" data-translate="nav.home">Home</a></li>
+        <li class="nav-tab"><a href="subscription.html" data-translate="nav.subscription">Subscription</a></li>
+        <li class="nav-tab"><a href="chat.html" data-translate="nav.messages">Messages</a></li>
+        <li class="nav-tab"><a href="FAQ.html" data-translate="nav.faq">FAQ</a></li>
       </ul>
     </div>
   </nav>
@@ -37,10 +95,10 @@
       <div class="slide" style="background-image: url('https://plus.unsplash.com/premium_photo-1677507947944-e4f80fbb9ff4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aHVnfGVufDB8fDB8fHww');"></div>
     </div>
     <div class="container hero-content">
-      <h1>Your Journey to Meaningful Connections Starts Here</h1>
+      <h1 data-translate="hero.title">Your Journey to Meaningful Connections Starts Here</h1>
       <div class="hero-buttons">
-        <a href="forms.html" class="btn btn-primary">Create Account</a>
-        <a href="forms.html" class="btn btn-secondary">Login</a>
+        <a href="forms.html" class="btn btn-primary" data-translate="hero.create_account">Create Account</a>
+        <a href="forms.html" class="btn btn-secondary" data-translate="hero.login">Login</a>
       </div>
     </div>
   </section>
@@ -51,15 +109,15 @@
       <div class="stats-container">
         <div class="stat-card">
           <span id="counter1" class="stat-number" data-target="10">0</span>
-          <span class="stat-label">Active Users</span>
+          <span class="stat-label" data-translate="stats.users">Active Users</span>
         </div>
         <div class="stat-card">
           <span id="counter2" class="stat-number" data-target="98">0</span>
-          <span class="stat-label">Satisfaction Rate</span>
+          <span class="stat-label" data-translate="stats.satisfaction">Satisfaction Rate</span>
         </div>
         <div class="stat-card">
           <span id="counter3" class="stat-number" data-target="100">0</span>
-          <span class="stat-label">Security Score</span>
+          <span class="stat-label" data-translate="stats.security">Security Score</span>
         </div>
       </div>
     </div>
@@ -69,33 +127,33 @@
   <section class="features">
     <div class="container">
       <div class="section-title">
-        <h2>Success Stories</h2>
-        <p>Real connections, real stories from our community</p>
+        <h2 data-translate="features.title">Success Stories</h2>
+        <p data-translate="features.subtitle">Real connections, real stories from our community</p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-img" style="background-image: url('https://media.istockphoto.com/id/1414026551/photo/happy-carefree-and-in-love-couple-at-the-beach-enjoying-a-relaxing-summer-vacation-outdoors.jpg?s=612x612&w=0&k=20&c=0drWf59GS4VqeywOEkMA7D2-fNOMfFc7J744yDtpoio=');"></div>
           <div class="feature-content">
-            <span class="article-date">Accra, 2025</span>
-            <h3>When Hearts Align on L💞venett</h3>
-            <p>Our first video call lasted 4 hours. No awkward pauses, just genuine connection...</p>
-            <a href="forms.html" class="btn btn-secondary">Read Story</a>
+            <span class="article-date" data-translate="features.story1.location">Accra, 2025</span>
+            <h3 data-translate="features.story1.title">When Hearts Align on L💞venett</h3>
+            <p data-translate="features.story1.description">Our first video call lasted 4 hours. No awkward pauses, just genuine connection...</p>
+            <a href="forms.html" class="btn btn-secondary" data-translate="features.read_story">Read Story</a>
           </div>
         </div>
         <div class="feature-card">
           <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
           <div class="feature-content">
-            <h3>Security & Data Protection</h3>
-            <p>Our revolutionary tool to secure L💞venett and protect your privacy.</p>
-            <a href="forms.html" class="btn btn-secondary">Discover</a>
+            <h3 data-translate="features.story2.title">Security & Data Protection</h3>
+            <p data-translate="features.story2.description">Our revolutionary tool to secure L💞venett and protect your privacy.</p>
+            <a href="forms.html" class="btn btn-secondary" data-translate="features.discover">Discover</a>
           </div>
         </div>
         <div class="feature-card">
           <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
           <div class="feature-content">
-            <h3>The Ultimate L💞venett Guide</h3>
-            <p>Everything you need to find meaningful connections on Africa's most innovative platform...</p>
-            <a href="forms.html" class="btn btn-secondary">Read Guide</a>
+            <h3 data-translate="features.story3.title">The Ultimate L💞venett Guide</h3>
+            <p data-translate="features.story3.description">Everything you need to find meaningful connections on Africa's most innovative platform...</p>
+            <a href="forms.html" class="btn btn-secondary" data-translate="features.read_guide">Read Guide</a>
           </div>
         </div>
       </div>
@@ -106,71 +164,70 @@
 <section class="detector">
   <div class="container">
     <div class="detector-content">
-      <span class="detector-badge">Exclusive Feature</span>
-      <h2>Description Detector™</h2>
-      <p>Our AI analyzes your profile and provides personalized advice to attract the right matches</p>
+      <span class="detector-badge" data-translate="detector.badge">Exclusive Feature</span>
+      <h2 data-translate="detector.title">Description Detector™</h2>
+      <p data-translate="detector.description">Our AI analyzes your profile and provides personalized advice to attract the right matches</p>
       
       <div class="features-container">
         <div class="feature-item">
           <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-          <h3 class="feature-name">Comprehensive Analysis</h3>
-          <p class="feature-desc">Evaluates tone, keywords and structure to maximize your profile's appeal.</p>
+          <h3 class="feature-name" data-translate="detector.feature1.title">Comprehensive Analysis</h3>
+          <p class="feature-desc" data-translate="detector.feature1.description">Evaluates tone, keywords and structure to maximize your profile's appeal.</p>
         </div>
         
         <div class="feature-item">
           <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3 class="feature-name">Smart Suggestions</h3>
-          <p class="feature-desc">Actionable recommendations tailored to your ideal match's preferences.</p>
+          <h3 class="feature-name" data-translate="detector.feature2.title">Smart Suggestions</h3>
+          <p class="feature-desc" data-translate="detector.feature2.description">Actionable recommendations tailored to your ideal match's preferences.</p>
         </div>
         
         <div class="feature-item">
           <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3 class="feature-name">Red Flag Detection</h3>
-          <p class="feature-desc">Identifies phrases that might deter potential matches.</p>
+          <h3 class="feature-name" data-translate="detector.feature3.title">Red Flag Detection</h3>
+          <p class="feature-desc" data-translate="detector.feature3.description">Identifies phrases that might deter potential matches.</p>
         </div>
       </div>
       
-      <a href="advert.html" class="btn btn-primary">Explore Partners</a>
+      <a href="advert.html" class="btn btn-primary" data-translate="detector.button">Explore Partners</a>
     </div>
   </div>
-  
 </section>
 
   <!-- Testimonials Section -->
 <section class="testimonials">
   <div class="container">
     <div class="section-title">
-      <h2>Love Stories</h2>
-      <p>Discover how L💞venett changed lives across Africa</p>
+      <h2 data-translate="testimonials.title">Love Stories</h2>
+      <p data-translate="testimonials.subtitle">Discover how L💞venett changed lives across Africa</p>
     </div>
     <div class="testimonials-container">
       <div class="testimonial-card">
-        <p class="testimonial-text">L💞venett connected me with someone who shares my passion for nature and conservation. We're now planning our eco-friendly wedding!</p>
+        <p class="testimonial-text" data-translate="testimonials.story1.text">L💞venett connected me with someone who shares my passion for nature and conservation. We're now planning our eco-friendly wedding!</p>
         <div class="testimonial-author">
           <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmxhY2slMjBjb3VwbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80');"></div>
           <div class="author-info">
-            <h4>Ama & Kofi</h4>
-            <p>Kumasi, Ghana</p>
+            <h4 data-translate="testimonials.story1.author">Ama & Kofi</h4>
+            <p data-translate="testimonials.story1.location">Kumasi, Ghana</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
-        <p class="testimonial-text">After years of failed relationships, I almost gave up. L💞venett's matching algorithm understood what I truly needed in a partner.</p>
+        <p class="testimonial-text" data-translate="testimonials.story2.text">After years of failed relationships, I almost gave up. L💞venett's matching algorithm understood what I truly needed in a partner.</p>
         <div class="testimonial-author">
           <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1523824921871-d6f1a15151f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWZyaWNhaW58ZW58MHx8MHx8fDA%3D');"></div>
           <div class="author-info">
-            <h4>Ajoua</h4>
-            <p>Accra, Ghana </p>
+            <h4 data-translate="testimonials.story2.author">Ajoua</h4>
+            <p data-translate="testimonials.story2.location">Accra, Ghana</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
-        <p class="testimonial-text">The Description Detector™ helped me present my authentic self. I matched with someone who appreciates me for who I truly am.</p>
+        <p class="testimonial-text" data-translate="testimonials.story3.text">The Description Detector™ helped me present my authentic self. I matched with someone who appreciates me for who I truly am.</p>
         <div class="testimonial-author">
           <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1605980413984-4510be9d35f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGJsYWNrJTIwY291cGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80');"></div>
           <div class="author-info">
-            <h4>Eulalia & Philip</h4>
-            <p>Cotonou, Benin</p>
+            <h4 data-translate="testimonials.story3.author">Eulalia & Philip</h4>
+            <p data-translate="testimonials.story3.location">Cotonou, Benin</p>
           </div>
         </div>
       </div>
@@ -183,38 +240,65 @@
     <div class="container">
       <div class="footer-container">
         <div class="footer-col">
-          <h3>About Us</h3>
+          <h3 data-translate="footer.about.title">About Us</h3>
           <ul class="footer-links">
-            <li><a href="about.html">About</a></li>
-            <li><a >Our Values</a></li>
-            <li><a href="share.html">Share</a></li>
-
+            <li><a href="about.html" data-translate="footer.about.about">About</a></li>
+            <li><a data-translate="footer.about.values">Our Values</a></li>
+            <li><a href="share.html" data-translate="footer.about.share">Share</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>Help & Support</h3>
+          <h3 data-translate="footer.help.title">Help & Support</h3>
           <ul class="footer-links">
-            <li><a href="contact-us.html">Contact Us</a></li>
-            <li><a >Community Guidelines</a></li>
+            <li><a href="contact-us.html" data-translate="footer.help.contact">Contact Us</a></li>
+            <li><a data-translate="footer.help.guidelines">Community Guidelines</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>Features</h3>
+          <h3 data-translate="footer.features.title">Features</h3>
           <ul class="footer-links">
-            <li><a >Local Events</a></li>
-            <li><a >Premium Features</a></li>
+            <li><a data-translate="footer.features.events">Local Events</a></li>
+            <li><a data-translate="footer.features.premium">Premium Features</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>Connect</h3>
+          <h3 data-translate="footer.connect.title">Connect</h3>
           <ul class="footer-links">
-            <li><a href="success-stories.html">Success Stories</a></li>
-            <li><a >Social Media</a></li>
+            <li><a href="success-stories.html" data-translate="footer.connect.stories">Success Stories</a></li>
+            <li><a data-translate="footer.connect.social">Social Media</a></li>
           </ul>
         </div>
       </div>
+      
+      <!-- Language Selector in Footer -->
+      <div class="footer-language">
+        <div class="footer-language-selector">
+          <i class="fas fa-globe"></i>
+          <span id="currentLanguage">English</span>
+          <i class="fas fa-chevron-down"></i>
+          <div class="footer-language-options">
+            <div class="footer-language-option" data-lang="en">
+              <img src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w80/gb.png 2x" width="20" alt="English" class="flag">
+              <span>English</span>
+            </div>
+            <div class="footer-language-option" data-lang="fr">
+              <img src="https://flagcdn.com/w40/fr.png" srcset="https://flagcdn.com/w80/fr.png 2x" width="20" alt="Français" class="flag">
+              <span>Français</span>
+            </div>
+            <div class="footer-language-option" data-lang="es">
+              <img src="https://flagcdn.com/w40/es.png" srcset="https://flagcdn.com/w80/es.png 2x" width="20" alt="Español" class="flag">
+              <span>Español</span>
+            </div>
+            <div class="footer-language-option" data-lang="de">
+              <img src="https://flagcdn.com/w40/de.png" srcset="https://flagcdn.com/w80/de.png 2x" width="20" alt="Deutsch" class="flag">
+              <span>Deutsch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="footer-bottom">
-        <p>&copy; 2025 L💞venett. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | <a href="terms.html" style="color: rgba(255,255,255,0.8);">Terms of Service</a></p>
+        <p>&copy; 2025 L💞venett. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.8);" data-translate="footer.privacy">Privacy Policy</a> | <a href="terms.html" style="color: rgba(255,255,255,0.8);" data-translate="footer.terms">Terms of Service</a></p>
       </div>
     </div>
   </footer>
@@ -227,6 +311,306 @@
   </div>
 
   <script>
+    // Dictionnaire de traductions
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.subscription": "Subscription",
+        "nav.messages": "Messages",
+        "nav.faq": "FAQ",
+        "hero.title": "Your Journey to Meaningful Connections Starts Here",
+        "hero.create_account": "Create Account",
+        "hero.login": "Login",
+        "stats.users": "Active Users",
+        "stats.satisfaction": "Satisfaction Rate",
+        "stats.security": "Security Score",
+        "features.title": "Success Stories",
+        "features.subtitle": "Real connections, real stories from our community",
+        "features.story1.location": "Accra, 2025",
+        "features.story1.title": "When Hearts Align on L💞venett",
+        "features.story1.description": "Our first video call lasted 4 hours. No awkward pauses, just genuine connection...",
+        "features.read_story": "Read Story",
+        "features.story2.title": "Security & Data Protection",
+        "features.story2.description": "Our revolutionary tool to secure L💞venett and protect your privacy.",
+        "features.discover": "Discover",
+        "features.story3.title": "The Ultimate L💞venett Guide",
+        "features.story3.description": "Everything you need to find meaningful connections on Africa's most innovative platform...",
+        "features.read_guide": "Read Guide",
+        "detector.badge": "Exclusive Feature",
+        "detector.title": "Description Detector™",
+        "detector.description": "Our AI analyzes your profile and provides personalized advice to attract the right matches",
+        "detector.feature1.title": "Comprehensive Analysis",
+        "detector.feature1.description": "Evaluates tone, keywords and structure to maximize your profile's appeal.",
+        "detector.feature2.title": "Smart Suggestions",
+        "detector.feature2.description": "Actionable recommendations tailored to your ideal match's preferences.",
+        "detector.feature3.title": "Red Flag Detection",
+        "detector.feature3.description": "Identifies phrases that might deter potential matches.",
+        "detector.button": "Explore Partners",
+        "testimonials.title": "Love Stories",
+        "testimonials.subtitle": "Discover how L💞venett changed lives across Africa",
+        "testimonials.story1.text": "L💞venett connected me with someone who shares my passion for nature and conservation. We're now planning our eco-friendly wedding!",
+        "testimonials.story1.author": "Ama & Kofi",
+        "testimonials.story1.location": "Kumasi, Ghana",
+        "testimonials.story2.text": "After years of failed relationships, I almost gave up. L💞venett's matching algorithm understood what I truly needed in a partner.",
+        "testimonials.story2.author": "Ajoua",
+        "testimonials.story2.location": "Accra, Ghana",
+        "testimonials.story3.text": "The Description Detector™ helped me present my authentic self. I matched with someone who appreciates me for who I truly am.",
+        "testimonials.story3.author": "Eulalia & Philip",
+        "testimonials.story3.location": "Cotonou, Benin",
+        "footer.about.title": "About Us",
+        "footer.about.about": "About",
+        "footer.about.values": "Our Values",
+        "footer.about.share": "Share",
+        "footer.help.title": "Help & Support",
+        "footer.help.contact": "Contact Us",
+        "footer.help.guidelines": "Community Guidelines",
+        "footer.features.title": "Features",
+        "footer.features.events": "Local Events",
+        "footer.features.premium": "Premium Features",
+        "footer.connect.title": "Connect",
+        "footer.connect.stories": "Success Stories",
+        "footer.connect.social": "Social Media",
+        "footer.privacy": "Privacy Policy",
+        "footer.terms": "Terms of Service"
+      },
+      fr: {
+        "nav.home": "Accueil",
+        "nav.subscription": "Abonnement",
+        "nav.messages": "Messages",
+        "nav.faq": "FAQ",
+        "hero.title": "Votre voyage vers des connexions significatives commence ici",
+        "hero.create_account": "Créer un compte",
+        "hero.login": "Connexion",
+        "stats.users": "Utilisateurs actifs",
+        "stats.satisfaction": "Taux de satisfaction",
+        "stats.security": "Score de sécurité",
+        "features.title": "Histoires de réussite",
+        "features.subtitle": "Des connexions réelles, des histoires réelles de notre communauté",
+        "features.story1.location": "Accra, 2025",
+        "features.story1.title": "Quand les cœurs s'alignent sur L💞venett",
+        "features.story1.description": "Notre premier appel vidéo a duré 4 heures. Pas de pauses gênantes, juste une connexion authentique...",
+        "features.read_story": "Lire l'histoire",
+        "features.story2.title": "Sécurité et protection des données",
+        "features.story2.description": "Notre outil révolutionnaire pour sécuriser L💞venett et protéger votre vie privée.",
+        "features.discover": "Découvrir",
+        "features.story3.title": "Le guide ultime de L💞venett",
+        "features.story3.description": "Tout ce dont vous avez besoin pour trouver des connexions significatives sur la plateforme la plus innovante d'Afrique...",
+        "features.read_guide": "Lire le guide",
+        "detector.badge": "Fonctionnalité exclusive",
+        "detector.title": "Description Detector™",
+        "detector.description": "Notre IA analyse votre profil et fournit des conseils personnalisés pour attirer les bonnes correspondances",
+        "detector.feature1.title": "Analyse complète",
+        "detector.feature1.description": "Évalue le ton, les mots-clés et la structure pour maximiser l'attrait de votre profil.",
+        "detector.feature2.title": "Suggestions intelligentes",
+        "detector.feature2.description": "Recommandations actionnables adaptées aux préférences de votre match idéal.",
+        "detector.feature3.title": "Détection des signaux d'alarme",
+        "detector.feature3.description": "Identifie les phrases qui pourraient dissuader les correspondances potentielles.",
+        "detector.button": "Explorer les partenaires",
+        "testimonials.title": "Histoires d'amour",
+        "testimonials.subtitle": "Découvrez comment L💞venett a changé des vies à travers l'Afrique",
+        "testimonials.story1.text": "L💞venett m'a connecté avec quelqu'un qui partage ma passion pour la nature et la conservation. Nous planifions maintenant notre mariage écologique!",
+        "testimonials.story1.author": "Ama & Kofi",
+        "testimonials.story1.location": "Kumasi, Ghana",
+        "testimonials.story2.text": "Après des années de relations ratées, j'ai presque abandonné. L'algorithme de matching de L💞venett a compris ce dont j'avais vraiment besoin chez un partenaire.",
+        "testimonials.story2.author": "Ajoua",
+        "testimonials.story2.location": "Accra, Ghana",
+        "testimonials.story3.text": "Le Description Detector™ m'a aidé à présenter mon moi authentique. J'ai matché avec quelqu'un qui m'apprécie pour qui je suis vraiment.",
+        "testimonials.story3.author": "Eulalia & Philip",
+        "testimonials.story3.location": "Cotonou, Bénin",
+        "footer.about.title": "À propos de nous",
+        "footer.about.about": "À propos",
+        "footer.about.values": "Nos valeurs",
+        "footer.about.share": "Partager",
+        "footer.help.title": "Aide et support",
+        "footer.help.contact": "Contactez-nous",
+        "footer.help.guidelines": "Règles de la communauté",
+        "footer.features.title": "Fonctionnalités",
+        "footer.features.events": "Événements locaux",
+        "footer.features.premium": "Fonctionnalités premium",
+        "footer.connect.title": "Se connecter",
+        "footer.connect.stories": "Histoires de réussite",
+        "footer.connect.social": "Médias sociaux",
+        "footer.privacy": "Politique de confidentialité",
+        "footer.terms": "Conditions d'utilisation"
+      },
+      es: {
+        "nav.home": "Inicio",
+        "nav.subscription": "Suscripción",
+        "nav.messages": "Mensajes",
+        "nav.faq": "Preguntas frecuentes",
+        "hero.title": "Tu viaje hacia conexiones significativas comienza aquí",
+        "hero.create_account": "Crear cuenta",
+        "hero.login": "Iniciar sesión",
+        "stats.users": "Usuarios activos",
+        "stats.satisfaction": "Tasa de satisfacción",
+        "stats.security": "Puntuación de seguridad",
+        "features.title": "Historias de éxito",
+        "features.subtitle": "Conexiones reales, historias reales de nuestra comunidad",
+        "features.story1.location": "Accra, 2025",
+        "features.story1.title": "Cuando los corazones se alinean en L💞venett",
+        "features.story1.description": "Nuestra primera videollamada duró 4 horas. Sin pausas incómodas, solo conexión genuina...",
+        "features.read_story": "Leer historia",
+        "features.story2.title": "Seguridad y protección de datos",
+        "features.story2.description": "Nuestra herramienta revolucionaria para proteger L💞venett y tu privacidad.",
+        "features.discover": "Descubrir",
+        "features.story3.title": "La guía definitiva de L💞venett",
+        "features.story3.description": "Todo lo que necesitas para encontrar conexiones significativas en la plataforma más innovadora de África...",
+        "features.read_guide": "Leer guía",
+        "detector.badge": "Característica exclusiva",
+        "detector.title": "Description Detector™",
+        "detector.description": "Nuestra IA analiza tu perfil y proporciona consejos personalizados para atraer a las coincidencias adecuadas",
+        "detector.feature1.title": "Análisis completo",
+        "detector.feature1.description": "Evalúa el tono, las palabras clave y la estructura para maximizar el atractivo de tu perfil.",
+        "detector.feature2.title": "Sugerencias inteligentes",
+        "detector.feature2.description": "Recomendaciones prácticas adaptadas a las preferencias de tu match ideal.",
+        "detector.feature3.title": "Detección de banderas rojas",
+        "detector.feature3.description": "Identifica frases que podrían disuadir a posibles matches.",
+        "detector.button": "Explorar partners",
+        "testimonials.title": "Historias de amor",
+        "testimonials.subtitle": "Descubre cómo L💞venett cambió vidas en toda África",
+        "testimonials.story1.text": "L💞venett me conectó con alguien que comparte mi pasión por la naturaleza y la conservación. ¡Ahora estamos planeando nuestra boda ecológica!",
+        "testimonials.story1.author": "Ama & Kofi",
+        "testimonials.story1.location": "Kumasi, Ghana",
+        "testimonials.story2.text": "Después de años de relaciones fallidas, casi me di por vencido. El algoritmo de matching de L💞venett entendió lo que realmente necesitaba en una pareja.",
+        "testimonials.story2.author": "Ajoua",
+        "testimonials.story2.location": "Accra, Ghana",
+        "testimonials.story3.text": "El Description Detector™ me ayudó a presentar mi yo auténtico. Coincidí con alguien que me aprecia por quien realmente soy.",
+        "testimonials.story3.author": "Eulalia & Philip",
+        "testimonials.story3.location": "Cotonou, Benín",
+        "footer.about.title": "Sobre nosotros",
+        "footer.about.about": "Sobre",
+        "footer.about.values": "Nuestros valores",
+        "footer.about.share": "Compartir",
+        "footer.help.title": "Ayuda y soporte",
+        "footer.help.contact": "Contáctenos",
+        "footer.help.guidelines": "Directrices de la comunidad",
+        "footer.features.title": "Características",
+        "footer.features.events": "Eventos locales",
+        "footer.features.premium": "Características premium",
+        "footer.connect.title": "Conectar",
+        "footer.connect.stories": "Historias de éxito",
+        "footer.connect.social": "Redes sociales",
+        "footer.privacy": "Política de privacidad",
+        "footer.terms": "Términos de servicio"
+      },
+      de: {
+        "nav.home": "Startseite",
+        "nav.subscription": "Abonnement",
+        "nav.messages": "Nachrichten",
+        "nav.faq": "FAQ",
+        "hero.title": "Ihre Reise zu bedeutungsvollen Verbindungen beginnt hier",
+        "hero.create_account": "Konto erstellen",
+        "hero.login": "Anmelden",
+        "stats.users": "Aktive Benutzer",
+        "stats.satisfaction": "Zufriedenheitsrate",
+        "stats.security": "Sicherheitsbewertung",
+        "features.title": "Erfolgsgeschichten",
+        "features.subtitle": "Echte Verbindungen, echte Geschichten aus unserer Community",
+        "features.story1.location": "Accra, 2025",
+        "features.story1.title": "Wenn Herzen auf L💞venett gleich schlagen",
+        "features.story1.description": "Unser erstes Video-Chat dauerte 4 Stunden. Keine peinlichen Pausen, nur echte Verbindung...",
+        "features.read_story": "Geschichte lesen",
+        "features.story2.title": "Sicherheit & Datenschutz",
+        "features.story2.description": "Unser revolutionäres Tool zum Schutz von L💞venett und Ihrer Privatsphäre.",
+        "features.discover": "Entdecken",
+        "features.story3.title": "Der ultimative L💞venett-Leitfaden",
+        "features.story3.description": "Alles, was Sie brauchen, um bedeutungsvolle Verbindungen auf Afrikas innovativster Plattform zu finden...",
+        "features.read_guide": "Leitfaden lesen",
+        "detector.badge": "Exklusive Funktion",
+        "detector.title": "Description Detector™",
+        "detector.description": "Unsere KI analysiert Ihr Profil und gibt personalisierte Ratschläge, um die richtigen Matches anzuziehen",
+        "detector.feature1.title": "Umfassende Analyse",
+        "detector.feature1.description": "Bewertet Ton, Keywords und Struktur, um die Attraktivität Ihres Profils zu maximieren.",
+        "detector.feature2.title": "Intelligente Vorschläge",
+        "detector.feature2.description": "Umsetzbare Empfehlungen, die auf die Vorlieben Ihres idealen Matches zugeschnitten sind.",
+        "detector.feature3.title": "Warnzeichen-Erkennung",
+        "detector.feature3.description": "Identifiziert Phrasen, die potenzielle Matches abschrecken könnten.",
+        "detector.button": "Partner erkunden",
+        "testimonials.title": "Liebesgeschichten",
+        "testimonials.subtitle": "Entdecken Sie, wie L💞venett Leben in ganz Afrika verändert hat",
+        "testimonials.story1.text": "L💞venett verband mich mit jemandem, der meine Leidenschaft für Natur und Umweltschutz teilt. Wir planen jetzt unsere umweltfreundliche Hochzeit!",
+        "testimonials.story1.author": "Ama & Kofi",
+        "testimonials.story1.location": "Kumasi, Ghana",
+        "testimonials.story2.text": "Nach Jahren gescheiterter Beziehungen gab ich fast auf. L💞venetts Matching-Algorithmus verstand, was ich wirklich in einem Partner brauchte.",
+        "testimonials.story2.author": "Ajoua",
+        "testimonials.story2.location": "Accra, Ghana",
+        "testimonials.story3.text": "Der Description Detector™ half mir, mein authentisches Selbst zu präsentieren. Ich matchte mit jemandem, der mich schätzt, so wie ich wirklich bin.",
+        "testimonials.story3.author": "Eulalia & Philip",
+        "testimonials.story3.location": "Cotonou, Benin",
+        "footer.about.title": "Über uns",
+        "footer.about.about": "Über",
+        "footer.about.values": "Unsere Werte",
+        "footer.about.share": "Teilen",
+        "footer.help.title": "Hilfe & Support",
+        "footer.help.contact": "Kontaktieren Sie uns",
+        "footer.help.guidelines": "Community-Richtlinien",
+        "footer.features.title": "Funktionen",
+        "footer.features.events": "Lokale Veranstaltungen",
+        "footer.features.premium": "Premium-Funktionen",
+        "footer.connect.title": "Verbinden",
+        "footer.connect.stories": "Erfolgsgeschichten",
+        "footer.connect.social": "Soziale Medien",
+        "footer.privacy": "Datenschutzrichtlinie",
+        "footer.terms": "Nutzungsbedingungen"
+      }
+    };
+
+    // Fonction pour changer la langue
+    function changeLanguage(lang) {
+      // Mettre à jour tous les éléments avec l'attribut data-translate
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      // Mettre à jour le texte de la langue actuelle
+      document.getElementById('currentLanguage').textContent = 
+        lang === 'en' ? 'English' : 
+        lang === 'fr' ? 'Français' : 
+        lang === 'es' ? 'Español' : 'Deutsch';
+      
+      // Sauvegarder la préférence de langue
+      localStorage.setItem('preferredLanguage', lang);
+      
+      // Mettre à jour l'attribut lang de l'élément html
+      document.documentElement.lang = lang;
+      
+      // Afficher une notification
+      showLanguageNotification(lang);
+    }
+
+    // Fonction pour afficher une notification de changement de langue
+    function showLanguageNotification(lang) {
+      const langNames = {
+        'en': 'English',
+        'fr': 'Français',
+        'es': 'Español',
+        'de': 'Deutsch'
+      };
+      
+      const notification = document.createElement('div');
+      notification.textContent = `Language changed to ${langNames[lang]}`;
+      notification.style.position = 'fixed';
+      notification.style.bottom = '90px';
+      notification.style.right = '20px';
+      notification.style.background = '#4CAF50';
+      notification.style.color = 'white';
+      notification.style.padding = '10px 15px';
+      notification.style.borderRadius = '5px';
+      notification.style.zIndex = '1000';
+      notification.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+      document.body.appendChild(notification);
+      
+      // Supprimer la notification après 2 secondes
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => document.body.removeChild(notification), 500);
+      }, 2000);
+    }
+
     // DOM Ready
     document.addEventListener('DOMContentLoaded', function() {
       // Mobile Menu Toggle
@@ -343,6 +727,19 @@
       // Initialize back to top button as hidden
       backToTopBtn.style.opacity = '0';
       backToTopBtn.style.visibility = 'hidden';
+      
+      // Gestion du sélecteur de langue dans le footer
+      const languageOptions = document.querySelectorAll('.footer-language-option');
+      languageOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          changeLanguage(lang);
+        });
+      });
+      
+      // Charger la langue sauvegardée
+      const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+      changeLanguage(savedLanguage);
     });
   </script>
 </body>
