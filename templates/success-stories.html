@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Stories - L💞venett</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.jpg">
+  <style>
+    /* ===== BASE STYLES ===== */
+    :root {
+      --primary: #0062cc;
+      --primary-light: #4a90e2;
+      --primary-gradient: linear-gradient(135deg, #0062cc 0%, #0080ff 100%);
+      --secondary: #ff4b93;
+      --secondary-gradient: linear-gradient(135deg, #ff4b93 0%, #ff7eb3 100%);
+      --white: #ffffff;
+      --light-bg: #cce6ff;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --shadow: 0 5px 15px rgba(0, 98, 204, 0.1);
+      --shadow-hover: 0 15px 30px rgba(0, 98, 204, 0.2);
+      --radius: 12px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: var(--white);
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+    
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .app-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .app-name span {
+      margin-right: 5px;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-tab a {
+      color: var(--text-dark);
+      text-decoration: none;
+      padding: 10px 20px;
+      display: block;
+      transition: all 0.3s;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+    
+    .nav-tab a:hover, .nav-tab a.active {
+      color: var(--primary);
+      background: rgba(0, 98, 204, 0.05);
+    }
+    
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    
+    /* ===== SUCCESS STORIES SECTION ===== */
+    .stories-section {
+      padding: 60px 0;
+    }
+    
+    .stories-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .stories-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .stories-header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .stories-header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+    
+    .share-story-btn {
+      display: block;
+      background: var(--primary-gradient);
+      color: var(--white);
+      padding: 15px 30px;
+      text-align: center;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 30px auto;
+      width: fit-content;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .share-story-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary-gradient);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+    
+    .share-story-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .share-story-btn:hover::before {
+      left: 0;
+    }
+    
+    /* Story Cards */
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      border-left: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    
+    .story-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .story-card::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px; 
+      font-size: 60px;
+      color: rgba(0, 98, 204, 0.1);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .story-card:hover::before {
+      color: rgba(0, 98, 204, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .story-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .user-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 20px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .story-card:hover .user-avatar {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 0 0 6px rgba(0, 98, 204, 0.3);
+    }
+    
+    .user-info h3 {
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+    
+    .story-card:hover .user-info h3 {
+      color: var(--secondary);
+    }
+    
+    .story-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+    
+    .story-content p {
+      line-height: 1.7;
+      color: var(--text-dark);
+      font-size: 1rem;
+      position: relative;
+    }
+    
+    .read-more {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .read-more:hover {
+      color: var(--secondary);
+    }
+    
+    .story-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .story-tag {
+      background: var(--primary-gradient);
+      color: var(--white);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .story-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 98, 204, 0.2);
+    }
+    
+    .story-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .like-btn {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+    
+    .like-btn:hover {
+      color: var(--secondary);
+      background: rgba(255, 75, 147, 0.1);
+    }
+    
+    .like-btn.liked {
+      color: var(--secondary);
+    }
+    
+    .like-btn.liked i {
+      animation: pulse 0.5s ease;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Progress bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1001;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: var(--primary-gradient);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-btns {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .floating-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary-gradient);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+    
+    .floating-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
+    }
+    
+    .floating-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .back-to-menu {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+    }
+    
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (max-width: 992px) {
+      .stories-header h1 {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 12px 0;
+      }
+      
+      .nav-tabs {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+      
+      .nav-tabs.active {
+        right: 0;
+      }
+      
+      .nav-tab {
+        margin: 15px 0;
+      }
+      
+      .nav-tab a {
+        padding: 15px;
+        font-size: 1.1rem;
+      }
+      
+      .hamburger {
+        display: block;
+        z-index: 1000;
+      }
+      
+      .stories-container {
+        padding: 0 15px;
+      }
+      
+      .story-card {
+        padding: 20px;
+      }
+      
+      .story-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .user-avatar {
+        margin-bottom: 15px;
+      }
+      
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+      }
+      
+      .back-to-menu, .floating-btns {
+        bottom: 20px;
+      }
+      
+      .back-to-menu {
+        left: 20px;
+      }
+      
+      .floating-btns {
+        right: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stories-header h1 {
+        font-size: 2rem;
+      }
+      
+      .app-name {
+        font-size: 1.7rem;
+      }
+      
+      .user-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+      }
+      
+      .user-info h3 {
+        font-size: 1.1rem;
+      }
+      
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+      }
+      
+      .share-story-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-tabs" id="navTabs">
+        <li class="nav-tab"><a href="{{ url_for('index') }}" class="active" data-translate="nav.home">Home</a></li>
+        <li class="nav-tab"><a href="{{ url_for('subscription') }}" data-translate="nav.subscription">Subscription</a></li>
+        <li class="nav-tab"><a href="{{ url_for('chat') }}" data-translate="nav.messages">Messages</a></li>
+        <li class="nav-tab"><a href="{{ url_for('faq') }}" data-translate="nav.faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Success Stories Section -->
+  <section class="stories-section">
+    <div class="stories-container">
+      <div class="stories-header">
+        <h1>❤️ Success Stories</h1>
+        <p>Real connections, real stories from our L💞venett community</p>
+      </div>
+      
+      <a href="{{ url_for('shares_story') }}" class="share-story-btn">Share Your Story</a>
+      
+      <!-- Story 1 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">EK</div>
+          <div class="user-info">
+            <h3>Efua & Kwame's Digital Romance</h3>
+            <div class="story-date">Romantic Success Story - March 15, 2025</div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>Efua (28, Ghanaian Mathematician) never believed long-distance could work until she matched with Kwame (32, Ivorian architect) on L💞venett. "The language exchange feature helped us bridge French and English," she laughs. Their first voice message lasted 3 hours. After months of daily chats, Kwame surprised her by arriving in Accra with a handmade necklace. They're now planning a December wedding in Abidjan. "Lovenett didn't just connect hearts—it built our bilingual future," Efua says.</p>
+        </div>
+        <div class="story-tags">
+          <span class="story-tag">Love</span>
+          <span class="story-tag">Long Distance</span>
+          <span class="story-tag">International</span>
+        </div>
+        
+      </div>
+      
+      <!-- Story 2 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">P</div>
+          <div class="user-info">
+            <h3>Patience's Financial Breakthrough</h3>
+            <div class="story-date">Financial Success Story - May 3, 2024</div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>Patience (35, single mother from Lagos) used L💞venett's professional forums to meet Abigail, a Kenyan fintech CEO. Their chat about mobile payment solutions turned into a partnership. Today, their cross-border beauty supply business moves ₦22 million monthly. "This app put money in my pocket, not just love in my heart," Patience declares. They'll launch their joint venture app next month.</p>
+        </div>
+        <div class="story-tags">
+          <span class="story-tag">Business</span>
+          <span class="story-tag">Finance</span>
+          <span class="story-tag">Partnership</span>
+        </div>
+       
+      </div>
+      
+      <!-- Story 3 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">BE</div>
+          <div class="user-info">
+            <h3>The Cotonou-Accra Tech Duo</h3>
+            <div class="story-date">Professional Success Story - April 1, 2025</div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>Beninese coder Bilinda (26) and Ghanaian UX designer Eulalia (29) connected through L💞venett's "African Women in Tech" forum. Their collaboration birthed "MamaPay", an app simplifying remittances for market women. After winning $50k at Accra Tech Week, they've hired 8 female developers. "We found sisterhood and success in one inbox," Eulalia shares. The duo now mentors others on the platform.</p>
+        </div>
+        <div class="story-tags">
+          <span class="story-tag">Technology</span>
+          <span class="story-tag">Women Empowerment</span>
+          <span class="story-tag">Collaboration</span>
+        </div>
+        
+      </div>
+      
+      <!-- Story 4 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">TJ</div>
+          <div class="user-info">
+            <h3>Tunde & Jasmine's Culinary Connection</h3>
+            <div class="story-date">Culinary Success Story - June 10, 2024</div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>Tunde (31, Nigerian chef) and Jasmine (29, South African food blogger) connected over their shared passion for African fusion cuisine. Through L💞venett's interest-based matching, they started exchanging recipes and cooking techniques. Their virtual cooking sessions turned into a popular YouTube channel with over 100k subscribers. They recently opened a pop-up restaurant in Johannesburg. "From matching recipes to matching hearts," Jasmine smiles.</p>
+        </div>
+        <div class="story-tags">
+          <span class="story-tag">Food</span>
+          <span class="story-tag">Culinary</span>
+          <span class="story-tag">Collaboration</span>
+        </div>
+       
+      </div>
+      
+      <!-- Story 5 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="user-avatar">FA</div>
+          <div class="user-info">
+            <h3>From Pen Pals to Business Partners</h3>
+            <div class="story-date">Business Success Story - February 28, 2025</div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p>Fatima (27, Tanzanian artist) and Amara (30, Ghanaian gallery owner) connected through L💞venett's creative arts community. What began as conversations about art evolved into a thriving online gallery showcasing East and West African artists. They've facilitated over $200,000 in art sales and launched a mentorship program for young African artists. "We painted our success story together," Fatima says proudly.</p>
+        </div>
+        <div class="story-tags">
+          <span class="story-tag">Art</span>
+          <span class="story-tag">Business</span>
+          <span class="story-tag">Mentorship</span>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Floating Buttons -->
+  <div class="back-to-menu">
+    <a href="{{ url_for('index') }}" class="floating-btn">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  
+  <div class="floating-btns">
+    <button class="floating-btn" id="backToTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <script>
+    // DOM Ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const hamburger = document.getElementById('hamburger');
+      const navTabs = document.querySelector('.nav-tabs');
+      
+      if (hamburger && navTabs) {
+        hamburger.addEventListener('click', function() {
+          navTabs.classList.toggle('active');
+          this.classList.toggle('active');
+          
+          // Change icon
+          const icon = this.querySelector('i');
+          if (navTabs.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+      
+      // Script pour le bouton Back to Top
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      
+      // Back to top functionality
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.style.opacity = '1';
+          backToTopBtn.style.visibility = 'visible';
+        } else {
+          backToTopBtn.style.opacity = '0';
+          backToTopBtn.style.visibility = 'hidden';
+        }
+      });
+      
+      // Initialize back to top button as hidden
+      backToTopBtn.style.opacity = '0';
+      backToTopBtn.style.visibility = 'hidden';
+      
+      // Animation for story cards when they come into view
+      const storyCards = document.querySelectorAll('.story-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observe each story card
+      storyCards.forEach(card => {
+        observer.observe(card);
+      });
+      
+      
+      // Progress bar on scroll
+      window.addEventListener('scroll', () => {
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const winScroll = window.pageYOffset;
+        const scrolled = (winScroll / (docHeight - winHeight)) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | L💞venett</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='mains.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.jpg') }}">
+  
+</head>
+<body>
+  <!-- Navigation -->
+   <nav class="navbar">
+    <div class="container nav-container">
+      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-tabs" id="navTabs">
+        <li class="nav-tab"><a href="{{ url_for('index') }}" class="active" data-translate="nav.home">Home</a></li>
+        <li class="nav-tab"><a href="{{ url_for('subscription') }}" data-translate="nav.subscription">Subscription</a></li>
+        <li class="nav-tab"><a href="{{ url_for('chat') }}" data-translate="nav.messages">Messages</a></li>
+        <li class="nav-tab"><a href="{{ url_for('faq') }}" data-translate="nav.faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contact Us Container -->
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2><i class="fas fa-envelope"></i> Contact Our Team</h2>
+      <p class="contact-intro">We'd love to hear from you! Choose the most convenient way to reach out.</p>
+    </div>
+    
+    <div class="contact-methods">
+      <!-- Contact Form -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-paper-plane"></i>
+        </div>
+        <h3>Send Us a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn contact-btn">Send Message</button>
+        </form>
+      </div>
+      
+      <!-- Direct Contact Info -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>Other Ways to Reach Us</h3>
+        <ul class="contact-info">
+          <li>
+            <i class="fas fa-envelope"></i>
+            <span>Email: <a href="lovenett679@gmail.com">lovenett679@gmail.com</a></span>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <span>Phone: 
+              <a href="tel:+233000000000">
+                +233(0)537-065-208<br>
+                +233(0)247-808-949<br>
+                +229(01)642-848-66
+              </a>
+            </span>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Address: Musuku roundabout, Kwabenya, Accra</span>
+          </li>
+          <li>
+            <i class="fas fa-clock"></i>
+            <span>Support Hours: 24/7</span>
+          </li>
+        </ul>
+        
+        <div class="social-media">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+
+  <!-- Floating Buttons -->
+  <div class="back-to-menu">
+    <a href="{{ url_for('index') }}" class="floating-btn">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  
+  <div class="floating-btns">
+    <button class="floating-btn" id="backToTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const navTabs = document.querySelector('.nav-tabs');
+      
+      if (hamburger && navTabs) {
+        hamburger.addEventListener('click', function() {
+          navTabs.classList.toggle('active');
+          this.classList.toggle('active');
+          
+          // Change icon
+          const icon = this.querySelector('i');
+          if (navTabs.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+      
+      // Contact form submission
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        alert(`Thank you, ${name}! Your message has been sent. We'll contact you soon.);
+        this.reset()`;
+      });
+      
+      // FAQ toggle functionality
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          question.classList.toggle('active');
+          const answer = question.nextElementSibling;
+          answer.classList.toggle('show');
+        });
+      });
+      
+      // Script pour le bouton Back to Top
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      
+      // Back to top functionality
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.style.opacity = '1';
+          backToTopBtn.style.visibility = 'visible';
+        } else {
+          backToTopBtn.style.opacity = '0';
+          backToTopBtn.style.visibility = 'hidden';
+        }
+      });
+      
+      // Initialize back to top button as hidden
+      backToTopBtn.style.opacity = '0';
+      backToTopBtn.style.visibility = 'hidden';
+    });
+  </script>
+</body>
+</html>

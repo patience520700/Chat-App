@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertising on L💞venett</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='mains.css') }}">
+  
+  <style>
+    /* Reset & Fonts */
+    :root {
+      --primary: #0062cc;
+      --primary-light: #4a90e2;
+      --primary-gradient: linear-gradient(135deg, #0062cc 0%, #0080ff 100%);
+      --secondary: #ff4b93;
+      --white: #ffffff;
+      --light-bg: #cce6ff;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --shadow: 0 5px 15px rgba(0, 98, 204, 0.1);
+      --radius: 12px;
+    }
+        
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+        
+    body {
+      background-color: #cce6ff;
+      color: var(--dark);
+      display: flex;
+      flex-direction: column; /* stack navbar + content */
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .app-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .app-name span {
+      margin-right: 5px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-tab a {
+      color: var(--text-dark);
+      text-decoration: none;
+      padding: 10px 20px;
+      display: block;
+      transition: all 0.3s;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+
+    .nav-tab a:hover, 
+    .nav-tab a.active {
+      color: var(--primary);
+      background: rgba(0, 98, 204, 0.05);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .nav-tabs {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+
+      .nav-tabs.active {
+        right: 0;
+      }
+
+      .nav-tab {
+        margin: 15px 0;
+      }
+
+      .nav-tab a {
+        padding: 15px;
+        font-size: 1.1rem;
+      }
+
+      .hamburger {
+        display: block;
+        z-index: 1000;
+      }
+    }
+
+    /* Container */
+    .advert-container {
+      flex: 1; /* make content grow */
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.014);
+    }
+
+    .advert-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #333333;
+    }
+
+    .intro-text {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #333333;
+    }
+
+    /* Sections */
+    .advert-section {
+      margin-bottom: 2rem;
+    }
+
+    .advert-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #0062cc;
+    }
+
+    .advert-section ul,
+    .advert-section ol {
+      padding-left: 1.5rem;
+    }
+
+    .advert-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Package Cards */
+    .package-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .package-card {
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .package-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .package-card h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      color: #0062cc;
+    }
+
+    .package-card .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .package-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .package-card li {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .package-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* Specs Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .specs-table th, .specs-table td {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .specs-table th {
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .specs-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-section h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-section p {
+      margin-bottom: 1rem;
+    }
+
+    .btn.contact-btn {
+      display: inline-block;
+      background: #0062cc;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn.contact-btn:hover {
+      background: #4a90e2;
+    }
+
+    /* Floating Buttons */
+    .floating-btn {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0062cc, #4a90e2);
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .floating-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    }
+
+    .back-to-menu {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .floating-btns {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #backToTopBtn {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="index.html">Home</a></li>
+        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
+        <li class="nav-tab"><a href="chat.html">Messages</a></li>
+        <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="advert-container">
+    <h2>Advertising Opportunities on L💞venett</h2>
+    <p class="intro-text">Reach thousands of potential customers by advertising on L💞venett. Here are our advertising requirements and options:</p>
+    
+    <div class="advert-section">
+      <h3><i class="fas fa-check-circle"></i> Basic Requirements</h3>
+      <ul>
+        <li>Your business must be legally registered</li>
+        <li>Ad content must comply with our community guidelines</li>
+        <li>No adult, gambling, or illegal content</li>
+        <li>Ads must be clearly labeled as sponsored content</li>
+      </ul>
+    </div>
+    
+    <div class="advert-section">
+      <h3><i class="fas fa-ad"></i> Advertising Packages</h3>
+      <div class="package-cards">
+        <div class="package-card">
+          <h4>Basic Package</h4>
+          <p class="price">$3/month</p>
+          <ul>
+            <li>Banner ad on sidebar</li>
+            <li>Up to 10,000 impressions</li>
+            <li>Basic targeting options</li>
+          </ul>
+        </div>
+        
+        <div class="package-card">
+          <h4>Premium Package</h4>
+          <p class="price">$5/month</p>
+          <ul>
+            <li>Top banner placement</li>
+            <li>Up to 50,000 impressions</li>
+            <li>Advanced targeting</li>
+            <li>Featured in newsletter</li>
+          </ul>
+        </div>
+        
+        <div class="package-card">
+          <h4>Custom Package</h4>
+          <p class="price">Contact us</p>
+          <ul>
+            <li>Custom ad solutions</li>
+            <li>Sponsored content</li>
+            <li>Influencer partnerships</li>
+            <li>Custom duration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="advert-section">
+      <h3><i class="fas fa-file-signature"></i> Submission Process</h3>
+      <ol>
+        <li>Complete the advertising application form</li>
+        <li>Submit your ad creatives for approval</li>
+        <li>Our team will review within 2 business days</li>
+        <li>Upon approval, make payment</li>
+        <li>Your campaign goes live!</li>
+      </ol>
+    </div>
+    
+    <div class="advert-section">
+      <h3><i class="fas fa-file-alt"></i> Ad Specifications</h3>
+      <table class="specs-table">
+        <tr>
+          <th>Ad Type</th>
+          <th>Dimensions</th>
+          <th>File Size</th>
+          <th>Format</th>
+        </tr>
+        <tr>
+          <td>Banner Ad</td>
+          <td>728x90 px</td>
+          <td>Max 150KB</td>
+          <td>JPG, PNG, GIF</td>
+        </tr>
+        <tr>
+          <td>Sidebar Ad</td>
+          <td>300x250 px</td>
+          <td>Max 100KB</td>
+          <td>JPG, PNG, GIF</td>
+        </tr>
+        <tr>
+          <td>Video Ad</td>
+          <td>640x360 px</td>
+          <td>Max 5MB</td>
+          <td>MP4, WebM</td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="cta-section">
+      <h3>Ready to advertise with us?</h3>
+      <p>Contact our advertising team to get started:</p>
+      <a href="mailto:ads@lovenett.com" class="btn contact-btn">Email Our Ad Team</a>
+      <p>Or call us at: <strong>+233(0)537-065-208 /
+                                +233(0)247-808-949 /
+                                +229(01)642-848-66</strong></p>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="back-to-menu">
+    <a href="index.html" class="floating-btn">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  
+  <div class="floating-btns">
+    <button class="floating-btn" id="backToTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navTabs = document.querySelector('.nav-tabs');
+
+    hamburger.addEventListener('click', () => {
+      navTabs.classList.toggle('active');
+    });
+
+    // Optional: close menu when a link is clicked
+    document.querySelectorAll('.nav-tab a').forEach(link => {
+      link.addEventListener('click', () => {
+        navTabs.classList.remove('active');
+      });
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.opacity = '1';
+        backToTopBtn.style.visibility = 'visible';
+      } else {
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.visibility = 'hidden';
+      }
+    });
+
+    // Initialize hidden
+    backToTopBtn.style.opacity = '0';
+    backToTopBtn.style.visibility = 'hidden';
+  </script>
+
+  <script src="main.js"></script>
+</body>
+</html>

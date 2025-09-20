@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonnements Premium | L💞venett</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mains.css') }}">
+
+    <link rel="icon" type="image/png" href="images/favicon.jpg">
+
+</head>
+<body>
+    <!-- Navigation -->
+   <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-tabs" id="navTabs">
+        <li class="nav-tab"><a href="{{ url_for('index') }}" class="active" data-translate="nav.home">Home</a></li>
+        <li class="nav-tab"><a href="{{ url_for('subscription') }}" data-translate="nav.subscription">Subscription</a></li>
+        <li class="nav-tab"><a href="{{ url_for('chat') }}" data-translate="nav.messages">Messages</a></li>
+        <li class="nav-tab"><a href="{{ url_for('faq') }}" data-translate="nav.faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="subscription-section">
+        <div class="subscription-header">
+            <h2>Abonnements Premium</h2>
+            <p>Débloquez des fonctionnalités exclusives et améliorez votre expérience avec nos abonnements premium</p>
+        </div>
+
+        <div class="subscription-plans">
+            <!-- Carte Standard -->
+            <div class="subscription-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Standard</div>
+                        <div class="card-price">Gratuit <span></span></div>
+                        <div class="card-period">Accès essentiel</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès à tous les groupes
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Publications illimitées
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Statistiques de base
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Support standard
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-free">Commencer gratuitement</a>
+                </div>
+            </div>
+
+            <!-- Carte Premium (Mise en avant) -->
+            <div class="subscription-card">
+                <div class="popular-badge">Populaire</div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Premium</div>
+                        <div class="card-price">1$ <span>/mois</span></div>
+                        <div class="card-period">Facturation mensuelle</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Tous les avantages Standard
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Création de groupes illimitée
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Badge exclusif Premium
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès aux événements VIP
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Support prioritaire
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-premium">Choisir Premium</a>
+                </div>
+            </div>
+
+            <!-- Carte Annuelle (Économie) -->
+            <div class="subscription-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Annuel</div>
+                        <div class="card-price">6$ <span>/an</span></div>
+                        <div class="card-period">Économisez 50%</div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Tous les avantages Premium
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Économisez 17%
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Accès anticipé aux nouvelles fonctionnalités
+                        </div>
+                        <div class="feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Cadeau de bienvenue
+                        </div>
+                    </div>
+                    <a href="#" class="card-button btn-premium">Choisir Annuel</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="subscription-benefits">
+            <h3>Pourquoi passer à Premium ?</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="benefit-title">Visibilité accrue</div>
+                    <div class="benefit-desc">Votre profil et vos publications sont mis en avant dans les résultats de recherche</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-title">Analyses avancées</div>
+                    <div class="benefit-desc">Accédez à des statistiques détaillées sur vos publications et votre audience</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="benefit-title">Réseautage</div>
+                    <div class="benefit-desc">Connectez-vous avec des professionnels et influenceurs de votre domaine</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="benefit-title">Contenu exclusif</div>
+                    <div class="benefit-desc">Accédez à des ressources et formations réservées aux membres Premium</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Buttons -->
+    <div class="back-to-menu">
+        <a href="{{ url_for('index') }}" class="floating-btn">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    
+    <div class="floating-btns">
+        <button class="floating-btn" id="backToTopBtn">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navTabs = document.querySelector('.nav-tabs');
+            
+            if (hamburger && navTabs) {
+                hamburger.addEventListener('click', function() {
+                    navTabs.classList.toggle('active');
+                    this.classList.toggle('active');
+                    
+                    // Change icon
+                    const icon = this.querySelector('i');
+                    if (navTabs.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // Script pour gérer les interactions des abonnements
+            document.querySelectorAll('.card-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const plan = this.closest('.subscription-card').querySelector('.card-title').textContent;
+                    alert(`Vous avez choisi l'abonnement ${plan}. Redirection vers le paiement...`);
+                    // Ici vous ajouteriez la logique de redirection vers le paiement
+                });
+            });
+            
+            // Script pour le bouton Back to Top
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            
+            // Back to top functionality
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Show/hide back to top button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.opacity = '1';
+                    backToTopBtn.style.visibility = 'visible';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.visibility = 'hidden';
+                }
+            });
+            
+            // Initialize back to top button as hidden
+            backToTopBtn.style.opacity = '0';
+            backToTopBtn.style.visibility = 'hidden';
+        });
+    </script>
+</body>
+</html>
