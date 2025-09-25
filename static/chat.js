@@ -1,348 +1,680 @@
-// // Tab Switching Logic
-// document.querySelectorAll('.tab-btn').forEach(button => {
-//   button.addEventListener('click', () => {
-//     document.querySelectorAll('.tab-btn, .tab-pane').forEach(el => el.classList.remove('active'));
-//     button.classList.add('active');
-//     document.getElementById(button.dataset.tab).classList.add('active');
-//   });
-// });
 
-// // Variables globales
-// let currentUserId = null;
-// let currentChatId = null;
-// let messageHistory = JSON.parse(localStorage.getItem('messageHistory')) || [];
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// // Profile Dropdown
-// document.addEventListener('DOMContentLoaded', () => {
-//   const profileIcon = document.getElementById('profile-icon');
-//   const dropdownContent = document.getElementById('profile-dropdown-content');
-//   const uploadButton = document.getElementById('upload-profile-pic');
-//   const deleteButton = document.getElementById('delete-profile-pic');
-//   const setDefaultButton = document.getElementById('set-default-pic');
-//   const fileInput = document.getElementById('profile-pic-upload');
-
-//   // Toggle dropdown visibility
-//   profileIcon.addEventListener('click', (e) => {
-//     e.stopPropagation();
-//     dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-//   });
-
-//   document.addEventListener('click', () => dropdownContent.style.display = 'none');
-//   dropdownContent.addEventListener('click', (e) => e.stopPropagation());
-
-//   // Profile picture handlers
-//   uploadButton.addEventListener('click', () => fileInput.click());
-//   fileInput.addEventListener('change', handleProfilePicUpload);
-//   deleteButton.addEventListener('click', resetProfilePic);
-//   setDefaultButton.addEventListener('click', resetProfilePic);
-
-//   function handleProfilePicUpload(e) {
-//       const file = e.target.files[0];
-//       if (file) {
-//           const reader = new FileReader();
-//           reader.onload = (event) => {
-//               profileIcon.textContent = '';
-//               profileIcon.style.backgroundImage = `url(${event.target.result})`;
-//               profileIcon.style.backgroundSize = 'cover';
-//           };
-//           reader.readAsDataURL(file);
-//       }
-//   }
-
-//   function resetProfilePic() {
-//       profileIcon.style.backgroundImage = '';
-//       profileIcon.textContent = '👤';
-//   }
-// });
-
-// // Initialize chat
-// auth.onAuthStateChanged(user => {
-//   if (user) {
-//       currentUserId = user.uid;
-//       loadContacts(user.uid);
-//   } else {
-//       window.location.href = 'login.html';
-//   }
-// });
-
-// // Contacts and Messaging Functions
-// async function loadContacts(userId) {
-//   const contactsRef = collection(db, 'users');
-//   const q = query(contactsRef, where('uid', '!=', userId));
-  
-//   onSnapshot(q, (snapshot) => {
-//       const contactsList = document.getElementById('contacts-list');
-//       contactsList.innerHTML = '';
-      
-//       snapshot.forEach(doc => {
-//           const contact = doc.data();
-//           const li = document.createElement('li');
-//           li.innerHTML = `
-//               <div class="contact" data-id="${contact.uid}">
-//                   <img src="${contact.photoURL || 'default-avatar.png'}" alt="${contact.displayName}">
-//                   <span>${contact.displayName}</span>
-//                   <span class="status ${contact.status || 'offline'}"></span>
-//               </div>
-//           `;
-//           li.addEventListener('click', () => openChat(contact.uid));
-//           contactsList.appendChild(li);
-//       });
-//   });
-// }
-
-// function openChat(contactId) {
-//   currentChatId = contactId;
-//   document.getElementById('current-chat-name').textContent = 
-//       document.querySelector(`[data-id="${contactId}"] span`).textContent;
-//   loadMessages(currentUserId, contactId);
-// }
-
-// // Message History Functions
-// function saveToHistory(message, isSent) {
-//   const historyItem = {
-//       text: message,
-//       timestamp: new Date().toISOString(),
-//       isSent: isSent
-//   };
-  
-//   messageHistory.unshift(historyItem);
-//   if (messageHistory.length > 100) {
-//       messageHistory.pop();
-//   }
-  
-//   localStorage.setItem('messageHistory', JSON.stringify(messageHistory));
-//   updateHistoryUI();
-// }
-
-// function updateHistoryUI() {
-//   const historyList = document.getElementById('history-list');
-//   if (!historyList) return;
-  
-//   historyList.innerHTML = '';
-//   messageHistory.forEach(item => {
-//       const messageDiv = document.createElement('div');
-//       messageDiv.className = `history-message ${item.isSent ? 'sent' : 'received'}`;
-//       const time = new Date(item.timestamp).toLocaleTimeString();
-//       messageDiv.innerHTML = `
-//           <div>${item.text}</div>
-//           <span class="time">${time} - ${item.isSent ? 'Sent' : 'Received'}</span>
-//       `;
-//       historyList.appendChild(messageDiv);
-//   });
-// }
-
-// // Modified Messaging Functions
-// function loadMessages(userId, contactId) {
-//   const messagesRef = collection(db, 'private_messages');
-//   const q = query(
-//       messagesRef,
-//       where('participants', 'array-contains', userId),
-//       orderBy('timestamp', 'asc')
-//   );
-  
-//   onSnapshot(q, (snapshot) => {
-//       const messagesContainer = document.getElementById('messages-container');
-//       messagesContainer.innerHTML = '';
-      
-//       snapshot.forEach(doc => {
-//           const msg = doc.data();
-//           if ((msg.sender === userId && msg.receiver === contactId) || 
-//               (msg.sender === contactId && msg.receiver === userId)) {
-//               displayMessage(msg);
-              
-//               if (msg.sender === contactId) {
-//                   saveToHistory(msg.text, false);
-//               }
-//           }
-//       });
-//       messagesContainer.scrollTop = messagesContainer.scrollHeight;
-//   });
-// }
-
-// function displayMessage(msg) {
-//   const messagesContainer = document.getElementById('messages-container');
-//   const messageDiv = document.createElement('div');
-//   messageDiv.className = `message ${msg.sender === currentUserId ? 'sent' : 'received'}`;
-  
-//   messageDiv.innerHTML = `
-//       <div class="message-content">${msg.text}</div>
-//       <div class="message-time">${formatTime(msg.timestamp?.toDate())}</div>
-//   `;
-  
-//   messagesContainer.appendChild(messageDiv);
-// }
-
-// async function sendMessage() {
-//   const input = document.getElementById('message-input');
-//   const text = input.value.trim();
-  
-//   if (text && currentChatId) {
-//       try {
-//           await addDoc(collection(db, 'private_messages'), {
-//               text,
-//               sender: currentUserId,
-//               receiver: currentChatId,
-//               participants: [currentUserId, currentChatId],
-//               timestamp: serverTimestamp(),
-//               read: false
-//            });
-          
-//           saveToHistory(text, true);
-//           input.value = '';
-//       } catch (error) {
-//           console.error("Error sending message:", error);
-//       }
-//   }
-// }
-
-// // Helper Functions
-// function formatTime(date) {
-//   return date ? date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-// }
-
-// // Event Listeners
-// document.getElementById('send-button').addEventListener('click', sendMessage);
-// document.getElementById('message-input').addEventListener('keypress', (e) => {
-//   if (e.key === 'Enter') sendMessage();
-// });
-
-// document.getElementById('history-tab')?.addEventListener('click', () => {
-//   const historyContainer = document.getElementById('history-container');
-//   if (historyContainer) {
-//       historyContainer.style.display = historyContainer.style.display === 'block' ? 'none' : 'block';
-//       updateHistoryUI();
-//   }
-// });
-
-// document.getElementById('clear-history')?.addEventListener('click', () => {
-//   messageHistory = [];
-//   localStorage.removeItem('messageHistory');
-//   updateHistoryUI();
-// });
-
-// // Audio Recording (keep your existing implementation)
-// const wavesurfer = WaveSurfer.create({
-//   container: '#waveform',
-//   waveColor: '#007bff',
-//   progressColor: '#0056b3',
-//   height: 90,
-//   barWidth: 4,
-//   responsive: true
-// });
-
-// document.getElementById('record-button').addEventListener('click', handleRecording);
-
-// async function handleRecording() {
-//   const recordButton = this;
-//   const container = document.getElementById('audio-recording-container');
-  
-//   if (!recordButton.isRecording) {
-//       try {
-//           const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-//           recordButton.isRecording = true;
-//           recordButton.innerHTML = '⏹';
-//           container.style.display = 'block';
-          
-//           const mediaRecorder = new MediaRecorder(stream);
-//           let audioChunks = [];
-          
-//           wavesurfer.load(stream);
-          
-//           mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
-//           mediaRecorder.onstop = () => {
-//               const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-//               console.log('Audio enregistré:', audioBlob);
-//           };
-          
-//           mediaRecorder.start();
-//           recordButton.mediaRecorder = mediaRecorder;
-//           recordButton.stream = stream;
-//       } catch (err) {
-//           console.error("Erreur microphone:", err);
-//           alert("Impossible d'accéder au microphone: " + err.message);
-//       }
-//   } else {
-//       recordButton.isRecording = false;
-//       recordButton.innerHTML = '🎤';
-//       recordButton.mediaRecorder.stop();
-//       recordButton.stream.getTracks().forEach(track => track.stop());
-//       wavesurfer.stop();
-//   }
-// }
-
-
-
-
-import { db } from './firebase.js';
-
-export const createConversation = (participants) => {
-  return db.collection('conversations').add({
-    participants: participants,
-    lastMessage: '',
-    lastMessageTime: firebase.firestore.FieldValue.serverTimestamp(),
-    unreadCount: {}
-  });
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBcNUSVuZSIRw2LTbtdugEMt741MhdKe7o",
+  authDomain: "lovenett-82e79.firebaseapp.com",
+  projectId: "lovenett-82e79",
+  storageBucket: "lovenett-82e79.firebasestorage.app",
+  messagingSenderId: "599780179872",
+  appId: "1:599780179872:web:d5a91746694d7e77a06ec5"
 };
 
-export const getConversations = (userId, callback) => {
-  return db.collection('conversations')
-    .where('participants', 'array-contains', userId)
-    .orderBy('lastMessageTime', 'desc')
-    .onSnapshot(snapshot => {
-      const conversations = [];
-      snapshot.forEach(doc => {
-        conversations.push({ id: doc.id, ...doc.data() });
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+
+
+
+
+
+  // Variables globales
+  let currentChatUser = null;
+  let currentUserId = null;
+  let conversations = {};
+  let currentTab = 'contacts';
+  let friendsListener = null;
+  let messagesListener = null;
+
+  // Initialisation
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is authenticated
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        currentUserId = user.uid;
+        loadUserProfile(user);
+        loadFriends();
+        setupRealTimeListeners();
+      } else {
+        // Redirect to login if not authenticated
+        window.location.href = "forms.html";
+      }
+    });
+
+    // Profile menu toggle
+    const profileMenuBtn = document.getElementById('profileMenuBtn');
+    const profileMenu = document.getElementById('profileMenu');
+    
+    profileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      profileMenu.classList.toggle('show');
+    });
+    
+    // Close profile menu when clicking outside
+    document.addEventListener('click', () => {
+      profileMenu.classList.remove('show');
+    });
+    
+    // Profile modal
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    const profileModal = document.getElementById('profileModal');
+    const modalClose = document.getElementById('modalClose');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const saveProfileBtn = document.getElementById('saveProfileBtn');
+    const avatarUploadBtn = document.getElementById('avatarUploadBtn');
+    const avatarInput = document.getElementById('avatarInput');
+    const avatarPreview = document.getElementById('avatarPreview');
+    
+    editProfileBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      profileModal.classList.add('show');
+    });
+    
+    modalClose.addEventListener('click', () => {
+      profileModal.classList.remove('show');
+    });
+    
+    cancelBtn.addEventListener('click', () => {
+      profileModal.classList.remove('show');
+    });
+    
+    saveProfileBtn.addEventListener('click', () => {
+      const userName = document.getElementById('userName').value;
+      const userStatus = document.getElementById('userStatus').value;
+      
+      // Update profile in Firebase
+      db.collection('users').doc(currentUserId).update({
+        name: userName,
+        status: userStatus,
+        lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        document.getElementById('currentUserName').textContent = userName;
+        showNotification('Profile updated successfully');
+        profileModal.classList.remove('show');
+      }).catch((error) => {
+        console.error("Error updating profile: ", error);
+        showNotification('Error updating profile');
       });
-      callback(conversations);
-    });
-};
-
-
-function setupReactionHandlers() {
-    // Gestionnaire pour le clic sur le message
-    document.querySelectorAll('.message-content').forEach(content => {
-        content.addEventListener('click', function(e) {
-            // Ne pas déclencher si on clique sur une réaction existante
-            if (e.target.closest('.reaction, .add-reaction-btn, .reaction-picker')) {
-                return;
-            }
-            
-            const messageElement = this.closest('.message');
-            showReactionPicker(messageElement);
-        });
-    });
-
-    // ... (le reste de votre fonction existante)
-}
-
-function showReactionPicker(messageElement) {
-    // Fermer tous les autres sélecteurs de réaction
-    document.querySelectorAll('.reaction-picker').forEach(picker => {
-        picker.style.display = 'none';
     });
     
-    const messageId = messageElement.dataset.messageId;
+    avatarUploadBtn.addEventListener('click', () => {
+      avatarInput.click();
+    });
     
-    let picker = messageElement.querySelector('.reaction-picker');
-    if (!picker) {
-        picker = document.createElement('div');
-        picker.className = 'reaction-picker';
-        
-        // Liste des émojis de réaction courants
-        const commonReactions = ['👍', '❤️', '😂', '😮', '😢', '🙏'];
-        
-        commonReactions.forEach(emoji => {
-            const span = document.createElement('span');
-            span.textContent = emoji;
-            span.addEventListener('click', () => addReaction(messageId, emoji));
-            picker.appendChild(span);
+    avatarInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          avatarPreview.src = event.target.result;
+          document.getElementById('currentUserAvatar').src = event.target.result;
+          
+          // In a real app, you would upload this to Firebase Storage
+          // and update the user's profile with the image URL
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Are you sure you want to logout?')) {
+        auth.signOut().then(() => {
+          window.location.href = "forms.html";
+        }).catch((error) => {
+          console.error("Logout error: ", error);
         });
+      }
+    });
+    
+    // Sticker functionality
+    const stickerBtn = document.getElementById('stickerBtn');
+    const stickerPicker = document.getElementById('stickerPicker');
+    
+    stickerBtn.addEventListener('click', () => {
+      stickerPicker.classList.toggle('show');
+    });
+    
+    // Close sticker picker when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!stickerBtn.contains(e.target) && !stickerPicker.contains(e.target)) {
+        stickerPicker.classList.remove('show');
+      }
+    });
+    
+    // Notification functionality
+    const notificationClose = document.getElementById('notificationClose');
+    
+    notificationClose.addEventListener('click', () => {
+      document.getElementById('notification').classList.remove('show');
+    });
+    
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentTab = tab.dataset.tab;
         
-        messageElement.appendChild(picker);
+        if (currentTab === 'discover') {
+          loadDiscoverUsers();
+          showNotification('Browse and discover new people to connect with');
+        } else if (currentTab === 'invitations') {
+          loadFriendRequests();
+          showNotification('Manage your connection invitations');
+        } else if (currentTab === 'contacts') {
+          loadFriends();
+        }
+      });
+    });
+    
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      if (e.target.value.length > 2) {
+        searchUsers(e.target.value);
+      } else {
+        loadFriends();
+      }
+    });
+    
+    // Send message on Enter key
+    document.getElementById('messageInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    // Send button functionality
+    document.getElementById('sendButton').addEventListener('click', sendMessage);
+  });
+
+  // Load user profile from Firebase
+  function loadUserProfile(user) {
+    db.collection('users').doc(user.uid).get().then((doc) => {
+      if (doc.exists) {
+        const userData = doc.data();
+        document.getElementById('currentUserName').textContent = userData.name;
+        document.getElementById('userName').value = userData.name;
+        document.getElementById('userStatus').value = userData.status || 'Online';
+        
+        if (userData.avatar) {
+          document.getElementById('currentUserAvatar').src = userData.avatar;
+          document.getElementById('avatarPreview').src = userData.avatar;
+        }
+      } else {
+        // Create user profile if it doesn't exist
+        db.collection('users').doc(user.uid).set({
+          name: user.displayName || 'User',
+          email: user.email,
+          avatar: user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || 'User')}&background=0062cc&color=fff`,
+          status: 'Online',
+          lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      }
+    }).catch((error) => {
+      console.error("Error loading user profile: ", error);
+    });
+  }
+
+  // Load friends list
+  function loadFriends() {
+    const contactsList = document.getElementById('contactsList');
+    contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-user-friends"></i><h3>Loading contacts...</h3></div>';
+    
+    if (friendsListener) {
+      friendsListener(); // Remove previous listener
     }
     
-    // Positionner le sélecteur au-dessus du message
-    const messageContent = messageElement.querySelector('.message-content');
-    picker.style.bottom = `${messageContent.offsetHeight + 10}px`;
-    picker.style.display = picker.style.display === 'block' ? 'none' : 'block';
-}
+    friendsListener = db.collection('friendships')
+      .where('users', 'array-contains', currentUserId)
+      .where('status', '==', 'accepted')
+      .onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+          contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-user-friends"></i><h3>No contacts yet</h3><p>Go to the "Discover" tab to find people to add</p></div>';
+          return;
+        }
+        
+        contactsList.innerHTML = '';
+        snapshot.forEach((doc) => {
+          const friendship = doc.data();
+          const friendId = friendship.users.find(id => id !== currentUserId);
+          
+          // Get friend details
+          db.collection('users').doc(friendId).get().then((friendDoc) => {
+            if (friendDoc.exists) {
+              const friendData = friendDoc.data();
+              displayFriend(friendData, friendId, contactsList);
+            }
+          });
+        });
+      }, (error) => {
+        console.error("Error loading friends: ", error);
+        contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-exclamation-triangle"></i><h3>Error loading contacts</h3></div>';
+      });
+  }
+
+  // Display a friend in the contacts list
+  function displayFriend(friendData, friendId, contactsList) {
+    const contactElement = document.createElement('div');
+    contactElement.className = 'contact';
+    contactElement.dataset.userId = friendId;
+    
+    contactElement.innerHTML = `
+      <img class="contact-avatar" src="${friendData.avatar || 'https://ui-avatars.com/api/?name=User&background=0062cc&color=fff'}">
+      <div class="contact-info">
+        <h4>${friendData.name}</h4>
+        <p>${friendData.status || 'Online'}</p>
+      </div>
+      <div class="contact-time">Now</div>
+    `;
+    
+    contactElement.addEventListener('click', () => {
+      openChat(friendData, friendId);
+    });
+    
+    contactsList.appendChild(contactElement);
+  }
+
+  // Open chat with a friend
+  function openChat(friendData, friendId) {
+    currentChatUser = friendId;
+    
+    // Update chat header
+    document.getElementById('chatContactName').textContent = friendData.name;
+    document.getElementById('chatContactStatus').textContent = friendData.status || 'Online';
+    document.getElementById('chatContactAvatar').src = friendData.avatar || 'https://ui-avatars.com/api/?name=User&background=0062cc&color=fff';
+    
+    // Show chat area
+    document.getElementById('noChatSelected').style.display = 'none';
+    document.getElementById('chatInputContainer').style.display = 'flex';
+    
+    // Clear previous messages
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML = '';
+    
+    // Load messages
+    loadMessages(friendId);
+  }
+
+  // Load messages for a conversation
+  function loadMessages(friendId) {
+    // Stop previous listener if exists
+    if (messagesListener) {
+      messagesListener();
+    }
+    
+    // Generate conversation ID (sorted to ensure consistency)
+    const conversationId = [currentUserId, friendId].sort().join('_');
+    
+    messagesListener = db.collection('messages')
+      .where('conversationId', '==', conversationId)
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        const chatMessages = document.getElementById('chatMessages');
+        
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            const message = change.doc.data();
+            displayMessage(message, message.senderId === currentUserId);
+          }
+        });
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+  }
+
+  // Send a message
+  function sendMessage() {
+    if (!currentChatUser) return;
+    
+    const input = document.getElementById('messageInput');
+    const messageContent = input.value.trim();
+    
+    if (messageContent) {
+      // Generate conversation ID
+      const conversationId = [currentUserId, currentChatUser].sort().join('_');
+      
+      const message = {
+        content: messageContent,
+        senderId: currentUserId,
+        receiverId: currentChatUser,
+        conversationId: conversationId,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        read: false
+      };
+      
+      // Add message to Firestore
+      db.collection('messages').add(message)
+        .then(() => {
+          input.value = '';
+        })
+        .catch((error) => {
+          console.error("Error sending message: ", error);
+          showNotification('Error sending message');
+        });
+    }
+  }
+
+  // Display a message in the chat
+  function displayMessage(message, isSent) {
+    const chatMessages = document.getElementById('chatMessages');
+    
+    const time = new Date(message.timestamp?.toDate() || new Date()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${isSent ? 'sent' : 'received'}`;
+    
+    messageElement.innerHTML = `
+      <div class="message-content">
+        ${message.content}
+        <div class="message-time">${time}</div>
+      </div>
+    `;
+    
+    chatMessages.appendChild(messageElement);
+    
+    // Animate message
+    setTimeout(() => {
+      messageElement.classList.add('visible');
+    }, 10);
+  }
+
+  // Load discover users (people you're not friends with)
+  function loadDiscoverUsers() {
+    const contactsList = document.getElementById('contactsList');
+    contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-search"></i><h3>Finding people...</h3></div>';
+    
+    // Get all users except current user and friends
+    db.collection('users')
+      .where('__name__', '!=', currentUserId)
+      .limit(20)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-user-friends"></i><h3>No users found</h3></div>';
+          return;
+        }
+        
+        contactsList.innerHTML = '';
+        snapshot.forEach((doc) => {
+          const userData = doc.data();
+          const userId = doc.id;
+          
+          // Check if already friends or request sent
+          checkFriendshipStatus(userId).then((status) => {
+            if (status === 'none') {
+              displayDiscoverUser(userData, userId, contactsList);
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Error loading discover users: ", error);
+        contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-exclamation-triangle"></i><h3>Error loading users</h3></div>';
+      });
+  }
+
+  // Check friendship status between current user and another user
+  function checkFriendshipStatus(otherUserId) {
+    return db.collection('friendships')
+      .where('users', 'array-contains', currentUserId)
+      .get()
+      .then((snapshot) => {
+        let status = 'none';
+        
+        snapshot.forEach((doc) => {
+          const friendship = doc.data();
+          if (friendship.users.includes(otherUserId)) {
+            status = friendship.status;
+          }
+        });
+        
+        return status;
+      });
+  }
+
+  // Display a user in the discover list
+  function displayDiscoverUser(userData, userId, contactsList) {
+    const contactElement = document.createElement('div');
+    contactElement.className = 'contact';
+    
+    contactElement.innerHTML = `
+      <img class="contact-avatar" src="${userData.avatar || 'https://ui-avatars.com/api/?name=User&background=0062cc&color=fff'}">
+      <div class="contact-info">
+        <h4>${userData.name}</h4>
+        <p>${userData.status || 'Click to send friend request'}</p>
+      </div>
+      <button class="add-friend-btn" data-user-id="${userId}">
+        <i class="fas fa-user-plus"></i>
+      </button>
+    `;
+    
+    const addButton = contactElement.querySelector('.add-friend-btn');
+    addButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sendFriendRequest(userId);
+    });
+    
+    contactsList.appendChild(contactElement);
+  }
+
+  // Send a friend request
+  function sendFriendRequest(friendId) {
+    // Create a friendship document
+    const friendshipId = [currentUserId, friendId].sort().join('_');
+    
+    db.collection('friendships').doc(friendshipId).set({
+      users: [currentUserId, friendId],
+      status: 'pending',
+      requestedBy: currentUserId,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      showNotification('Friend request sent');
+    })
+    .catch((error) => {
+      console.error("Error sending friend request: ", error);
+      showNotification('Error sending friend request');
+    });
+  }
+
+  // Load friend requests
+  function loadFriendRequests() {
+    const contactsList = document.getElementById('contactsList');
+    contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-envelope"></i><h3>Loading requests...</h3></div>';
+    
+    db.collection('friendships')
+      .where('users', 'array-contains', currentUserId)
+      .where('status', '==', 'pending')
+      .where('requestedBy', '!=', currentUserId)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-envelope-open"></i><h3>No pending requests</h3></div>';
+          return;
+        }
+        
+        contactsList.innerHTML = '';
+        snapshot.forEach((doc) => {
+          const friendship = doc.data();
+          const requesterId = friendship.requestedBy;
+          
+          // Get requester details
+          db.collection('users').doc(requesterId).get().then((userDoc) => {
+            if (userDoc.exists) {
+              const userData = userDoc.data();
+              displayFriendRequest(userData, requesterId, doc.id, contactsList);
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Error loading friend requests: ", error);
+        contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-exclamation-triangle"></i><h3>Error loading requests</h3></div>';
+      });
+  }
+
+  // Display a friend request
+  function displayFriendRequest(userData, userId, friendshipId, contactsList) {
+    const contactElement = document.createElement('div');
+    contactElement.className = 'contact';
+    
+    contactElement.innerHTML = `
+      <img class="contact-avatar" src="${userData.avatar || 'https://ui-avatars.com/api/?name=User&background=0062cc&color=fff'}">
+      <div class="contact-info">
+        <h4>${userData.name}</h4>
+        <p>Wants to be your friend</p>
+      </div>
+      <div class="request-actions">
+        <button class="accept-btn" data-friendship-id="${friendshipId}">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="reject-btn" data-friendship-id="${friendshipId}">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
+    
+    const acceptBtn = contactElement.querySelector('.accept-btn');
+    const rejectBtn = contactElement.querySelector('.reject-btn');
+    
+    acceptBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      respondToFriendRequest(friendshipId, 'accepted');
+    });
+    
+    rejectBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      respondToFriendRequest(friendshipId, 'rejected');
+    });
+    
+    contactsList.appendChild(contactElement);
+  }
+
+  // Respond to a friend request
+  function respondToFriendRequest(friendshipId, response) {
+    db.collection('friendships').doc(friendshipId).update({
+      status: response,
+      respondedAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      showNotification(`Friend request ${response}`);
+      loadFriendRequests(); // Reload the list
+    })
+    .catch((error) => {
+      console.error(`Error ${response} friend request: `, error);
+      showNotification(`Error ${response} friend request`);
+    });
+  }
+
+  // Search users
+  function searchUsers(query) {
+    const contactsList = document.getElementById('contactsList');
+    contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-search"></i><h3>Searching...</h3></div>';
+    
+    db.collection('users')
+      .where('name', '>=', query)
+      .where('name', '<=', query + '\uf8ff')
+      .limit(10)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-search"></i><h3>No users found</h3></div>';
+          return;
+        }
+        
+        contactsList.innerHTML = '';
+        snapshot.forEach((doc) => {
+          if (doc.id !== currentUserId) {
+            const userData = doc.data();
+            displayFriend(userData, doc.id, contactsList);
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Error searching users: ", error);
+        contactsList.innerHTML = '<div class="no-contacts"><i class="fas fa-exclamation-triangle"></i><h3>Error searching</h3></div>';
+      });
+  }
+
+  // Setup real-time listeners for notifications
+  function setupRealTimeListeners() {
+    // Listen for new friend requests
+    db.collection('friendships')
+      .where('users', 'array-contains', currentUserId)
+      .where('status', '==', 'pending')
+      .where('requestedBy', '!=', currentUserId)
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            const friendship = change.doc.data();
+            const requesterId = friendship.requestedBy;
+            
+            // Get requester name
+            db.collection('users').doc(requesterId).get().then((userDoc) => {
+              if (userDoc.exists) {
+                const userData = userDoc.data();
+                showNotification(`${userData.name} sent you a friend request`);
+              }
+            });
+          }
+        });
+      });
+    
+    // Listen for new messages
+    db.collection('messages')
+      .where('receiverId', '==', currentUserId)
+      .where('read', '==', false)
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            const message = change.doc.data();
+            
+            // Get sender name
+            db.collection('users').doc(message.senderId).get().then((userDoc) => {
+              if (userDoc.exists) {
+                const userData = userDoc.data();
+                
+                // Only show notification if not in the current chat
+                if (message.senderId !== currentChatUser) {
+                  showNotification(`New message from ${userData.name}`);
+                }
+                
+                // Mark as read if in the current chat
+                if (message.senderId === currentChatUser) {
+                  change.doc.ref.update({ read: true });
+                }
+              }
+            });
+          }
+        });
+      });
+  }
+
+  function addSticker(sticker) {
+    const messageInput = document.getElementById('messageInput');
+    messageInput.value = sticker;
+    stickerPicker.classList.remove('show');
+    sendMessage();
+  }
+
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    const notificationContent = document.getElementById('notificationContent');
+    
+    notificationContent.textContent = message;
+    notification.classList.add('show');
+    
+    // Hide automatically after 3 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }

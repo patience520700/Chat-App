@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Add Google Identity Services script -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <link rel="icon" type="image/png" href="images/favicon.jpg">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.jpg') }}">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="mains.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='mains.css') }}">
 </head>
 
@@ -50,6 +48,50 @@
       flex-direction: column;
     }
 
+    /* Flash messages styles */
+    .flash-messages {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .flash {
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .flash.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .flash.danger {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .flash.warning {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeaa7;
+    }
+
+    .flash.info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+
     /* Navbar Styles */
     .navbar {
       position: fixed; 
@@ -69,7 +111,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      /* color: #fff; */
     }
 
     .app-name {
@@ -128,13 +169,14 @@
         display: block;
       }
     }
-        .form-container-body {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          background: #cce6ff;
-          padding-top: 100px;
-        }
+
+    .form-container-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #cce6ff;
+      padding-top: 100px;
+    }
 
     .container {
       position: fixed;                 
@@ -516,7 +558,7 @@
     }
     
     .form-content {
-      flex-wrap: wrap; /
+      flex-wrap: wrap;
     }
     
     .signup-form {
@@ -542,96 +584,32 @@
     .signup-form::-webkit-scrollbar-thumb:hover {
       background: #0062cc;
     }
-
-    /* ===== FLOATING BUTTONS ===== */
-   /*  .floating-btns {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    .floating-btn {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--primary-gradient);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    
-    .floating-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 98, 204, 0.5);
-    }
-    
-    .back-to-menu {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      z-index: 1000;
-    }
-    
-   .floating-btn {
-      width: 50px;
-      height: 50px;
-      font-size: 1rem;
-    }
-      
-    .back-to-menu, .floating-btns {
-      bottom: 20px;
-    }
-      
-    .back-to-menu {
-      left: 20px;
-    }
-      
-    .floating-btns {
-       right: 20px;
-    } */
-      
 </style>
 
-<body class="form-container-body">
-  <!-- Navigation bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="app-name"><span>L</span>💞<span>venett</span></h1>
-      <div class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
+<body>
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
       </div>
-      <ul class="nav-tabs">
-        <li class="nav-tab"><a href="index.html">Home</a></li>
-        <li class="nav-tab"><a href="subscription.html">Subscription</a></li>
-        <li class="nav-tab"><a href="chat.html">Messages</a></li>
-        <li class="nav-tab"><a href="FAQ.html">FAQ</a></li>
-      </ul>
-    </div>
-  </nav>
-  
+    {% endif %}
+  {% endwith %}
+
   <div class="container">
     <input type="checkbox" id="flip">
     <div class="cover">
       <div class="front">
-        <img src="images/frontImg.jpg" alt="">
+        <img src="{{ url_for('static', filename='images/frontImg.jpg') }}" alt="">
         <div class="text">
           <span class="text-1">Every new friend is a <br> new adventure</span>
           <span class="text-2">Let's get connected</span>
         </div>
       </div>
       <div class="back">
-        <img src="images/login-img.jpg" alt="Back Image">
+        <img src="{{ url_for('static', filename='images/login-img.jpg') }}" alt="Back Image">
         <div class="text">
           <span class="text-1">Complete miles of journey <br> with one step</span>
           <span class="text-2">Let's get started</span>
@@ -640,20 +618,21 @@
     </div>
     <div class="forms">
       <div class="form-content">
+        <!-- Login Form -->
         <div class="login-form">
           <div class="title">Login</div>
-          <form action="chat.html" id="loginForm">
+          <form action="{{ url_for('login') }}" method="POST" id="loginForm">
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Enter your email" required>
+                <input type="email" name="email" placeholder="Enter your email" required>
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
                 <i class="fas fa-eye password-toggle" id="togglePassword"></i>
               </div>
-              <div class="text"><a href="forgotpassword.html">Forgot password?</a></div>
+              <div class="text"><a href="{{ url_for('index') }}">Forgot password?</a></div>
               <div class="button input-box">
                 <input type="submit" value="Login">
               </div>
@@ -662,18 +641,10 @@
           </form>
         </div>
         
+        <!-- Signup Form -->
         <div class="signup-form">
           <div class="title">Signup</div>
-          <!-- Modification ici pour utiliser FormSubmit -->
-          <form action="https://formsubmit.co/lovenett679@gmail.com" method="POST" id="signupForm">
-            <input type="hidden" name="_subject" value="New registration on Lovenett">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-            <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html"> -->
-
-            <input type="hidden" name="_cc" value="lovenett679@gmail.com">
-            <input type="hidden" name="_autoresponse" value="Thank you for registering on Lovenett. If this wasn't you, please click here to cancel: [LINK]">
-            
+          <form action="{{ url_for('register') }}" method="POST" id="signupForm">
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user"></i>
@@ -693,7 +664,7 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-globe"></i>
-                <select id="country" name="country" required aria-label="Gender">
+                <select id="country" name="country" required aria-label="Country">
                   <option value="" disabled selected>Loading countries...</option>
                 </select>
               </div>
@@ -712,12 +683,12 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" id="confirm-password" placeholder="Confirm password" required>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
                 <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
               </div>
               <div class="checkbox-group">
                 <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+                <label for="terms">I agree to the <a href="{{ url_for('privacy') }}" target="_blank">Terms</a> and <a href="{{ url_for('privacy') }}" target="_blank">Privacy Policy</a></label>
               </div>
               <div class="button input-box">
                 <input type="submit" value="Signup">
@@ -756,21 +727,7 @@
     </div>
   </div>
 
-  <!-- Floating Buttons -->
-  <!-- <div class="back-to-menu">
-    <a href="index.html" class="floating-btn">
-      <i class="fas fa-home"></i>
-    </a>
-  </div>
-  
-  <div class="floating-btns">
-    <button class="floating-btn" id="backToTopBtn">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-  </div> -->
-
-  <script src="login.js"></script>
-  <script>
+ <script>
     // Cache countries for better performance
     let cachedCountries = null;
     
@@ -814,7 +771,7 @@
         <option value="" disabled selected>Select Country</option>
         ${processed.map(country => `
           <option 
-            value="${country.code}" 
+            value="${country.name}" 
             data-phone="${country.phoneCode}"
           >
             ${country.name} (${country.phoneCode})
@@ -875,30 +832,60 @@
       });
     });
 
-    // Form submission handling
+    // Form validation for signup
     document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Validate password match
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
       
       if (password !== confirmPassword) {
+        e.preventDefault();
         alert('Passwords do not match!');
-        return;
+        return false;
       }
       
-      // If validation passes, submit the form
-      this.submit();
+      if (!document.getElementById('terms').checked) {
+        e.preventDefault();
+        alert('Please agree to the terms and conditions.');
+        return false;
+      }
       
-      // Show thank you message (will be replaced by FormSubmit's redirect)
-      alert('Thank you for registering! Please check your email to verify your account.');
+      // If validation passes, allow form submission
+      return true;
     });
 
-    /* tiny JavaScript snippet to make the hamburger menu work on mobile: */
-    document.getElementById("hamburger").addEventListener("click", function() {
-      document.querySelector(".nav-tabs").classList.toggle("active");
+    // Form validation for login
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      // Basic validation for login form
+      const email = document.querySelector('#loginForm input[type="email"]').value;
+      const password = document.querySelector('#loginForm input[type="password"]').value;
+      
+      if (!email || !password) {
+        e.preventDefault();
+        alert('Please fill in all fields.');
+        return false;
+      }
+      
+      return true;
     });
-  </script>
+
+    // Auto-hide flash messages after 5 seconds
+    setTimeout(() => {
+      const flashMessages = document.querySelectorAll('.flash');
+      flashMessages.forEach(flash => {
+        flash.style.transition = 'opacity 0.5s ease';
+        flash.style.opacity = '0';
+        setTimeout(() => flash.remove(), 500);
+      });
+    }, 5000);
+
+    // Debug: Log form submissions
+    document.getElementById('signupForm').addEventListener('submit', function() {
+      console.log('Signup form submitted');
+    });
+    
+    document.getElementById('loginForm').addEventListener('submit', function() {
+      console.log('Login form submitted');
+    });
+</script>
 </body>
 </html>
