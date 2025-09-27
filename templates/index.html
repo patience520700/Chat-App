@@ -218,7 +218,7 @@
       <div class="footer-language">
         <div class="footer-language-selector">
           <i class="fas fa-globe"></i>
-          <span id="currentLanguage">English</span>
+          <span id="currentLanguage">Language</span>
           <i class="fas fa-chevron-down"></i>
           <div class="footer-language-options">
             <div class="footer-language-option" data-lang="en">
@@ -522,38 +522,38 @@
       document.documentElement.lang = lang;
       
       // Afficher une notification
-      showLanguageNotification(lang);
+      // showLanguageNotification(lang);
     }
 
     // Fonction pour afficher une notification de changement de langue
-    function showLanguageNotification(lang) {
-      const langNames = {
-        'en': 'English',
-        'fr': 'Français',
-        'es': 'Español',
-        'de': 'Deutsch'
-      };
+    // function showLanguageNotification(lang) {
+    //   const langNames = {
+    //     'en': 'English',
+    //     'fr': 'Français',
+    //     'es': 'Español',
+    //     'de': 'Deutsch'
+    //   };
       
-      const notification = document.createElement('div');
-      notification.textContent = `Language changed to ${langNames[lang]}`;
-      notification.style.position = 'fixed';
-      notification.style.bottom = '90px';
-      notification.style.right = '20px';
-      notification.style.background = '#4CAF50';
-      notification.style.color = 'white';
-      notification.style.padding = '10px 15px';
-      notification.style.borderRadius = '5px';
-      notification.style.zIndex = '1000';
-      notification.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
-      document.body.appendChild(notification);
+    //   const notification = document.createElement('div');
+    //   notification.textContent = `Language changed to ${langNames[lang]}`;
+    //   notification.style.position = 'fixed';
+    //   notification.style.bottom = '90px';
+    //   notification.style.right = '20px';
+    //   notification.style.background = '#4CAF50';
+    //   notification.style.color = 'white';
+    //   notification.style.padding = '10px 15px';
+    //   notification.style.borderRadius = '5px';
+    //   notification.style.zIndex = '1000';
+    //   notification.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+    //   document.body.appendChild(notification);
       
       // Supprimer la notification après 2 secondes
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transition = 'opacity 0.5s';
-        setTimeout(() => document.body.removeChild(notification), 500);
-      }, 2000);
-    }
+    //   setTimeout(() => {
+    //     notification.style.opacity = '0';
+    //     notification.style.transition = 'opacity 0.5s';
+    //     setTimeout(() => document.body.removeChild(notification), 500);
+    //   }, 2000);
+    // }
 
     // DOM Ready
     document.addEventListener('DOMContentLoaded', function() {

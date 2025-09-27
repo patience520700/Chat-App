@@ -4,11 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
 from functools import wraps
-from sqlalchemy import text  # Add this import
+from sqlalchemy import text
 
 # Application Configuration
 app = Flask(__name__)
-app.secret_key = '935ac244f2b1c36b990a0569c8cfd6d8d7ad33e5feec29f40b04442aa031c489'  # Change this in production
+app.secret_key = '935ac244f2b1c36b990a0569c8cfd6d8d7ad33e5feec29f40b04442aa031c489'
 
 # Database Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:Lovenett123@localhost/chat_app'
@@ -25,7 +25,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     gender = db.Column(db.String(10))
     country = db.Column(db.String(100))
     phone = db.Column(db.String(20))
@@ -43,10 +43,22 @@ class User(db.Model):
     viewers = db.relationship('ProfileView', foreign_keys='ProfileView.viewer_id', backref='viewer', lazy=True)
     
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-    
+        """Hash and set the password"""
+        if password:
+            self.password_hash = generate_password_hash(password)
+            print(f"DEBUG: Password hash created for {self.username}")
+        else:
+            raise ValueError("Password cannot be empty")
+
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        """Check if the password is correct"""
+        if not self.password_hash or not password:
+            print("DEBUG: No password hash or no password provided")
+            return False
+        
+        result = check_password_hash(self.password_hash, password)
+        print(f"DEBUG: Password check for {self.username} - Result: {result}")
+        return result
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -85,12 +97,27 @@ def test_database_connection():
     """Test database connection"""
     try:
         with app.app_context():
-            # Use text() to wrap SQL expression
             db.session.execute(text('SELECT 1'))
             print("✅ Database connection successful!")
             return True
     except Exception as e:
         print(f"❌ Database connection failed: {e}")
+        return False
+
+def check_database_schema():
+    """Check if database schema matches models"""
+    try:
+        with app.app_context():
+            users_count = User.query.count()
+            print(f"✅ Users table accessible. Records: {users_count}")
+            
+            if users_count > 0:
+                test_user = User.query.first()
+                print(f"✅ User model test: {test_user.username}")
+            
+            return True
+    except Exception as e:
+        print(f"❌ Database schema issue: {e}")
         return False
 
 # =============================================================================
@@ -107,78 +134,137 @@ def forms():
     """Login/Registration page"""
     return render_template('forms.html')
 
-@app.route('/login', methods=['POST'])
-def login():
-    """User login"""
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        
-        user = User.query.filter_by(email=email).first()
-        
-        if user and user.check_password(password):
-            session['user_id'] = user.id
-            session['username'] = user.username
-            flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Incorrect email or password.', 'danger')
-            return redirect(url_for('forms'))
-
 @app.route('/register', methods=['POST'])
 def register():
-    """User registration"""
+    """User registration with enhanced validation and debugging"""
     if request.method == 'POST':
-        # Get form data
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        confirm_password = request.form.get('confirm-password')
-        gender = request.form.get('gender')
-        country = request.form.get('country')
-        phone = request.form.get('phone')
-        birthdate_str = request.form.get('birthdate')
-        
-        # Password validation
-        if password != confirm_password:
-            flash('Passwords do not match.', 'danger')
-            return redirect(url_for('forms'))
-        
-        # Check for existing user
-        if User.query.filter_by(email=email).first():
-            flash('An account with this email already exists.', 'danger')
-            return redirect(url_for('forms'))
-        
-        if User.query.filter_by(username=username).first():
-            flash('This username is already taken.', 'danger')
-            return redirect(url_for('forms'))
-        
-        # Convert birthdate
         try:
-            birthdate = datetime.strptime(birthdate_str, '%Y-%m-%d') if birthdate_str else None
-        except ValueError:
-            birthdate = None
-        
-        # Create new user
-        new_user = User(
-            username=username,
-            email=email,
-            gender=gender,
-            country=country,
-            phone=phone,
-            birthdate=birthdate,
-            profile_picture=f'https://ui-avatars.com/api/?name={username}&background=0062cc&color=fff'
-        )
-        new_user.set_password(password)
-        
-        try:
+            print("=== REGISTRATION STARTED ===")
+            print(f"Form data received: {dict(request.form)}")
+            
+            # Get form data with defaults
+            username = request.form.get('username', '').strip()
+            email = request.form.get('email', '').strip().lower()
+            password = request.form.get('password', '')
+            confirm_password = request.form.get('confirm-password', '')
+            gender = request.form.get('gender', '')
+            country = request.form.get('country', '')
+            phone = request.form.get('phone', '').strip()
+            birthdate_str = request.form.get('birthdate', '')
+            
+            print(f"Username: {username}, Email: {email}, Password length: {len(password)}")
+            
+            # Basic validation
+            if not all([username, email, password, confirm_password]):
+                flash('Please fill in all required fields.', 'danger')
+                print("Missing required fields")
+                return redirect(url_for('forms'))
+            
+            if password != confirm_password:
+                flash('Passwords do not match.', 'danger')
+                print("Passwords don't match")
+                return redirect(url_for('forms'))
+            
+            # Check for existing user
+            existing_user = User.query.filter_by(email=email).first()
+            if existing_user:
+                flash('An account with this email already exists.', 'danger')
+                print("Email already exists")
+                return redirect(url_for('forms'))
+            
+            existing_username = User.query.filter_by(username=username).first()
+            if existing_username:
+                flash('This username is already taken.', 'danger')
+                print("Username already taken")
+                return redirect(url_for('forms'))
+            
+            # Create new user
+            new_user = User(
+                username=username,
+                email=email,
+                gender=gender,
+                country=country,
+                phone=phone,
+                profile_picture=f'https://ui-avatars.com/api/?name={username}&background=0062cc&color=fff&size=128'
+            )
+            
+            # Handle birthdate
+            if birthdate_str:
+                try:
+                    birthdate = datetime.strptime(birthdate_str, '%Y-%m-%d')
+                    new_user.birthdate = birthdate
+                except ValueError:
+                    print("Invalid birthdate format")
+            
+            # Set password
+            new_user.set_password(password)
+            print("Password hashed successfully")
+            
+            # Save to database
             db.session.add(new_user)
             db.session.commit()
-            flash('Account created successfully! You can now log in.', 'success')
-            return redirect(url_for('forms'))
+            print(f"User created successfully with ID: {new_user.id}")
+            
+            # Auto-login after registration
+            session['user_id'] = new_user.id
+            session['username'] = new_user.username
+            session['email'] = new_user.email
+            
+            flash('Account created successfully! Welcome to Lovenett!', 'success')
+            print("Registration successful, redirecting to chat")
+            return redirect(url_for('chat'))
+            
         except Exception as e:
             db.session.rollback()
-            flash('Registration failed. Please try again.', 'danger')
+            print(f"REGISTRATION ERROR: {str(e)}")
+            flash('Registration failed due to a system error. Please try again.', 'danger')
+            return redirect(url_for('forms'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    """User login with enhanced debugging"""
+    if request.method == 'POST':
+        try:
+            print("=== LOGIN ATTEMPT ===")
+            email = request.form.get('email', '').strip().lower()
+            password = request.form.get('password', '')
+            
+            print(f"Login attempt - Email: {email}, Password length: {len(password)}")
+            
+            if not email or not password:
+                flash('Please enter both email and password.', 'danger')
+                print("Missing email or password")
+                return redirect(url_for('forms'))
+            
+            user = User.query.filter_by(email=email).first()
+            
+            if user:
+                print(f"User found: {user.username}")
+                print(f"Stored password hash: {user.password_hash[:50]}...")
+                
+                # Debug password check
+                password_match = user.check_password(password)
+                print(f"Password match: {password_match}")
+                
+                if password_match:
+                    session['user_id'] = user.id
+                    session['username'] = user.username
+                    session['email'] = user.email
+                    
+                    print(f"Login successful for user: {user.username}")
+                    flash(f'Welcome back, {user.username}!', 'success')
+                    return redirect(url_for('chat'))
+                else:
+                    print("Password incorrect")
+            else:
+                print("User not found")
+            
+            flash('Invalid email or password. Please try again.', 'danger')
+            return redirect(url_for('forms'))
+            
+        except Exception as e:
+            print(f"LOGIN ERROR: {str(e)}")
+            flash('Login failed due to a system error. Please try again.', 'danger')
             return redirect(url_for('forms'))
 
 @app.route('/logout')
@@ -187,6 +273,54 @@ def logout():
     session.clear()
     flash('You have been logged out.', 'info')
     return redirect(url_for('forms'))
+
+@app.route('/debug/users')
+def debug_users():
+    """Debug route to see all users in database"""
+    users = User.query.all()
+    result = "<h1>Users in Database:</h1><ul>"
+    for user in users:
+        result += f"""
+        <li>
+            <strong>ID:</strong> {user.id}<br>
+            <strong>Username:</strong> {user.username}<br>
+            <strong>Email:</strong> {user.email}<br>
+            <strong>Password Hash:</strong> {user.password_hash[:50]}...<br>
+            <strong>Created:</strong> {user.created_at}<br>
+            <hr>
+        </li>
+        """
+    result += "</ul>"
+    return result
+
+@app.route('/test/password')
+def test_password():
+    """Test password hashing"""
+    test_password = "test123"
+    user = User()
+    user.set_password(test_password)
+    
+    return f"""
+    <h1>Password Test</h1>
+    <p>Original: {test_password}</p>
+    <p>Hashed: {user.password_hash}</p>
+    <p>Check correct: {user.check_password(test_password)}</p>
+    <p>Check wrong: {user.check_password('wrong')}</p>
+    """
+
+@app.route('/test-users')
+def test_users():
+    """Test route to check registered users"""
+    users = User.query.all()
+    result = []
+    for user in users:
+        result.append({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'created_at': user.created_at
+        })
+    return jsonify(result)
 
 # =============================================================================
 # MAIN APPLICATION ROUTES (REQUIRES AUTHENTICATION)
@@ -206,13 +340,11 @@ def profile():
     user = User.query.get(session['user_id'])
     
     if request.method == 'POST':
-        # Update profile information
         user.username = request.form.get('username', user.username)
         user.bio = request.form.get('bio', user.bio)
         user.interests = request.form.get('interests', user.interests)
         user.country = request.form.get('country', user.country)
         
-        # Handle profile picture upload
         if 'profile_picture' in request.files:
             file = request.files['profile_picture']
             if file and file.filename != '':
@@ -230,12 +362,11 @@ def profile():
 @login_required
 def chat():
     """Main chat page"""
-    return render_template('chat.html')
-
-
+    user = User.query.get(session['user_id'])
+    return render_template('chat.html', user=user)
 
 # =============================================================================
-# REAL-TIME CHAT ROUTES (ADD THIS SECTION)
+# REAL-TIME CHAT ROUTES
 # =============================================================================
 
 @app.route('/api/chat/messages/<int:partner_id>')
@@ -244,25 +375,21 @@ def api_chat_messages(partner_id):
     """API: Get messages for real-time chat interface"""
     user_id = session['user_id']
     
-    # Verify partner exists
     partner = User.query.get(partner_id)
     if not partner:
         return jsonify({'error': 'User not found'}), 404
     
-    # Get messages between current user and partner
     messages = Message.query.filter(
         ((Message.sender_id == user_id) & (Message.receiver_id == partner_id)) |
         ((Message.sender_id == partner_id) & (Message.receiver_id == user_id))
     ).order_by(Message.timestamp.asc()).all()
     
-    # Mark received messages as read
     for msg in messages:
         if msg.receiver_id == user_id and not msg.read:
             msg.read = True
     
     db.session.commit()
     
-    # Format response
     messages_data = []
     for msg in messages:
         messages_data.append({
@@ -284,7 +411,6 @@ def api_chat_conversations():
     """API: Get list of conversations for chat sidebar"""
     user_id = session['user_id']
     
-    # Get users you've had conversations with
     sent_to = db.session.query(Message.receiver_id).filter(Message.sender_id == user_id).distinct()
     received_from = db.session.query(Message.sender_id).filter(Message.receiver_id == user_id).distinct()
     
@@ -299,13 +425,11 @@ def api_chat_conversations():
         if not partner:
             continue
         
-        # Get last message
         last_message = Message.query.filter(
             ((Message.sender_id == user_id) & (Message.receiver_id == partner_id)) |
             ((Message.sender_id == partner_id) & (Message.receiver_id == user_id))
         ).order_by(Message.timestamp.desc()).first()
         
-        # Count unread messages
         unread_count = Message.query.filter(
             Message.sender_id == partner_id,
             Message.receiver_id == user_id,
@@ -321,10 +445,10 @@ def api_chat_conversations():
             'profile_picture': partner.profile_picture
         })
     
-    # Sort by last message time
     conversations.sort(key=lambda x: x['last_message_time'], reverse=True)
     
     return jsonify(conversations)
+
 # =============================================================================
 # MESSAGING ROUTES
 # =============================================================================
@@ -335,18 +459,15 @@ def messages():
     """Messages page (classic version)"""
     user_id = session['user_id']
     
-    # Get user messages
     sent_messages = Message.query.filter_by(sender_id=user_id).order_by(Message.timestamp.desc()).all()
     received_messages = Message.query.filter_by(receiver_id=user_id).order_by(Message.timestamp.desc()).all()
     
-    # Combine and sort messages
     all_messages = sorted(
         sent_messages + received_messages, 
         key=lambda x: x.timestamp, 
         reverse=True
     )
     
-    # Get conversation partners
     conversation_partners = set()
     for msg in all_messages:
         if msg.sender_id == user_id:
@@ -403,7 +524,6 @@ def view_profile(user_id):
     """View another user's profile"""
     viewed_user = User.query.get_or_404(user_id)
     
-    # Record profile view
     if user_id != session['user_id']:
         profile_view = ProfileView(
             viewer_id=session['user_id'],
@@ -437,6 +557,65 @@ def api_chat_users():
         })
     
     return jsonify(users_data)
+
+@app.route('/admin/db-info')
+def admin_db_info():
+    """Comprehensive database information"""
+    try:
+        with app.app_context():
+            # Get table counts
+            users_count = User.query.count()
+            messages_count = Message.query.count()
+            profile_views_count = ProfileView.query.count()
+            
+            # Get recent users
+            recent_users = User.query.order_by(User.created_at.desc()).limit(5).all()
+            
+            result = f"""
+            <h1>Database Information</h1>
+            <p><strong>Users:</strong> {users_count}</p>
+            <p><strong>Messages:</strong> {messages_count}</p>
+            <p><strong>Profile Views:</strong> {profile_views_count}</p>
+            
+            <h2>Recent Users</h2>
+            <ul>
+            """
+            
+            for user in recent_users:
+                result += f"""
+                <li>
+                    ID: {user.id} | 
+                    Username: {user.username} | 
+                    Email: {user.email} | 
+                    Created: {user.created_at}
+                </li>
+                """
+            
+            result += "</ul>"
+            return result
+            
+    except Exception as e:
+        return f"<p>Error: {e}</p>"
+
+@app.route('/admin/user/<int:user_id>')
+def admin_user_detail(user_id):
+    """View detailed user information"""
+    user = User.query.get(user_id)
+    if not user:
+        return f"<p>User {user_id} not found</p>"
+    
+    return f"""
+    <h1>User Details: {user.username}</h1>
+    <p><strong>ID:</strong> {user.id}</p>
+    <p><strong>Username:</strong> {user.username}</p>
+    <p><strong>Email:</strong> {user.email}</p>
+    <p><strong>Gender:</strong> {user.gender}</p>
+    <p><strong>Country:</strong> {user.country}</p>
+    <p><strong>Phone:</strong> {user.phone}</p>
+    <p><strong>Birthdate:</strong> {user.birthdate}</p>
+    <p><strong>Created:</strong> {user.created_at}</p>
+    <p><strong>Password Hash:</strong> {user.password_hash[:50]}...</p>
+    """
 
 @app.route('/api/send-message', methods=['POST'])
 @login_required
@@ -483,7 +662,6 @@ def api_messages(partner_id):
         ((Message.sender_id == partner_id) & (Message.receiver_id == user_id))
     ).order_by(Message.timestamp.asc()).all()
     
-    # Mark messages as read
     for msg in messages:
         if msg.receiver_id == user_id and not msg.read:
             msg.read = True
@@ -535,6 +713,10 @@ def shares_story():
 def privacy():
     return render_template('privacy.html')
 
+@app.route('/favicon.ico')
+def favicon():
+    return redirect(url_for('static', filename='images/favicon.jpg'))
+
 @app.route('/advert')
 @login_required
 def advert():
@@ -565,17 +747,21 @@ if __name__ == '__main__':
     # Database initialization
     initialize_database()
     
-    # Test database connection
-    if test_database_connection():
+    # Test database connection and schema
+    if test_database_connection() and check_database_schema():
         print("🚀 Starting Lovenett application...")
         print("📱 Application URL: http://localhost:5000")
         print("🔐 Login URL: http://localhost:5000/forms")
+        print("💾 Database: Connected successfully")
+        
+        # Display sample users for testing
+        with app.app_context():
+            users = User.query.all()
+            if users:
+                print(f"👥 Registered users: {len(users)}")
+                for user in users[:3]:
+                    print(f"   - {user.username} ({user.email})")
+        
         app.run(debug=True, host='0.0.0.0', port=5000)
     else:
-        print("❌ Cannot start application due to database connection issues.")
-        print("💡 Please check:")
-        print("   1. MySQL server is running")
-        print("   2. Database 'chat_app' exists")
-        print("   3. MySQL user 'root' has correct permissions")
-        print("   4. Password 'Lovenett123' is correct")
-        
+        print("❌ Cannot start application due to database issues.")
